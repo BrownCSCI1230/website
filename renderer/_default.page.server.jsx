@@ -1,37 +1,30 @@
 import ReactDOMServer from 'react-dom/server'
 import React from 'react'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
-import { PageLayout } from './PageLayout'
+import { PageLayout } from '../components/PageLayout'
 
-export { render }
-export { passToClient }
+export { passToClient, render }
 
-// See https://vite-plugin-ssr.com/data-fetching
+// Tells `vite-plugin-ssr` to make `pageContext.pageProps` available in the browser
 const passToClient = ['pageProps']
-
-const defaultDocumentProps = {
-  title: 'Home',
-  description: 'We teach computer graphics!',
-}
 
 function render(pageContext) {
   const { Page, pageProps } = pageContext
+
   const pageHtml = ReactDOMServer.renderToString(
     <PageLayout>
       <Page {...pageProps} />
     </PageLayout>
   )
 
-  const documentProps = {
-    ...defaultDocumentProps,
-    ...pageContext.pageExports.documentProps,
-  }
+  const documentProps = pageContext.pageExports.documentProps ?? pageContext.documentProps
+  const title = documentProps ? documentProps.title + ' | CSCI 1230' : 'CSCI 1230'
 
   return escapeInject`<!DOCTYPE html>
     <html>
       <head>
-        <title>${documentProps.title} | CSCI 1230</title>
-        <meta name="description" content="${documentProps.description}">
+        <title>${title}</title>
+        <meta name="description" content="We teach computer graphics!">
       </head>
       <body>
         <div id="page-view">

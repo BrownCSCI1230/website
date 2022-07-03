@@ -1,13 +1,15 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
 import { getPage } from 'vite-plugin-ssr/client'
-import { PageLayout } from './PageLayout'
+import { PageLayout } from '../components/PageLayout'
 
 hydrate()
 
 async function hydrate() {
   const pageContext = await getPage()
   const { Page, pageProps } = pageContext
+
+  console.log('Page props: ', pageProps)
 
   ReactDOM.hydrate(
     <PageLayout>

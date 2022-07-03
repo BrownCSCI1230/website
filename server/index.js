@@ -1,7 +1,11 @@
-const express = require('express')
-const { createPageRenderer } = require('vite-plugin-ssr')
+import express from 'express'
+import vite from 'vite'
+import { createPageRenderer } from 'vite-plugin-ssr'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
 
 const isProduction = process.env.NODE_ENV === 'production'
+const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = `${__dirname}/..`
 
 startServer()
@@ -13,7 +17,6 @@ async function startServer() {
   if (isProduction) {
     app.use(express.static(`${root}/dist/client`))
   } else {
-    const vite = require('vite')
     viteDevServer = await vite.createServer({
       root,
       server: { middlewareMode: 'ssr' },
@@ -24,14 +27,19 @@ async function startServer() {
   const renderPage = createPageRenderer({ viteDevServer, isProduction, root })
   app.get('*', async (req, res, next) => {
     const url = req.originalUrl
-    const pageContextInit = { url }
+    const pageContextInit = {
+      url,
+    }
     const pageContext = await renderPage(pageContextInit)
-    if (!pageContext.httpResponse) return next()
-    const { body, statusCode, contentType } = pageContext.httpResponse
-    res.status(statusCode).type(contentType).send(body)
+    const { httpResponse } = pageContext
+    if (!httpResponse) return next()
+    const stream = await httpResponse.getNodeStream()
+    const { statusCode, contentType } = httpResponse
+    res.status(statusCode).type(contentType)
+    stream.pipe(res)
   })
 
-  const port = process.env.PORT || 3000
+  const port = 3000
   app.listen(port)
   console.log(`Server running at http://localhost:${port}`)
 }

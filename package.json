@@ -13,5 +13,6 @@
     "express": "^4.17.3",
     "vite": "^2.8.4",
     "vite-plugin-ssr": "0.3.64"
-  }
+  },
+  "type": "module"
 }

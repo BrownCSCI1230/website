@@ -1,5 +1,9 @@
 import React from 'react'
 
+export { documentProps, Page }
+
+const documentProps = { title: 'Hours' }
+
 function Page() {
   return (
     <>
@@ -8,7 +12,3 @@ function Page() {
     </>
   )
 }
-
-const documentProps = { title: 'Hours' }
-
-export { Page, documentProps }

@@ -1,5 +1,9 @@
 import React from 'react'
-import { Counter } from './components/Counter'
+import { Counter } from '/components/Counter'
+
+export { documentProps, Page }
+
+const documentProps = { title: 'Home' }
 
 function Page() {
   return (
@@ -15,7 +19,3 @@ function Page() {
     </>
   )
 }
-
-const documentProps = { title: 'Home' }
-
-export { Page, documentProps }
