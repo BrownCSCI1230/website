@@ -13,6 +13,6 @@ async function hydrate() {
     <PageLayout>
       <Page {...pageProps} />
     </PageLayout>,
-    document.getElementById('page-view'),
+    document.getElementById('page-view')
   )
 }

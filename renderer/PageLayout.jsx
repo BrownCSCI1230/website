@@ -31,8 +31,7 @@ function Layout({ children }) {
         display: 'flex',
         maxWidth: 900,
         margin: 'auto',
-      }}
-    >
+      }}>
       {children}
     </div>
   )
@@ -49,8 +48,7 @@ function Sidebar({ children }) {
         flexDirection: 'column',
         alignItems: 'flex-start',
         lineHeight: '1.8em',
-      }}
-    >
+      }}>
       {children}
     </div>
   )
@@ -64,8 +62,7 @@ function Content({ children }) {
         paddingBottom: 50,
         borderLeft: '2px solid #eee',
         minHeight: '100vh',
-      }}
-    >
+      }}>
       {children}
     </div>
   )
