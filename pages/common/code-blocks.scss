@@ -1,0 +1,292 @@
+@use 'sass:math';
+@use 'sass:color';
+
+// Created by ZC.
+// Based on - https://github.com/timlrx/rehype-prism-plus
+//          - https://github.com/PrismJS/prism-themes
+
+// ================== Variables
+
+$breakpoint: 750px;
+
+$code-background: #1e1e1e;
+
+$code-padding-vertical: 1.2rem;
+$code-padding-horizontal: 1.2rem;
+$code-border-radius: 10px;
+
+$code-highlight-edge-width: 0.4rem;
+$code-highlight-edge-color: rgb(59, 130, 255);
+$code-highlight-background-color: hsla(230, 100%, 75%, 0.1);
+
+$code-line-number-width: 3ch;
+
+$code-font-white: #d4d4d4;
+$code-font-gray: #808080;
+$code-line-number-color: color.mix($code-font-white, $code-font-gray, 25%);
+
+$code-font-red: #d16969;
+$code-font-green: #6a9955;
+$code-font-blue: #569cd6;
+$code-font-orange: #d7ba7d;
+$code-font-pink: #c586c0;
+$code-font-cyan: #4ec9b0;
+
+$code-font-light-red: #ce9178;
+$code-font-light-green: #b5cea8;
+$code-font-light-blue: #9cdcfe;
+$code-font-light-orange: #dcdcaa;
+
+$code-font-size: 13px;
+$code-font-family: ui-monospace;
+
+// ================== Code Blocks
+
+pre {
+  margin: 0 0 1em;
+  padding: $code-padding-vertical 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+
+  border-radius: $code-border-radius;
+
+  font-size: $code-font-size;
+
+  @media only screen and (max-width: $breakpoint) {
+    border-radius: 0;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+
+pre,
+code {
+  background: $code-background;
+
+  color: $code-font-white;
+  font-family: $code-font-family;
+
+  text-shadow: none;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+
+  word-spacing: normal;
+  word-break: normal;
+
+  line-height: 1.6;
+  tab-size: 4;
+  hyphens: none;
+}
+
+pre > code {
+  float: left; // Magic: make the element just wide enough to fit its content
+  min-width: 100%; // Magic: always fill the visible space in .code-highlight
+}
+
+// ================== Inline Code
+
+:not(pre) > code {
+  padding: 0.15em 0.25em;
+  border-radius: 0.25em;
+
+  font-size: 85%;
+}
+
+// ================== Line Highlighting and Line Numbers
+
+.code-line {
+  display: block;
+  position: relative;
+  z-index: 1;
+
+  padding-right: $code-padding-horizontal;
+
+  &::before {
+    content: '';
+    border-left: $code-highlight-edge-width solid $code-background;
+    padding-right: $code-padding-horizontal - $code-highlight-edge-width;
+  }
+
+  &.highlight-line {
+    &::before {
+      border-left: $code-highlight-edge-width solid $code-highlight-edge-color;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+
+      background-color: $code-highlight-background-color;
+    }
+  }
+
+  &.line-number::before {
+    display: inline-block;
+    content: attr(line);
+
+    width: $code-line-number-width;
+    padding-right: $code-padding-horizontal;
+    text-align: right;
+
+    color: $code-line-number-color;
+    background: $code-background;
+
+    position: sticky;
+    left: 0;
+  }
+}
+
+// ================== Tokens
+
+.namespace {
+  opacity: 0.7;
+}
+
+.token {
+  .italic {
+    font-style: italic;
+  }
+
+  &.punctuation,
+  &.operator {
+    color: $code-font-white;
+  }
+  &.tag .token.punctuation,
+  &.cdata {
+    color: $code-font-gray;
+  }
+
+  &.regex {
+    color: $code-font-red;
+  }
+  &.comment,
+  &.prolog {
+    color: $code-font-green;
+  }
+  &.doctype .token.doctype-tag,
+  &.operator.arrow,
+  &.keyword,
+  &.important,
+  &.punctuation.interpolation-punctuation,
+  &.boolean,
+  &.tag,
+  &.entity {
+    color: $code-font-blue;
+  }
+  &.keyword.module,
+  &.keyword.control-flow {
+    color: $code-font-pink;
+  }
+  &.class-name,
+  &.maybe-class-name,
+  &.namespace {
+    color: $code-font-cyan;
+  }
+
+  &.selector,
+  &.string,
+  &.char,
+  &.builtin,
+  &.deleted {
+    color: $code-font-light-red;
+  }
+  &.property,
+  &.tag,
+  &.boolean,
+  &.number,
+  &.constant,
+  &.symbol,
+  &.inserted,
+  &.unit {
+    color: $code-font-light-green;
+  }
+  &.doctype .token.name,
+  &.property,
+  &.variable,
+  &.constant,
+  &.imports .token.maybe-class-name,
+  &.exports .token.maybe-class-name,
+  &.console,
+  &.parameter,
+  &.interpolation,
+  &.attr-name {
+    color: $code-font-light-blue;
+  }
+  &.function,
+  &.function .token.maybe-class-name {
+    color: $code-font-light-orange;
+  }
+
+  &.selector,
+  &.escape {
+    color: $code-font-orange;
+  }
+
+  &.atrule {
+    color: $code-font-light-red;
+    .token.url .token.punctuation {
+      color: $code-font-white;
+    }
+    .token.rule {
+      color: $code-font-light-red;
+    }
+    .token.url {
+      color: $code-font-light-blue;
+    }
+    .token.url .token.function {
+      color: $code-font-light-orange;
+    }
+  }
+
+  &.attr-value {
+    color: $code-font-light-red;
+    .token.punctuation {
+      color: $code-font-light-red;
+    }
+    .token.punctuation.attr-equals {
+      color: $code-font-white;
+    }
+  }
+}
+
+// ================== Language Specific
+
+pre,
+code {
+  &[class*='language-html'] {
+    color: $code-font-white;
+  }
+
+  &[class*='language-css'] {
+    color: $code-font-light-red;
+  }
+
+  &[class*='language-javascript'],
+  &[class*='language-jsx'],
+  &[class*='language-typescript'],
+  &[class*='language-tsx'] {
+    color: $code-font-light-blue;
+  }
+}
+
+.language-regex .token.anchor {
+  color: #dcdcaa;
+}
+
+.language-html {
+  .language-css .token.punctuation,
+  .language-javascript .token.punctuation {
+    color: $code-font-white;
+  }
+
+  .token.punctuation {
+    color: $code-font-gray;
+  }
+}
+
+.language-css .token.string.url {
+  text-decoration: underline;
+}

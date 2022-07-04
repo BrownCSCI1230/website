@@ -1,28 +1,26 @@
 import React from 'react'
-import './PageLayout.css'
+import './PageLayout.scss'
 
 export { PageLayout }
+
+const navItems = [
+  { text: 'Home', href: '/' },
+  { text: 'Hours', href: '/hours' },
+  { text: 'Staff', href: '/staff' },
+  { text: 'Lab 0', href: '/labs/lab0' },
+  { text: 'Lab 1', href: '/labs/lab1' },
+]
 
 function PageLayout({ children }) {
   return (
     <React.StrictMode>
       <Layout>
         <Sidebar>
-          <a className="navitem" href="/">
-            Home
-          </a>
-          <a className="navitem" href="/hours">
-            Hours
-          </a>
-          <a className="navitem" href="/staff">
-            Staff
-          </a>
-          <a className="navitem" href="/labs/lab0">
-            Lab 0
-          </a>
-          <a className="navitem" href="/labs/lab1">
-            Lab 1
-          </a>
+          {navItems.map((navItem) => (
+            <a key={navItem.text} href={navItem.href}>
+              {navItem.text}
+            </a>
+          ))}
         </Sidebar>
         <Content>{children}</Content>
       </Layout>
@@ -31,45 +29,13 @@ function PageLayout({ children }) {
 }
 
 function Layout({ children }) {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        maxWidth: 900,
-        margin: 'auto',
-      }}>
-      {children}
-    </div>
-  )
+  return <div className="layout">{children}</div>
 }
 
 function Sidebar({ children }) {
-  return (
-    <div
-      style={{
-        padding: 20,
-        paddingTop: 42,
-        flexShrink: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        lineHeight: '1.8em',
-      }}>
-      {children}
-    </div>
-  )
+  return <nav className="sidebar">{children}</nav>
 }
 
 function Content({ children }) {
-  return (
-    <div
-      style={{
-        padding: 20,
-        paddingBottom: 50,
-        borderLeft: '2px solid #eee',
-        minHeight: '100vh',
-      }}>
-      {children}
-    </div>
-  )
+  return <div className="main-content">{children}</div>
 }
