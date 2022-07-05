@@ -22,6 +22,7 @@
     "rehype-mathjax": "^4.0.2",
     "rehype-slug": "^5.0.1",
     "rehype-toc": "^3.0.2",
+    "remark-directive": "^2.0.1",
     "remark-emoji": "^3.0.2",
     "remark-gfm": "^3.0.1",
     "remark-math": "^5.1.1",

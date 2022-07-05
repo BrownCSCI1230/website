@@ -4,17 +4,19 @@ export const documentProps = { title: 'Lab 0' }
 
 ```cpp {7-9} showLineNumbers
 auto Plus(auto Increment) {
-    return [=](auto x) {
-        return x + Increment;
-    };
+  return [=](auto x) {
+    return x + Increment;
+  };
 }
 
 auto Apply(auto Operation, auto x) {
-    return Operation(x);
+  return Operation(x);
 }
 
 auto x = Apply(Plus(20), 22); // x == 42
 auto y = Apply(Plus(-1.1), 4.24); // y == 3.14
+
+// A very long comment very long comment very long comment very long comment very long comment very long comment
 ```
 
 ## 0. Intro, or `Introduction`
@@ -22,3 +24,19 @@ auto y = Apply(Plus(-1.1), 4.24); // y == 3.14
 The purpose of `lab 0` is twofold: to serve as a handy _base_ template for other lab handouts, and to teach you some tricks of the trade! You will get to try your hand at doing certain things like `XYZ` and `ABC`, and (hopefully) learn something new in the process. It might also help with your projects (i.e. handouts and algos) :wink:.
 
 In the rest of this 1-2h lab (NB: actually 5 min), you will:
+
+:::task
+Hey! a task callout!
+:::
+
+:::warning
+Hey! a warning callout!
+:::
+
+:::success
+Hey! a success callout!
+:::
+
+:::error
+Hey! an error callout!
+:::

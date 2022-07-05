@@ -39,7 +39,11 @@ function Layout({ children }) {
 }
 
 function Sidebar({ children }) {
-  return <nav className="sidebar">{children}</nav>
+  return (
+    <nav className="sidebar">
+      <div style={{ position: 'sticky' }}>{children}</div>
+    </nav>
+  )
 }
 
 function Content({ children }) {

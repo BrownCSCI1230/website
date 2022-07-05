@@ -4,12 +4,13 @@
 // Fixme: combine font imports into one url for performance
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,375;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;350;375;400;425;450;500;600;700;800;900&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,700;1,900&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,425;0,500;0,550;0,600;0,650;0,700;1,400;1,425;1,500;1,550;1,600;1,650;1,700&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;350;375;400;425;450;500;600;700;800;900&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 // @import url('https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
@@ -47,21 +48,23 @@ $table-border: 1px solid $table-border-color;
 $table-cell-padding: 0.25rem 0.5rem;
 $table-font-size: $body-font-size;
 
-$code-font-family: ui-monospace;
-$code-font-size: 0.8125rem;
-$code-font-weight: 400;
+$code-font-family: 'Roboto Mono';
+$code-font-size: 0.75rem;
+$code-font-weight: 375;
 $code-line-height: 1.5;
 
 $code-highlight-edge-width: 0.4rem;
 $code-highlight-edge-color: rgb(59, 130, 255);
 $code-highlight-background-color: hsla(230, 100%, 75%, 0.1);
+$code-border-radius: 0.625rem;
+
+$callout-border-radius: 0.625rem;
 
 $main-content-vertical-margin: 1rem;
 
 // ================== Mixins
 
 @mixin header-text($font-size, $font-weight) {
-  margin: ($main-content-vertical-margin * 2) 0 $main-content-vertical-margin;
   padding-bottom: 0.25rem;
 
   border-bottom: 1px solid #eee;
@@ -74,8 +77,6 @@ $main-content-vertical-margin: 1rem;
 }
 
 @mixin body-text {
-  margin-bottom: $main-content-vertical-margin;
-
   font-family: $body-font-family;
   font-size: $body-font-size;
   font-weight: $body-font-weight;
@@ -173,14 +174,6 @@ ul {
   padding-left: 2rem;
 }
 
-.main-content {
-  > .math-display,
-  > .image-wrapper,
-  > blockquote {
-    margin-bottom: $main-content-vertical-margin;
-  }
-}
-
 .image-wrapper {
   display: flex;
   flex-direction: column;
@@ -194,6 +187,39 @@ li {
 slot.summarySlot,
 summary {
   cursor: pointer;
+}
+
+// ================== Callouts
+
+@mixin callout($color, $content) {
+  background-color: color.change($color, $alpha: 0.3);
+  border: 1px solid $color;
+}
+
+.task-callout,
+.warning-callout,
+.success-callout,
+.error-callout {
+  border-radius: $callout-border-radius;
+  padding: $main-content-vertical-margin;
+
+  &.task-callout {
+    @include callout(hsl(198, 58%, 73%), '');
+  }
+  &.warning-callout {
+    @include callout(rgb(255, 208, 120), '');
+  }
+  &.success-callout {
+    @include callout(rgb(159, 231, 146), '');
+  }
+  &.error-callout {
+    @include callout(rgb(246, 155, 155), '');
+  }
+
+  > :only-child {
+    color: black;
+    margin: 0;
+  }
 }
 
 // ================== Tables
@@ -216,23 +242,26 @@ th {
 // ================== Layout Elements
 
 .layout {
-  display: flex;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, min-content) minmax(0, 1fr);
   max-width: 800px;
   margin: auto;
 }
 
 .sidebar {
-  padding: 20px;
-  padding-top: 42px;
   flex-shrink: 0px;
 
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  line-height: 1.8em;
+  > div {
+    padding: 20px;
+    padding-top: 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.8em;
 
-  > * {
-    padding: 3px;
+    > * {
+      padding: 3px;
+    }
   }
 }
 
@@ -241,4 +270,17 @@ th {
   padding-bottom: 50px;
   border-left: 2px solid #e0e0e0;
   min-height: 100vh;
+
+  > * {
+    margin-bottom: $main-content-vertical-margin;
+  }
+
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6 {
+    margin: ($main-content-vertical-margin * 2) 0 $main-content-vertical-margin;
+  }
 }
