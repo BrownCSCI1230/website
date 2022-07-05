@@ -11,6 +11,7 @@ const navItems = [
   { text: 'Lab 0', href: '/labs/lab0' },
   { text: 'Lab 1', href: '/labs/lab1' },
   { text: 'Lab 2', href: '/labs/lab2' },
+  { text: 'Lab 4', href: '/labs/lab4' },
   { text: 'Raster', href: '/projects/raster' },
   { text: 'Ray', href: '/projects/ray' },
   { text: 'Realtime', href: '/projects/realtime' },

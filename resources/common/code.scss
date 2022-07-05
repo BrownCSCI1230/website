@@ -39,6 +39,10 @@ $code-font-light-orange: #dcdcaa;
 
 // ================== Code Blocks
 
+code {
+  @include code-text;
+}
+
 pre {
   margin: 0 0 1em;
   padding: $code-padding-vertical 0;
@@ -68,11 +72,11 @@ pre {
 
   tab-size: 4;
   hyphens: none;
-}
 
-pre > code {
-  float: left; // Magic: make the element just wide enough to fit its content
-  min-width: 100%; // Magic: always fill the visible space in .code-highlight
+  code {
+    float: left; // Magic: make the element just wide enough to fit its content
+    min-width: 100%; // Magic: always fill the visible space in .code-highlight
+  }
 }
 
 // ================== Inline Code
@@ -86,6 +90,7 @@ pre > code {
   box-decoration-break: clone;
   --webkit-box-decoration-break: clone;
 
+  // Fixme
   color: black;
   background-color: #e0e0e0;
 }

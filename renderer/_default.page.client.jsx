@@ -13,7 +13,7 @@ async function hydrate() {
 
   ReactDOM.hydrate(
     <PageLayout>
-      <Page {...(pageProps || {})} />
+      <Page {...(pageProps ?? {})} />
     </PageLayout>,
     document.getElementById('page-view')
   )
