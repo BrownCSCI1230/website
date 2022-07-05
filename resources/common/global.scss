@@ -1,0 +1,225 @@
+@use 'sass:color';
+@use 'sass:math';
+
+// Fixme: combine font imports into one url for performance
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,450;0,500;0,600;0,650;0,700;1,400;1,450;1,500;1,600;1,650;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;450;500;600;700;800;900&display=swap');
+
+// ================== Variables
+
+$breakpoint: 750px;
+
+$header-font-family: 'Karla', monospace; // Fixme: monospace is here for debugging only
+$h1-font-size: 1.9rem;
+$h2-font-size: 1.5rem;
+$h3-font-size: 1.4rem;
+$h4-font-size: 1.3rem;
+$h5-font-size: 1.2rem;
+$h6-font-size: 1.1rem;
+$h1-font-weight: 700;
+$h2-font-weight: 700;
+$h3-font-weight: 650;
+$h4-font-weight: 600;
+$h5-font-weight: 600;
+$h6-font-weight: 600;
+$header-line-height: 1.2;
+$header-color: #0e0e0e;
+
+$body-font-family: 'Karla', monospace; // Fixme: monospace is here for debugging only
+$body-font-size: 0.9375rem;
+$body-font-weight: 400;
+$body-font-weight-italics: 400;
+$body-font-weight-bold: 600;
+$body-line-height: 1.6;
+$body-color: #0e0e0e;
+
+$table-border-color: #e0e0e0;
+$table-border: 1px solid $table-border-color;
+$table-cell-padding: 0.25rem 0.5rem;
+$table-font-size: $body-font-size;
+
+$code-font-family: 'Inconsolata', sans-serif; // Fixme: sans-serif is here for debugging only
+$code-font-size: 0.9375;
+$code-font-weight: 450;
+$code-line-height: 1.2;
+
+// ================== Mixins
+
+@mixin header-text($font-size, $font-weight) {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.3rem;
+
+  border-bottom: 1px solid #eee;
+
+  font-family: $header-font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $header-line-height;
+  color: $header-color;
+
+  &:not(:first-child) {
+    padding-top: 0.5rem;
+  }
+}
+
+@mixin body-text {
+  margin-bottom: 1rem;
+
+  font-family: $body-font-family;
+  font-size: $body-font-size;
+  font-weight: $body-font-weight;
+  line-height: $body-line-height;
+  color: $body-color;
+
+  &i,
+  i,
+  &em,
+  em {
+    font-style: italic;
+
+    font-weight: $body-font-weight-italics;
+  }
+
+  &b,
+  b,
+  &strong,
+  strong {
+    font-weight: $body-font-weight-bold;
+  }
+}
+
+@mixin code-text {
+  font-family: $code-font-family;
+  font-size: $code-font-size;
+  font-weight: $code-font-weight;
+  line-height: $code-line-height;
+}
+
+// ================== General styles
+
+* {
+  -webkit-font-smoothing: subpixel-antialiased;
+
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+
+  background-color: transparent;
+}
+
+body {
+  margin: 0;
+
+  @include body-text;
+}
+
+img {
+  max-width: 100%;
+  min-width: 0px;
+}
+
+// ================== Text
+
+h1 {
+  @include header-text($h1-font-size, $h1-font-weight);
+}
+
+h2 {
+  @include header-text($h2-font-size, $h2-font-weight);
+}
+
+h3 {
+  @include header-text($h3-font-size, $h3-font-weight);
+}
+
+h4 {
+  @include header-text($h4-font-size, $h4-font-weight);
+}
+
+h5 {
+  @include header-text($h5-font-size, $h5-font-weight);
+}
+
+h6 {
+  @include header-text($h6-font-size, $h6-font-weight);
+}
+
+.icon.icon-link {
+  background-color: red;
+  height: 10px;
+  width: 10px;
+}
+p {
+  @include body-text;
+}
+
+ol,
+ul {
+  margin-left: unset;
+  margin-right: unset;
+  padding-left: 2rem;
+}
+
+li {
+  padding-left: 0.5rem;
+}
+
+slot.summarySlot,
+summary {
+  cursor: pointer;
+}
+
+// ================== Tables
+
+table {
+  border-collapse: collapse;
+  font-size: $table-font-size;
+}
+
+td,
+th {
+  border: $table-border;
+  padding: $table-cell-padding;
+}
+
+th {
+  font-weight: $body-font-weight-bold;
+}
+
+// ================== Layout Elements
+
+.layout {
+  display: flex;
+  max-width: 800px;
+  margin: auto;
+}
+
+.sidebar {
+  padding: 20px;
+  padding-top: 42px;
+  flex-shrink: 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.8em;
+
+  > * {
+    padding: 3px;
+  }
+}
+
+.main-content {
+  padding: 20px;
+  padding-bottom: 50px;
+  border-left: 2px solid #e0e0e0;
+  min-height: 100vh;
+}

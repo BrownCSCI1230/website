@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
 import { getPage } from 'vite-plugin-ssr/client'
-import { PageLayout } from '../components/PageLayout'
+import { PageLayout } from '../resources/common/PageLayout'
 
 hydrate()
 
@@ -13,7 +13,7 @@ async function hydrate() {
 
   ReactDOM.hydrate(
     <PageLayout>
-      <Page {...pageProps} />
+      <Page {...(pageProps || {})} />
     </PageLayout>,
     document.getElementById('page-view')
   )

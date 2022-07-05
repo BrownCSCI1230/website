@@ -1,7 +1,7 @@
 import ReactDOMServer from 'react-dom/server'
 import React from 'react'
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
-import { PageLayout } from '../components/PageLayout'
+import { PageLayout } from '../resources/common/PageLayout'
 
 export { passToClient, render }
 

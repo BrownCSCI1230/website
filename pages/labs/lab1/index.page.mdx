@@ -1,0 +1,119 @@
+import { Counter } from '../../../resources/common/Counter'
+
+export const documentProps = { title: 'Lab 1' }
+
+# Lab 1: Setup
+
+[Gradescope link](https://github.com/BrownCSCI1230/lab01_setup)
+
+This lab is due on **Sep 13, 2022**.
+
+## 0. Intro
+
+Welcome to CS123!
+
+$$
+  \displaylines{ \text{We love math!} \\ \text{But math doesn't love us...} }
+$$
+
+Here's the lighting equation:
+
+$$
+  I_λ = K_a O_{aλ} + \sum_{m=0}^{n_\text{lights}-1} \left[ I_{mλ} \cdot (k_d O_{dλ} \hat{n}) \cdot \hat{L_m} \right]
+$$
+
+The purpose of this lab is twofold: to help you get set up to work locally, and to help you learn the basics of C++, the programming language that we'll be using in this class.
+
+In the rest of this 1-2h lab, you will:
+
+1. Install Qt and QtCreator locally,
+   - Learn to nest lists
+   - Like this
+   - It just _works_!
+     - hehe
+     - `:wink:` becomes :wink:
+2. Build and run a starter Qt program, and
+3. Gain some familiarity with basic C++ features.
+
+### 0.1. Dummy
+
+If you know what you're doing, you <i>can</i> write code in your preferred IDE or text editor. Do note, however,
+that our course uses a standardized environment for grading&mdash;that is to say, we will build and run your
+projects through QtCreator. Therefore, you'll probably want to have Qt and QtCreator, if only to test that your
+code works as expected!
+
+#### 0.1.1. Dummy
+
+If you know what you're doing, you <i>can</i> write code in your preferred IDE or text editor. Do note, however,
+that our course uses a standardized environment for grading&mdash;that is to say, we will build and run your
+projects through QtCreator. Therefore, you'll probably want to have Qt and QtCreator, if only to test that your
+code works as expected!
+
+##### 0.1.1.1. Dummy
+
+If you know what you're doing, you <i>can</i> write code in your preferred IDE or text editor. Do note, however,
+that our course uses a standardized environment for grading&mdash;that is to say, we will build and run your
+projects through QtCreator. Therefore, you'll probably want to have Qt and QtCreator, if only to test that your
+code works as expected!
+
+###### 0.1.1.1.1. Dummy
+
+If you know what you're doing, you <i>can</i> write code in your preferred IDE or text editor. Do note, however,
+that our course uses a standardized environment for grading&mdash;that is to say, we will build and run your
+projects through QtCreator. Therefore, you'll probably want to have Qt and QtCreator, if only to test that your
+code works as expected!
+
+## 1. Qt and QtCreator
+
+In CS123, we use **Qt** and **QtCreator** to develop, build, and run all our projects and labs.
+
+- [Qt](https://www.qt.io) is a software used for building graphical user interfaces (GUIs) and cross-platform applications, e.g. for smart TVs or in-vehicle displays.
+- [QtCreator](https://www.qt.io/product/development-tools) is the integrated development environment (IDE) included with each Qt install. It provides useful tools for developing in C++, which you'll learn about later in the course.
+
+<details>
+  <summary>But I prefer writing code in VS Code / Emacs / Notepad / ...</summary>
+  If you know what you're doing, you <i>can</i> write code in your preferred IDE or text editor. Do note, however,
+  that our course uses a standardized environment for grading&mdash;that is to say, we will build and run your
+  projects through QtCreator. Therefore, you'll probably want to have Qt and QtCreator, if only to test that your
+  code works as expected!
+</details>
+
+### 1.1. Local Installation, and Opening Your First Project
+
+| Step | Instruction                                                                                                                                                                                                                                                                                                                                                                                          | Screenshot                                              |
+| :--: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------ |
+|  1   | Download and open the appropriate Qt installer for your operating system from [https://www.qt.io/download-qt-installer](https://www.qt.io/download-qt-installer).                                                                                                                                                                                                                                    | ![todo](/resources/labs/lab1/download-qt-installer.png) |
+|  2   | Follow the instructions on the installer to create a free Qt account (or use an existing one).                                                                                                                                                                                                                                                                                                       | ![todo](/resources/labs/lab1/create-qt-account.png)     |
+|  3   | When prompted, opt for a `Custom Installation`.                                                                                                                                                                                                                                                                                                                                                      | ![todo](/resources/labs/lab1/custom-installation.png)   |
+|  4   | Minimally, you'll need to select **these 3 components:**<br/><br/>1. `Qt 6.2.4 > [your OS]`,<br/>2. `Developer and Designer Tools > CMake [some version]`, and<br/>3. `Developer and Designer Tools > Ninja [some version]`.<br/><br/>Note that `QtCreator`, the Qt IDE, will be installed as well&mdash;you do not have to select it.                                                               | ![todo](/resources/labs/lab1/selected-components.png)   |
+|  5   | Continue, and finish the installation process.                                                                                                                                                                                                                                                                                                                                                       | ![todo](/resources/labs/lab1/finished-install.png)      |
+|  6   | Finally, launch QtCreator, click `Open Project...`, and, in the pop-up window, select the `lab01.pro` file located in this repository.<br/><br/><details><summary>What is a `.pro` file?</summary><br/>A `.pro` file is a <i>multi-platform</i> project file, which Qt can turn into a <i>platform-specific</i> makefile. It stores configuration information, e.g. what files to include.</details> | ![todo](/resources/labs/lab1/open-project.png)          |
+
+### 1.2. The QtCreator Interface
+
+If you completed all the steps successfully, you should see the following screen. Good work!
+
+[Insert labelled image here]
+
+- [Include something about "Project View"]
+- [Include something about "Projects" aka settings]
+- [Include something about "Run"].
+
+When you're ready, hit "run" and proceed to the next section.
+
+[ Note to TAs: we can make this project run some kind of setup check ]
+
+```cpp {7-9} showLineNumbers
+auto Plus(auto Increment) {
+  return [=](auto x) {
+    return x + Increment;
+  };
+}
+
+auto Apply(auto Operation, auto x) {
+  return Operation(x);
+}
+
+auto x = Apply(Plus(20), 22); // x == 42
+auto y = Apply(Plus(-1.1), 4.24); // y == 3.14
+```

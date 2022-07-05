@@ -1,5 +1,6 @@
 import React from 'react'
-import './PageLayout.scss'
+import './code.scss'
+import './global.scss'
 
 export { PageLayout }
 
@@ -9,6 +10,10 @@ const navItems = [
   { text: 'Staff', href: '/staff' },
   { text: 'Lab 0', href: '/labs/lab0' },
   { text: 'Lab 1', href: '/labs/lab1' },
+  { text: 'Lab 2', href: '/labs/lab2' },
+  { text: 'Raster', href: '/projects/raster' },
+  { text: 'Ray', href: '/projects/ray' },
+  { text: 'Realtime', href: '/projects/realtime' },
 ]
 
 function PageLayout({ children }) {

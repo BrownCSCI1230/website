@@ -1,13 +1,13 @@
 @use 'sass:math';
 @use 'sass:color';
 
+@import 'global.scss';
+
 // Created by ZC.
 // Based on - https://github.com/timlrx/rehype-prism-plus
 //          - https://github.com/PrismJS/prism-themes
 
 // ================== Variables
-
-$breakpoint: 750px;
 
 $code-background: #1e1e1e;
 
@@ -37,9 +37,6 @@ $code-font-light-green: #b5cea8;
 $code-font-light-blue: #9cdcfe;
 $code-font-light-orange: #dcdcaa;
 
-$code-font-size: 13px;
-$code-font-family: ui-monospace;
-
 // ================== Code Blocks
 
 pre {
@@ -50,21 +47,16 @@ pre {
 
   border-radius: $code-border-radius;
 
-  font-size: $code-font-size;
-
   @media only screen and (max-width: $breakpoint) {
     border-radius: 0;
     margin-left: -20px;
     margin-right: -20px;
   }
-}
 
-pre,
-code {
   background: $code-background;
 
+  @include code-text;
   color: $code-font-white;
-  font-family: $code-font-family;
 
   text-shadow: none;
   direction: ltr;
@@ -74,7 +66,6 @@ code {
   word-spacing: normal;
   word-break: normal;
 
-  line-height: 1.6;
   tab-size: 4;
   hyphens: none;
 }
@@ -87,10 +78,16 @@ pre > code {
 // ================== Inline Code
 
 :not(pre) > code {
-  padding: 0.15em 0.25em;
-  border-radius: 0.25em;
+  display: inline;
 
-  font-size: 85%;
+  padding: 0.05rem 0.2rem;
+  border-radius: 0.2rem;
+
+  box-decoration-break: clone;
+  --webkit-box-decoration-break: clone;
+
+  color: black;
+  background-color: #e0e0e0;
 }
 
 // ================== Line Highlighting and Line Numbers
