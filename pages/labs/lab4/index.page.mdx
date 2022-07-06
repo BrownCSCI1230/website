@@ -277,7 +277,9 @@ As briefly mentioned when discussing rotation about multiple axes, sometimes we 
 
 Due to the associativity of matrix multiplication, we can multiply $M_2$ and $M_1$ first to get one resulting matrix that is the composite of the two transformations, and then multiply that one matrix by any vertex to apply the same sequence of transformations to each.
 
-$$ T_2(T_1(v)) = M_2(M_1v) = (M_2M_1)v = Mv $$
+$$
+  T_2(T_1(v)) = M_2(M_1v) = (M_2M_1)v = Mv
+$$
 
 > Note that matrix multiplication is **not commutative** and therefore the order you apply transformations does change the outcome! The product $M_2M_1$ may not be the same as $M_1M_2$.
 

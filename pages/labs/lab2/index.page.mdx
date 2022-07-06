@@ -4,13 +4,13 @@ export const documentProps = { title: 'Lab 2' }
 
 ```cpp {7-9} showLineNumbers
 auto Plus(auto Increment) {
-    return [=](auto x) {
-        return x + Increment;
-    };
+  return [=](auto x) {
+    return x + Increment;
+  };
 }
 
 auto Apply(auto Operation, auto x) {
-    return Operation(x);
+  return Operation(x);
 }
 
 auto x = Apply(Plus(20), 22); // x == 42

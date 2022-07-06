@@ -12,6 +12,7 @@ const navItems = [
   { text: 'Lab 1', href: '/labs/lab1' },
   { text: 'Lab 2', href: '/labs/lab2' },
   { text: 'Lab 4', href: '/labs/lab4' },
+  { text: 'Lab 8', href: '/labs/lab8' },
   { text: 'Raster', href: '/projects/raster' },
   { text: 'Ray', href: '/projects/ray' },
   { text: 'Realtime', href: '/projects/realtime' },
@@ -41,7 +42,7 @@ function Layout({ children }) {
 function Sidebar({ children }) {
   return (
     <nav className="sidebar">
-      <div style={{ position: 'sticky' }}>{children}</div>
+      <div>{children}</div>
     </nav>
   )
 }
