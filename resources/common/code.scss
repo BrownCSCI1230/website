@@ -8,14 +8,6 @@
 // ================== Variables
 
 $code-background: #1e1e1e;
-$code-border: #1e1e1e;
-
-$code-padding-vertical: 1.2rem;
-$code-padding-horizontal: 1.2rem;
-
-$code-highlight-edge-width: 0.4rem;
-$code-highlight-edge-color: rgb(59, 130, 255);
-$code-highlight-background-color: hsla(230, 100%, 75%, 0.1);
 
 $code-line-number-width: 4ch;
 
@@ -26,8 +18,8 @@ $code-line-number-color: color.mix($code-block-white, $code-block-gray, 25%);
 // ================== Code Blocks
 
 pre {
-  margin: 0 0 1em;
-  padding: $code-padding-vertical 0;
+  margin: 0 0 $main-content-vertical-margin;
+  padding: $code-block-padding-vertical 0;
   overflow: auto;
   overscroll-behavior: contain;
 
@@ -52,10 +44,11 @@ pre {
   word-spacing: normal;
   word-break: normal;
 
-  tab-size: 4;
+  tab-size: 2;
   hyphens: none;
 
   code {
+    @include code-block-text;
     float: left; // Magic: make the element just wide enough to fit its content
     min-width: 100%; // Magic: always fill the visible space in .code-highlight
   }
@@ -82,13 +75,13 @@ pre {
   position: relative;
   z-index: 1;
 
-  padding-right: $code-padding-horizontal;
+  padding-right: $code-block-padding-horizontal;
 
   &::before {
     content: ' '; // space is necessary for inline-block not to collapse
     display: inline-block;
     border-left: $code-highlight-edge-width solid $code-background;
-    padding-right: $code-padding-horizontal - $code-highlight-edge-width;
+    padding-right: $code-block-padding-horizontal - $code-highlight-edge-width;
   }
 
   &.highlight-line {
@@ -111,7 +104,7 @@ pre {
     display: inline-block;
 
     width: $code-line-number-width;
-    padding-right: $code-padding-horizontal;
+    padding-right: $code-block-padding-horizontal;
     text-align: right;
 
     color: $code-line-number-color;
