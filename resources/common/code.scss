@@ -8,6 +8,7 @@
 // ================== Variables
 
 $code-background: #1e1e1e;
+$code-border: #1e1e1e;
 
 $code-padding-vertical: 1.2rem;
 $code-padding-horizontal: 1.2rem;
@@ -16,29 +17,13 @@ $code-highlight-edge-width: 0.4rem;
 $code-highlight-edge-color: rgb(59, 130, 255);
 $code-highlight-background-color: hsla(230, 100%, 75%, 0.1);
 
-$code-line-number-width: 3ch;
+$code-line-number-width: 4ch;
 
-$code-font-white: #d4d4d4;
-$code-font-gray: #808080;
-$code-line-number-color: color.mix($code-font-white, $code-font-gray, 25%);
-
-$code-font-red: #d16969;
-$code-font-green: #6a9955;
-$code-font-blue: #569cd6;
-$code-font-orange: #d7ba7d;
-$code-font-pink: #c586c0;
-$code-font-cyan: #4ec9b0;
-
-$code-font-light-red: #ce9178;
-$code-font-light-green: #b5cea8;
-$code-font-light-blue: #9cdcfe;
-$code-font-light-orange: #dcdcaa;
+$code-block-white: #d4d4d4;
+$code-block-gray: #808080;
+$code-line-number-color: color.mix($code-block-white, $code-block-gray, 25%);
 
 // ================== Code Blocks
-
-code {
-  @include code-text;
-}
 
 pre {
   margin: 0 0 1em;
@@ -46,7 +31,7 @@ pre {
   overflow: auto;
   overscroll-behavior: contain;
 
-  border-radius: $code-border-radius;
+  border-radius: $code-block-border-radius;
 
   @media only screen and (max-width: $breakpoint) {
     border-radius: 0;
@@ -56,8 +41,8 @@ pre {
 
   background: $code-background;
 
-  @include code-text;
-  color: $code-font-white;
+  @include code-block-text;
+  color: $code-block-white;
 
   text-shadow: none;
   direction: ltr;
@@ -81,15 +66,13 @@ pre {
 :not(pre) > code {
   display: inline;
 
-  padding: 0.05rem 0.2rem;
-  border-radius: 0.2rem;
+  padding: $code-inline-padding;
+  border-radius: $code-inline-border-radius;
 
   box-decoration-break: clone;
   --webkit-box-decoration-break: clone;
 
-  // Fixme
-  color: black;
-  background-color: #e0e0e0;
+  @include code-inline-text;
 }
 
 // ================== Line Highlighting and Line Numbers
@@ -102,7 +85,8 @@ pre {
   padding-right: $code-padding-horizontal;
 
   &::before {
-    content: '';
+    content: ' '; // space is necessary for inline-block not to collapse
+    display: inline-block;
     border-left: $code-highlight-edge-width solid $code-background;
     padding-right: $code-padding-horizontal - $code-highlight-edge-width;
   }
@@ -123,8 +107,8 @@ pre {
   }
 
   &.line-number::before {
-    display: inline-block;
     content: attr(line);
+    display: inline-block;
 
     width: $code-line-number-width;
     padding-right: $code-padding-horizontal;
