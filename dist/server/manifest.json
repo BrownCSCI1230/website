@@ -8,7 +8,7 @@
       "pages/hours.page.jsx",
       "pages/index.page.jsx",
       "pages/inline-code.page.mdx",
-      "pages/staff.page.jsx",
+      "pages/staff.page.mdx",
       "pages/labs/lab0/index.page.mdx",
       "pages/labs/lab1/index.page.mdx",
       "pages/labs/lab2/index.page.mdx",
@@ -41,9 +41,9 @@
     "src": "pages/inline-code.page.mdx",
     "isDynamicEntry": true
   },
-  "pages/staff.page.jsx": {
-    "file": "assets/staff.page.f549c1ce.js",
-    "src": "pages/staff.page.jsx",
+  "pages/staff.page.mdx": {
+    "file": "assets/staff.page.b67ca467.js",
+    "src": "pages/staff.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab0/index.page.mdx": {

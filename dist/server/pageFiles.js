@@ -9,8 +9,8 @@ const pageFiles = {
     return require("./assets/index.page.467c952c.js");
   }), "/pages/inline-code.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/inline-code.page.bcef403e.js");
-  }), "/pages/staff.page.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/staff.page.f549c1ce.js");
+  }), "/pages/staff.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/staff.page.b67ca467.js");
   }), "/pages/labs/lab0/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.02456d51.js");
   }), "/pages/labs/lab1/index.page.mdx": () => Promise.resolve().then(function() {
