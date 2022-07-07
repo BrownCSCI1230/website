@@ -22,7 +22,7 @@
     ]
   },
   "pages/code-blocks.page.mdx": {
-    "file": "assets/code-blocks.page.f12a282d.js",
+    "file": "assets/code-blocks.page.e18c468c.js",
     "src": "pages/code-blocks.page.mdx",
     "isDynamicEntry": true
   },
@@ -92,11 +92,11 @@
     "isDynamicEntry": true
   },
   "renderer/_default.page.server.jsx": {
-    "file": "assets/_default.page.server.a61bc45b.js",
+    "file": "assets/_default.page.server.8cc56d6e.js",
     "src": "renderer/_default.page.server.jsx",
     "isDynamicEntry": true,
     "css": [
-      "assets/_default.page.server.eafaaef2.css"
+      "assets/_default.page.server.f4fcc41c.css"
     ]
   }
 }

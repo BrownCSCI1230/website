@@ -2,7 +2,7 @@
 Object.defineProperties(exports, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
 const pageFiles = {
   ".page": { "/pages/code-blocks.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/code-blocks.page.f12a282d.js");
+    return require("./assets/code-blocks.page.e18c468c.js");
   }), "/pages/hours.page.jsx": () => Promise.resolve().then(function() {
     return require("./assets/hours.page.0c37b71c.js");
   }), "/pages/index.page.jsx": () => Promise.resolve().then(function() {
@@ -32,7 +32,7 @@ const pageFiles = {
     return require("./assets/_default.page.client.ebe16b42.js");
   }) },
   ".page.server": { "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.a61bc45b.js");
+    return require("./assets/_default.page.server.8cc56d6e.js");
   }) },
   ".page.route": {}
 };
