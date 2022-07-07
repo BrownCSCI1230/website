@@ -9,7 +9,7 @@ import remarkDirective from 'remark-directive'
 import remarkDirectiveCustomFollower from './remarkDirectiveCustomFollower.js'
 
 import rehypeMathJax from 'rehype-mathjax'
-import rehypePrismPlusCustom from './rehypePrismPlusCustom.js'
+import rehypeStarryNightPlus from './rehypeStarryNightPlus.js'
 import rehypeSlug from 'rehype-slug'
 import rehypeToc from 'rehype-toc'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
@@ -19,7 +19,7 @@ const config = {
     react(),
     mdx({
       remarkPlugins: [remarkMath, remarkGfm, remarkEmoji, remarkDirective, remarkDirectiveCustomFollower],
-      rehypePlugins: [rehypeMathJax, rehypePrismPlusCustom, rehypeSlug, rehypeAutolinkHeadings, rehypeToc],
+      rehypePlugins: [rehypeMathJax, rehypeStarryNightPlus, rehypeSlug, rehypeAutolinkHeadings, rehypeToc],
     }),
     ssr(),
   ],
