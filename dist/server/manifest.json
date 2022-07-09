@@ -4,11 +4,14 @@
     "src": "node_modules/vite-plugin-ssr/dist/esm/node/page-files/pageFiles.js",
     "isEntry": true,
     "dynamicImports": [
-      "pages/code-blocks.page.mdx",
-      "pages/hours.page.jsx",
-      "pages/index.page.jsx",
-      "pages/inline-code.page.mdx",
+      "pages/hours.page.mdx",
+      "pages/index.page.mdx",
       "pages/staff.page.mdx",
+      "pages/docs/code-blocks.page.mdx",
+      "pages/docs/index.page.mdx",
+      "pages/docs/inline-code.page.mdx",
+      "pages/labs/index.page.mdx",
+      "pages/projects/index.page.mdx",
       "pages/labs/lab0/index.page.mdx",
       "pages/labs/lab1/index.page.mdx",
       "pages/labs/lab2/index.page.mdx",
@@ -21,68 +24,83 @@
       "renderer/_default.page.server.jsx"
     ]
   },
-  "pages/code-blocks.page.mdx": {
-    "file": "assets/code-blocks.page.e18c468c.js",
-    "src": "pages/code-blocks.page.mdx",
+  "pages/hours.page.mdx": {
+    "file": "assets/hours.page.486b61df.js",
+    "src": "pages/hours.page.mdx",
     "isDynamicEntry": true
   },
-  "pages/hours.page.jsx": {
-    "file": "assets/hours.page.0c37b71c.js",
-    "src": "pages/hours.page.jsx",
-    "isDynamicEntry": true
-  },
-  "pages/index.page.jsx": {
-    "file": "assets/index.page.467c952c.js",
-    "src": "pages/index.page.jsx",
-    "isDynamicEntry": true
-  },
-  "pages/inline-code.page.mdx": {
-    "file": "assets/inline-code.page.bcef403e.js",
-    "src": "pages/inline-code.page.mdx",
+  "pages/index.page.mdx": {
+    "file": "assets/index.page.8ecfc07b.js",
+    "src": "pages/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/staff.page.mdx": {
-    "file": "assets/staff.page.b67ca467.js",
+    "file": "assets/staff.page.e95f1fd0.js",
     "src": "pages/staff.page.mdx",
     "isDynamicEntry": true
   },
+  "pages/docs/code-blocks.page.mdx": {
+    "file": "assets/code-blocks.page.a66e4ab3.js",
+    "src": "pages/docs/code-blocks.page.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/docs/index.page.mdx": {
+    "file": "assets/index.page.f89430a5.js",
+    "src": "pages/docs/index.page.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/docs/inline-code.page.mdx": {
+    "file": "assets/inline-code.page.4045c4a1.js",
+    "src": "pages/docs/inline-code.page.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/labs/index.page.mdx": {
+    "file": "assets/index.page.ae15c2a8.js",
+    "src": "pages/labs/index.page.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/projects/index.page.mdx": {
+    "file": "assets/index.page.1cb9e73c.js",
+    "src": "pages/projects/index.page.mdx",
+    "isDynamicEntry": true
+  },
   "pages/labs/lab0/index.page.mdx": {
-    "file": "assets/index.page.02456d51.js",
+    "file": "assets/index.page.23aa30a3.js",
     "src": "pages/labs/lab0/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab1/index.page.mdx": {
-    "file": "assets/index.page.69a4203c.js",
+    "file": "assets/index.page.34d945b3.js",
     "src": "pages/labs/lab1/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab2/index.page.mdx": {
-    "file": "assets/index.page.55485a8d.js",
+    "file": "assets/index.page.4a35cbf1.js",
     "src": "pages/labs/lab2/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab4/index.page.mdx": {
-    "file": "assets/index.page.07a9cd8e.js",
+    "file": "assets/index.page.df12d625.js",
     "src": "pages/labs/lab4/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab8/index.page.mdx": {
-    "file": "assets/index.page.7e6b90ef.js",
+    "file": "assets/index.page.e48e7d0b.js",
     "src": "pages/labs/lab8/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/projects/raster/index.page.mdx": {
-    "file": "assets/index.page.32c36c54.js",
+    "file": "assets/index.page.96c1dd0a.js",
     "src": "pages/projects/raster/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/projects/ray/index.page.mdx": {
-    "file": "assets/index.page.24bca3a0.js",
+    "file": "assets/index.page.93b01175.js",
     "src": "pages/projects/ray/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/projects/realtime/index.page.mdx": {
-    "file": "assets/index.page.1af51b2c.js",
+    "file": "assets/index.page.14d43bf4.js",
     "src": "pages/projects/realtime/index.page.mdx",
     "isDynamicEntry": true
   },
@@ -92,11 +110,11 @@
     "isDynamicEntry": true
   },
   "renderer/_default.page.server.jsx": {
-    "file": "assets/_default.page.server.8cc56d6e.js",
+    "file": "assets/_default.page.server.002e352c.js",
     "src": "renderer/_default.page.server.jsx",
     "isDynamicEntry": true,
     "css": [
-      "assets/_default.page.server.f4fcc41c.css"
+      "assets/_default.page.server.10eab0db.css"
     ]
   }
 }
