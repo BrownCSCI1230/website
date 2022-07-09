@@ -25,31 +25,37 @@ $breakpoint: 600px;
 
 // ================== Variables
 
-$html-background-color: hsl(205, 20%, 13%);
-$page-background-color: hsl(205, 15%, 18%);
+$html-background-color: hsl(205, 0%, 8%);
+$page-background-color: hsl(205, 0%, 13%);
+$main-background-color: hsl(205, 0%, 10%);
 $code-background-color: $html-background-color;
-$half-background-color: color.mix($html-background-color, $page-background-color, 50%);
 
-$nav-bar-background-color: $page-background-color;
+$nav-bar-background-color: hsl(205, 0%, 16%);
+$nav-bar-hover-background-color: color.mix($nav-bar-background-color, $html-background-color, 50%);
+$nav-bar-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2), 0 0 16px rgba(0, 0, 0, 0.2), 0 0 32px rgba(0, 0, 0, 0.2);
 
 $background-dot-spacing: 30px;
-$background-dot-color: hsl(205, 15%, 18%);
+$background-dot-color: hsla(35, 0%, 30%, 30%);
 $background-dot-size: 1.5px;
 
 $nav-bar-height: 64px;
 
 $page-margin: 0 auto;
 $page-padding-top: 0;
-$page-padding-sides: _linear(900, 0, 1600, 25);
+$page-padding-right: 0;
 $page-padding-bottom: 0;
-$page-padding: $page-padding-top $page-padding-sides $page-padding-bottom;
+$page-padding-left: 0;
+$page-padding: $page-padding-top $page-padding-right $page-padding-bottom $page-padding-left;
 $page-max-width: 900px;
 $page-divider-spacing: 20px;
 
 $main-padding-top: 20px;
-$main-padding-sides: 20px;
+$main-padding-right: _linear(900, 20, 1600, 45);
+$main-padding-right-negative: _linear(900, -20, 1600, -45);
 $main-padding-bottom: 20px;
-$main-padding: $main-padding-top $main-padding-sides $main-padding-bottom;
+$main-padding-left: 20px;
+$main-padding-left-negative: -20px;
+$main-padding: $main-padding-top $main-padding-right $main-padding-bottom $main-padding-left;
 
 $header-font-family: 'Open Sans', ui-sans-serif, sans-serif; // Fixme: monospace is here for debugging only
 $h1-font-size: 30px;
@@ -65,7 +71,7 @@ $h4-font-weight: 630;
 $h5-font-weight: 630;
 $h6-font-weight: 630;
 $header-line-height: 1.8;
-$header-color: #e0e0e0;
+$header-color: hsl(0, 0%, 85%);
 
 $body-font-family: 'Inter Var', 'Inter', ui-sans-serif, sans-serif;
 $body-font-size: 14px;
@@ -79,17 +85,14 @@ $body-color-bold: color.scale($header-color, $lightness: -3%);
 $toc-font-size: 10px;
 $toc-font-weight: 400;
 $toc-line-height: $body-font-size * $body-line-height;
-$toc-color: color.scale($header-color, $lightness: -30%);
+$toc-color: color.scale($header-color, $lightness: -25%);
 
-$header-40-page-60: color.mix($header-color, $page-background-color, 40%);
-$header-10-page-90: color.mix($header-color, $page-background-color, 10%);
-
-$nav-bar-border-color: $header-40-page-60;
-$page-divider-color: $header-40-page-60;
-$page-border-color: $header-40-page-60;
-$header-edge-color: $header-40-page-60;
-$table-edge-color: $header-40-page-60;
-$toc-edge-color: $header-10-page-90;
+$nav-bar-border-color: color.mix($header-color, $page-background-color, 70%);
+$page-divider-color: color.mix($header-color, $page-background-color, 30%);
+$page-border-color: $page-divider-color;
+$header-edge-color: $page-divider-color;
+$table-edge-color: $page-divider-color;
+$toc-edge-color: color.mix($header-color, $page-background-color, 10%);
 
 $table-cell-padding: 4px 8px;
 $table-font-size: $body-font-size;
@@ -103,14 +106,15 @@ $code-block-border-radius: 10px;
 $code-block-padding-vert: 20px;
 $code-block-padding-horz: 20px;
 
-$code-inline-padding: 1px 4px 2px;
-$code-inline-border-radius: 2px;
-$code-inline-color: rgb(241, 151, 55);
-$code-inline-background-color: $half-background-color;
+$code-inline-padding: 0px 4px 1px 5px;
+$code-inline-border-radius: 3px;
+$code-inline-color: hsl(31, 75%, 55%);
+$code-inline-background-color: color.change($html-background-color, $alpha: 0.8);
+$code-inline-background-color-callout: rgba(0, 0, 0, 65%);
 
 $code-highlight-edge-width: 4px;
-$code-highlight-edge-color: hsl(205, 60%, 60%);
-$code-highlight-background-color: hsla(205, 75%, 75%, 0.1);
+$code-highlight-edge-color: hsl(220, 80%, 60%);
+$code-highlight-background-color: hsla(220, 90%, 75%, 0.1);
 
 $callout-border-radius: 10px;
 
@@ -133,12 +137,12 @@ $main-inner-spacing-vert: 16px;
   color: $header-color;
 }
 
-@mixin body-text {
+@mixin body-text($color: $body-color, $color-bold: $body-color-bold) {
   font-family: $body-font-family;
   font-size: $body-font-size;
   font-weight: $body-font-weight;
   line-height: $body-line-height;
-  color: $body-color;
+  color: $color;
 
   i,
   em {
@@ -149,7 +153,7 @@ $main-inner-spacing-vert: 16px;
   b,
   strong {
     font-weight: $body-font-weight-bold;
-    color: $body-color-bold;
+    color: $color-bold;
   }
 }
 
@@ -192,8 +196,16 @@ img {
   min-width: 0px;
 }
 
+figcaption {
+  text-align: center;
+}
+
 a {
   @include anchor-text(hsl(205, 85%, 60%));
+}
+
+.math-display {
+  overflow-x: scroll;
 }
 
 // ================== Text
@@ -217,9 +229,13 @@ summary {
 
 // ================== Callouts
 
-@mixin callout($color, $content) {
-  background-color: color.change($color, $alpha: 0.3);
-  border: 1px solid $color;
+@mixin callout($color, $border-color, $content) {
+  background-color: $color;
+  border: 1px solid $border-color;
+
+  :not(pre) > code {
+    background-color: $code-inline-background-color-callout;
+  }
 }
 
 .task-callout,
@@ -230,20 +246,20 @@ summary {
   padding: $main-inner-spacing-vert;
 
   &.task-callout {
-    @include callout(hsl(198, 58%, 73%), '');
+    @include callout(hsl(216, 62%, 10%), hsl(216, 62%, 56%), '');
   }
   &.warning-callout {
-    @include callout(rgb(255, 208, 120), '');
+    @include callout(hsl(37, 55%, 9%), hsl(37, 55%, 46%), '');
   }
   &.success-callout {
-    @include callout(rgb(159, 231, 146), '');
+    @include callout(hsl(109, 55%, 8%), hsl(109, 55%, 39%), '');
   }
   &.error-callout {
-    @include callout(rgb(246, 155, 155), '');
+    @include callout(hsl(3, 60%, 11%), hsl(3, 60%, 55%), '');
   }
 
   > :only-child {
-    color: black;
+    @include body-text($header-color, color.scale($header-color, $lightness: 5%));
     margin: 0;
   }
 }

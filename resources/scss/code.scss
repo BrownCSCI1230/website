@@ -25,8 +25,8 @@ pre {
 
   @media only screen and (max-width: $breakpoint) {
     border-radius: 0;
-    margin-left: -$main-padding-sides;
-    margin-right: -$main-padding-sides;
+    margin-left: $main-padding-left-negative;
+    margin-right: $main-padding-right-negative;
   }
 
   background: $code-background-color;

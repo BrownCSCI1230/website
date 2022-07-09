@@ -49,6 +49,11 @@ body {
 #root {
   position: fixed;
   inset: 0;
+
+  padding-top: $nav-bar-height;
+
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .nav-bar {
@@ -63,13 +68,15 @@ body {
   background-color: $nav-bar-background-color;
   border-bottom: 1px solid $nav-bar-border-color;
 
+  box-shadow: $nav-bar-box-shadow;
+
   display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: center;
 
   > a {
-    @include anchor-text($body-color);
+    @include anchor-text($header-color);
 
     display: grid;
     place-items: center;
@@ -80,17 +87,9 @@ body {
     white-space: nowrap;
 
     &:hover {
-      background-color: $half-background-color;
+      background-color: $nav-bar-hover-background-color;
     }
   }
-}
-
-#page-wrapper {
-  position: fixed;
-  inset: $nav-bar-height 0 0;
-
-  overflow-y: scroll;
-  scroll-behavior: smooth;
 }
 
 #page {
@@ -101,11 +100,22 @@ body {
   max-width: $page-max-width;
 
   background-color: $page-background-color;
+  border-left: 1px solid $page-border-color;
+  border-right: 1px solid $page-border-color;
 
   display: grid;
   grid-template:
-    'toc main' minmax(0, 1fr)
-    / minmax(0, 2fr) minmax(0, 9fr);
+    'toc divider main' minmax(0, 1fr)
+    / minmax(0, 2fr) min-content minmax(0, 9fr);
+
+  &::before {
+    content: ' ';
+    height: 100%;
+    width: 1px;
+    display: grid;
+    border-left: 1px solid $page-divider-color;
+    grid-area: divider;
+  }
 }
 
 .toc {
@@ -172,11 +182,10 @@ body {
 }
 
 main {
-  margin-left: $page-divider-spacing;
   padding: $main-padding;
   padding-left: $page-divider-spacing;
 
-  border-left: 1px solid $page-divider-color;
+  background-color: $main-background-color;
 
   > * {
     margin-bottom: $main-inner-spacing-vert;
@@ -232,12 +241,13 @@ main {
 
 // ================== Hide Table of Contents
 
-@mixin hide-toc {
-}
-
 @media only screen and (max-width: $breakpoint) {
   #page {
     grid-template: 'main' minmax(0, 1fr) / minmax(0, 1fr);
+
+    &::before {
+      content: unset;
+    }
   }
 
   .toc {
@@ -245,9 +255,7 @@ main {
   }
 
   main {
-    margin-left: unset;
-    padding: $main-padding;
-    border: none;
+    padding-left: $main-padding-left;
   }
 }
 
