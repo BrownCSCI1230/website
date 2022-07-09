@@ -1,0 +1,214 @@
+@use 'sass:color';
+@use 'sass:math';
+
+@import 'base.scss';
+
+#root {
+  position: absolute;
+  inset: 0;
+
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.nav-bar {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: $nav-bar-height;
+
+  background-color: $nav-bar-background-color;
+  border-bottom: 1px solid $nav-bar-border-color;
+
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+
+  > a {
+    @include anchor-text($body-color);
+
+    display: grid;
+    place-items: center;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    white-space: nowrap;
+
+    &:hover {
+      background-color: $half-background-color;
+    }
+  }
+}
+
+#page {
+  margin: $page-margin;
+  padding: $page-padding;
+
+  min-height: 100%;
+  max-width: $page-max-width;
+
+  // border: 1px solid $page-divider-color;
+
+  background-color: $page-background-color;
+
+  display: grid;
+  grid-template: 'a b' minmax(0, 1fr) / minmax(0, 2fr) minmax(0, 9fr);
+}
+
+.toc {
+  position: sticky;
+  top: $main-padding-top;
+
+  margin: $main-padding;
+
+  align-self: flex-start;
+
+  ol {
+    cursor: pointer;
+    list-style: none;
+  }
+
+  @mixin toc-level($level) {
+    font-size: $toc-font-size;
+    font-weight: $toc-font-weight;
+    line-height: $body-font-size * $body-line-height;
+    color: $toc-color;
+
+    position: relative;
+
+    @if ($level != 1) {
+      left: ($level - 2) * 8px;
+      border-left: 1px solid $toc-edge-color;
+    }
+  }
+  @mixin toc-item($level) {
+    position: relative;
+    left: -($level - 2) * 8px;
+    margin-left: -1px;
+  }
+  @mixin toc-link($level) {
+    @include anchor-text($toc-color);
+
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    padding-right: 4px;
+    white-space: nowrap;
+
+    &::before {
+      content: ' ';
+      display: inline-block;
+      height: 100%;
+      width: ($level - 1) * 8px;
+    }
+  }
+
+  @for $i from 1 through 6 {
+    .toc-level-#{$i} {
+      @include toc-level($i);
+    }
+    .toc-item-h#{$i} {
+      @include toc-item($i);
+    }
+    .toc-link-h#{$i} {
+      @include toc-link($i);
+    }
+  }
+}
+
+main {
+  margin-left: $page-divider-spacing;
+  padding: $main-padding;
+  padding-left: $page-divider-spacing;
+
+  border-left: 1px solid $page-divider-color;
+
+  > * {
+    margin-bottom: $main-inner-spacing-vert;
+  }
+
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6 {
+    margin-top: ($main-inner-spacing-vert * 2);
+    margin-bottom: $main-inner-spacing-vert;
+  }
+
+  > h1 {
+    @include header-text($h1-font-size, $h1-font-weight);
+    margin-top: 0;
+  }
+
+  > h2 {
+    @include header-text($h2-font-size, $h2-font-weight);
+  }
+
+  > h3 {
+    @include header-text($h3-font-size, $h3-font-weight);
+  }
+
+  > h4 {
+    @include header-text($h4-font-size, $h4-font-weight);
+  }
+
+  > h5 {
+    @include header-text($h5-font-size, $h5-font-weight);
+  }
+
+  > h6 {
+    @include header-text($h6-font-size, $h6-font-weight);
+  }
+
+  > p {
+    @include body-text;
+  }
+
+  ol,
+  ul {
+    padding-left: $list-padding-left;
+  }
+  li {
+    padding-left: $list-item-padding-left;
+  }
+}
+
+// ================== Hide Table of Contents
+
+@mixin hide-toc {
+}
+
+@media only screen and (max-width: $breakpoint) {
+  #page {
+    grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  }
+
+  .toc {
+    display: none;
+  }
+
+  main {
+    margin-left: unset;
+    padding: $main-padding;
+    border: none;
+  }
+}
+
+#root.hide-toc {
+  .toc {
+    visibility: hidden;
+  }
+
+  main {
+    grid-area: 'b';
+  }
+}

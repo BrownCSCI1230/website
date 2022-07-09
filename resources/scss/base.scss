@@ -1,0 +1,309 @@
+@use 'sass:color';
+@use 'sass:math';
+
+// An excellent open-source UI typeface with tall x-height from https://github.com/rsms/inter
+// Do not use the outdated Google Fonts version
+@import url('https://rsms.me/inter/inter.css');
+
+// Fixme: combine font imports into one url for performance
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,200;0,300;0,400;0,625;0,700;0,900;1,200;1,300;1,400;1,625;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,365;0,400;0,600&display=swap');
+
+// ================== Responsiveness
+
+$breakpoint: 600px;
+
+@function _linear($x1, $y1, $x2, $y2) {
+  $gradient: math.div($y2 - $y1, $x2 - $x1);
+  $offset: $y2 - $x2 * $gradient;
+  @if $y1 < $y2 {
+    @return clamp($y1 * 1px, $gradient * 100vw + $offset * 1px, $y2 * 1px);
+  } @else {
+    @return clamp($y2 * 1px, $gradient * 100vw + $offset * 1px, $y1 * 1px);
+  }
+}
+
+// ================== Variables
+
+$html-background-color: hsl(205, 20%, 13%);
+$page-background-color: hsl(205, 15%, 18%);
+$code-background-color: $html-background-color;
+$half-background-color: color.mix($html-background-color, $page-background-color, 50%);
+
+$nav-bar-background-color: $page-background-color;
+
+$background-dot-spacing: 30px;
+$background-dot-color: hsl(205, 15%, 18%);
+$background-dot-size: 1.5px;
+
+$nav-bar-height: 64px;
+
+$page-margin: 0 auto 0;
+$page-padding-top: 0;
+$page-padding-sides: _linear(900, 0, 1600, 25);
+$page-padding-bottom: 0;
+$page-padding: $page-padding-top $page-padding-sides $page-padding-bottom;
+$page-max-width: 900px;
+$page-divider-spacing: 20px;
+
+$main-padding-top: $nav-bar-height + 20px;
+$main-padding-sides: 20px;
+$main-padding-bottom: 20px;
+$main-padding: $main-padding-top $main-padding-sides $main-padding-bottom;
+
+$header-font-family: 'Open Sans', ui-sans-serif, sans-serif; // Fixme: monospace is here for debugging only
+$h1-font-size: 30px;
+$h2-font-size: 25px;
+$h3-font-size: 22px;
+$h4-font-size: 20px;
+$h5-font-size: 19px;
+$h6-font-size: 18px;
+$h1-font-weight: 625;
+$h2-font-weight: 625;
+$h3-font-weight: 625;
+$h4-font-weight: 625;
+$h5-font-weight: 625;
+$h6-font-weight: 625;
+$header-line-height: 1.2;
+$header-color: #e0e0e0;
+
+$body-font-family: 'Inter Var', 'Inter', ui-sans-serif, sans-serif;
+$body-font-size: 14px;
+$body-font-weight: 350;
+$body-font-weight-italics: 350;
+$body-font-weight-bold: 600;
+$body-line-height: 1.8;
+$body-color: color.scale($header-color, $lightness: -5%);
+
+$toc-font-size: 10px;
+$toc-font-weight: 400;
+$toc-line-height: $body-font-size * $body-line-height;
+$toc-color: color.scale($header-color, $lightness: -30%);
+
+$header-40-page-60: color.mix($header-color, $page-background-color, 40%);
+$header-10-page-90: color.mix($header-color, $page-background-color, 10%);
+
+$nav-bar-border-color: $header-40-page-60;
+$page-divider-color: $header-40-page-60;
+$page-border-color: $header-40-page-60;
+$header-edge-color: $header-40-page-60;
+$table-edge-color: $header-40-page-60;
+$toc-edge-color: $header-10-page-90;
+
+$table-cell-padding: 4px 8px;
+$table-font-size: $body-font-size;
+
+$code-font-family: 'Roboto Mono', ui-monospace, monospace;
+
+$code-block-font-size: 13px;
+$code-block-font-weight: 365;
+$code-block-line-height: 1.75;
+$code-block-border-radius: 10px;
+$code-block-padding-vert: 20px;
+$code-block-padding-horz: 20px;
+
+$code-inline-padding: 1px 4px 2px;
+$code-inline-border-radius: 2px;
+$code-inline-color: rgb(241, 151, 55);
+$code-inline-background-color: $half-background-color;
+
+$code-highlight-edge-width: 4px;
+$code-highlight-edge-color: hsl(205, 60%, 60%);
+$code-highlight-background-color: hsla(205, 75%, 75%, 0.1);
+
+$callout-border-radius: 10px;
+
+$list-padding-left: 32px;
+$list-item-padding-left: 8px;
+
+$main-inner-spacing-vert: 16px;
+
+// ================== Mixins
+
+@mixin header-text($font-size, $font-weight) {
+  padding-bottom: 0.3em;
+
+  border-bottom: 1px solid $header-edge-color;
+
+  font-family: $header-font-family;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  line-height: $header-line-height;
+  color: $header-color;
+}
+
+@mixin body-text {
+  font-family: $body-font-family;
+  font-size: $body-font-size;
+  font-weight: $body-font-weight;
+  line-height: $body-line-height;
+  color: $body-color;
+
+  i,
+  em {
+    font-style: italic;
+    font-weight: $body-font-weight-italics;
+  }
+
+  b,
+  strong {
+    font-weight: $body-font-weight-bold;
+  }
+}
+
+@mixin code-block-text {
+  font-family: $code-font-family;
+  font-size: $code-block-font-size;
+  font-weight: $code-block-font-weight;
+  line-height: $code-block-line-height;
+}
+
+@mixin code-inline-text {
+  font-family: $code-font-family;
+  font-size: 97%;
+  font-weight: inherit;
+  line-height: inherit;
+
+  color: $code-inline-color;
+  background-color: $code-inline-background-color;
+}
+
+@mixin anchor-text($color) {
+  color: $color;
+
+  text-decoration: underline;
+  text-decoration-color: transparent;
+
+  transition: text-decoration-color ease 0.3s, background-color ease 0.3s;
+
+  &:hover {
+    transition: text-decoration-color ease 0.1s, background-color ease 0.1s;
+
+    text-decoration-color: $color;
+  }
+}
+
+// ================== General styles
+
+* {
+  -webkit-font-smoothing: subpixel-antialiased;
+
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+
+  scroll-margin-top: $main-padding-top;
+}
+
+html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+
+  background-color: $html-background-color;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+
+  background-position: center;
+  background-size: $background-dot-spacing $background-dot-spacing;
+  background-image: radial-gradient(
+    circle,
+    $background-dot-color $background-dot-size,
+    rgba(0, 0, 0, 0) $background-dot-size
+  );
+
+  @include body-text;
+
+  // Attempt at fixing iOS Safari
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  }
+}
+
+img {
+  max-width: 100%;
+  min-width: 0px;
+}
+
+a {
+  @include anchor-text(hsl(205, 85%, 60%));
+}
+
+// ================== Text
+
+.icon.icon-link {
+  background-color: red;
+  height: 10px;
+  width: 10px;
+}
+
+.image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+slot.summarySlot,
+summary {
+  cursor: pointer;
+}
+
+// ================== Callouts
+
+@mixin callout($color, $content) {
+  background-color: color.change($color, $alpha: 0.3);
+  border: 1px solid $color;
+}
+
+.task-callout,
+.warning-callout,
+.success-callout,
+.error-callout {
+  border-radius: $callout-border-radius;
+  padding: $main-inner-spacing-vert;
+
+  &.task-callout {
+    @include callout(hsl(198, 58%, 73%), '');
+  }
+  &.warning-callout {
+    @include callout(rgb(255, 208, 120), '');
+  }
+  &.success-callout {
+    @include callout(rgb(159, 231, 146), '');
+  }
+  &.error-callout {
+    @include callout(rgb(246, 155, 155), '');
+  }
+
+  > :only-child {
+    color: black;
+    margin: 0;
+  }
+}
+
+// ================== Tables
+
+table {
+  border-collapse: collapse;
+  font-size: $table-font-size;
+}
+
+td,
+th {
+  border: 1px solid $table-edge-color;
+  padding: $table-cell-padding;
+}
+
+th {
+  font-weight: $body-font-weight-bold;
+}

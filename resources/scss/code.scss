@@ -3,11 +3,9 @@
 @use 'sass:math';
 @use 'sass:color';
 
-@import 'global.scss';
+@import 'base.scss';
 
 // ================== Variables
-
-$code-background: #1e1e1e;
 
 $code-line-number-width: 4ch;
 
@@ -18,8 +16,8 @@ $code-line-number-color: color.mix($code-block-white, $code-block-gray, 25%);
 // ================== Code Blocks
 
 pre {
-  margin: 0 0 $main-content-vertical-margin;
-  padding: $code-block-padding-vertical 0;
+  margin: 0 0 $main-inner-spacing-vert;
+  padding: $code-block-padding-vert 0;
   overflow: auto;
   overscroll-behavior: contain;
 
@@ -27,11 +25,11 @@ pre {
 
   @media only screen and (max-width: $breakpoint) {
     border-radius: 0;
-    margin-left: -20px;
-    margin-right: -20px;
+    margin-left: -$main-padding-sides;
+    margin-right: -$main-padding-sides;
   }
 
-  background: $code-background;
+  background: $code-background-color;
 
   @include code-block-text;
   color: $code-block-white;
@@ -75,13 +73,13 @@ pre {
   position: relative;
   z-index: 1;
 
-  padding-right: $code-block-padding-horizontal;
+  padding-right: $code-block-padding-horz;
 
   &::before {
-    content: ' '; // space is necessary for inline-block not to collapse
+    content: ' '; // space is really necessary for inline-block not to collapse
     display: inline-block;
-    border-left: $code-highlight-edge-width solid $code-background;
-    padding-right: $code-block-padding-horizontal - $code-highlight-edge-width;
+    border-left: $code-highlight-edge-width solid $code-background-color;
+    padding-right: $code-block-padding-horz - $code-highlight-edge-width;
   }
 
   &.highlight-line {
@@ -92,6 +90,7 @@ pre {
     &::after {
       content: '';
       position: absolute;
+      z-index: 100;
       inset: 0;
       pointer-events: none;
 
@@ -104,13 +103,14 @@ pre {
     display: inline-block;
 
     width: $code-line-number-width;
-    padding-right: $code-block-padding-horizontal;
+    padding-right: $code-block-padding-horz;
     text-align: right;
 
     color: $code-line-number-color;
-    background: $code-background;
+    background: $code-background-color;
 
     position: sticky;
+    z-index: 50;
     left: 0;
   }
 }

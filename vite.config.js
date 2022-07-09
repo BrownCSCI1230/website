@@ -12,6 +12,7 @@ import rehypeMathJax from 'rehype-mathjax'
 import rehypeStarryNightPlus from './rehypeStarryNightPlus.js'
 import rehypeSlug from 'rehype-slug'
 import rehypeToc from 'rehype-toc'
+import rehypeWrap from 'rehype-wrap'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 const config = {
@@ -19,7 +20,14 @@ const config = {
     react(),
     mdx({
       remarkPlugins: [remarkMath, remarkGfm, remarkEmoji, remarkDirective, remarkDirectiveCustomFollower],
-      rehypePlugins: [rehypeMathJax, rehypeStarryNightPlus, rehypeSlug, rehypeAutolinkHeadings, rehypeToc],
+      rehypePlugins: [
+        rehypeMathJax,
+        rehypeStarryNightPlus,
+        rehypeSlug,
+        rehypeAutolinkHeadings,
+        [rehypeWrap, { wrapper: 'main' }],
+        [rehypeToc, { position: 'beforebegin' }],
+      ],
     }),
     ssr(),
   ],

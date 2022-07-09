@@ -1,4 +1,4 @@
-import { ImageFigure } from '/resources/common/ImageFigure'
+import { ImageFigure } from '/resources/components/ImageFigure'
 
 export const documentProps = { title: 'Lab 4' }
 
@@ -24,7 +24,7 @@ During this lab you will learn how to:
 A transformation can be thought of as a function.
 
 <ImageFigure
-  src={'/resources/labs/lab4/transformIntro.png'}
+  src={'/labs/lab4/transformIntro.png'}
   alt={'TODO'}
   width={500}
   figureNumber={1}
@@ -79,7 +79,7 @@ $$
 $$
 
 <ImageFigure
-  src={'/resources/labs/lab4/scaling.gif'}
+  src={'/labs/lab4/scaling.gif'}
   alt={'TODO'}
   width={500}
   figureNumber={2}
@@ -110,7 +110,7 @@ $$
 $$
 
 <ImageFigure
-  src={'/resources/labs/lab4/rotating.gif'}
+  src={'/labs/lab4/rotating.gif'}
   alt={'TODO'}
   width={500}
   figureNumber={3}
@@ -155,7 +155,7 @@ $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$.
 Translation, on the other hand, is an **[affine transformation](https://en.wikipedia.org/wiki/Affine_transformation)**. Unlike linear transformations, affine transformations do not need to preserve the origin. All linear transformations are affine transformations, but some affine transformations are not linear like translation.
 
 <ImageFigure
-  src={'/resources/labs/lab4/transformTypes.png'}
+  src={'/labs/lab4/transformTypes.png'}
   alt={'TODO'}
   width={500}
   figureNumber={4}
@@ -234,7 +234,7 @@ $$
 See how adding the $w$ coordinate allows us to apply the translation using matrix multiplication? Additionally, translation works here on a point because $w=1$. We don't want vectors to be translated because they don't have a location. Vectors represent the difference between two points, defined by having a length and a direction. Neither of these attributes should change with translation, because shifting two points maintains the same displacement between them.
 
 <ImageFigure
-  src={'/resources/labs/lab4/vectorTranslation.png'}
+  src={'/labs/lab4/vectorTranslation.png'}
   alt={'TODO'}
   width={500}
   figureNumber={5}
@@ -250,7 +250,7 @@ $$
 $$
 
 <ImageFigure
-  src={'/resources/labs/lab4/translating.gif'}
+  src={'/labs/lab4/translating.gif'}
   alt={'TODO'}
   width={500}
   figureNumber={6}
@@ -309,7 +309,7 @@ $$
 $$
 
 <ImageFigure
-  src={'/resources/labs/lab4/SRT.gif'}
+  src={'/labs/lab4/SRT.gif'}
   alt={'TODO'}
   width={500}
   figureNumber={7}
@@ -327,7 +327,7 @@ $$
 $$
 
 <ImageFigure
-  src={'/resources/labs/lab4/TRS.gif'}
+  src={'/labs/lab4/TRS.gif'}
   alt={'TODO'}
   width={500}
   figureNumber={8}
@@ -394,7 +394,7 @@ In the last task, you created the transformation matrices that take objects and 
 A key part of rendering is being able to figure out where points in the world are relative to the camera's view. To do this, we can use a transformation matrix that represents the transformation of the camera to the origin of the world. By applying this transformation to points in the world, we can convert them to coordinates that treat the camera like an origin from which it views everything else. We refer to this matrix that transforms into the camera's space as the **view matrix**.
 
 <ImageFigure
-  src={'/resources/labs/lab4/viewTransform.png'}
+  src={'/labs/lab4/viewTransform.png'}
   alt={'TODO'}
   width={700}
   figureNumber={9}
@@ -418,7 +418,7 @@ $$
 The rotation of the camera is fixed by the look and up vectors, look being the direction the camera points and up being the vertical direction relative to the camera's view.
 
 <ImageFigure
-  src={'/resources/labs/lab4/cameraAxes.png'}
+  src={'/labs/lab4/cameraAxes.png'}
   alt={'TODO'}
   width={500}
   figureNumber={10}
@@ -497,7 +497,7 @@ In task 2 of this lab you have already found some such transformation matrices f
 That was a lot of information! Here's a simpler graphic that helps to sum up the relationships between everything we covered in this lab:
 
 <ImageFigure
-  src={'/resources/labs/lab4/spaces.png'}
+  src={'/labs/lab4/spaces.png'}
   alt={'TODO'}
   width={500}
   figureNumber={11}
