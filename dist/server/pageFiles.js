@@ -38,7 +38,7 @@ const pageFiles = {
     return require("./assets/_default.page.client.ebe16b42.js");
   }) },
   ".page.server": { "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.a2824812.js");
+    return require("./assets/_default.page.server.21ed505a.js");
   }) },
   ".page.route": {}
 };
