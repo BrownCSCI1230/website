@@ -3,12 +3,52 @@
 
 @import 'base.scss';
 
-#root {
-  position: absolute;
-  inset: 0;
+* {
+  -webkit-font-smoothing: subpixel-antialiased;
 
-  overflow-y: scroll;
-  scroll-behavior: smooth;
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+
+  scroll-margin-top: $main-padding-top;
+}
+
+html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+
+  background-color: $html-background-color;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  // Attempt at fixing iOS Safari
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  }
+
+  background-position: center;
+  background-size: $background-dot-spacing $background-dot-spacing;
+  background-image: radial-gradient(
+    circle,
+    $background-dot-color $background-dot-size,
+    rgba(0, 0, 0, 0) $background-dot-size
+  );
+
+  @include body-text;
+}
+
+#root {
+  position: fixed;
+  inset: 0;
 }
 
 .nav-bar {
@@ -45,6 +85,14 @@
   }
 }
 
+#page-wrapper {
+  position: fixed;
+  inset: $nav-bar-height 0 0;
+
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
 #page {
   margin: $page-margin;
   padding: $page-padding;
@@ -52,12 +100,12 @@
   min-height: 100%;
   max-width: $page-max-width;
 
-  // border: 1px solid $page-divider-color;
-
   background-color: $page-background-color;
 
   display: grid;
-  grid-template: 'a b' minmax(0, 1fr) / minmax(0, 2fr) minmax(0, 9fr);
+  grid-template:
+    'toc main' minmax(0, 1fr)
+    / minmax(0, 2fr) minmax(0, 9fr);
 }
 
 .toc {
@@ -189,7 +237,7 @@ main {
 
 @media only screen and (max-width: $breakpoint) {
   #page {
-    grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+    grid-template: 'main' minmax(0, 1fr) / minmax(0, 1fr);
   }
 
   .toc {
@@ -203,12 +251,12 @@ main {
   }
 }
 
-#root.hide-toc {
+#page.hide-toc {
   .toc {
     visibility: hidden;
   }
 
   main {
-    grid-area: 'b';
+    grid-area: main;
   }
 }

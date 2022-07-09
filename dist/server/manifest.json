@@ -40,7 +40,7 @@
     "isDynamicEntry": true
   },
   "pages/docs/code-blocks.page.mdx": {
-    "file": "assets/code-blocks.page.a66e4ab3.js",
+    "file": "assets/code-blocks.page.c634f954.js",
     "src": "pages/docs/code-blocks.page.mdx",
     "isDynamicEntry": true
   },
@@ -50,7 +50,7 @@
     "isDynamicEntry": true
   },
   "pages/docs/inline-code.page.mdx": {
-    "file": "assets/inline-code.page.4045c4a1.js",
+    "file": "assets/inline-code.page.ba9f7043.js",
     "src": "pages/docs/inline-code.page.mdx",
     "isDynamicEntry": true
   },
@@ -110,11 +110,11 @@
     "isDynamicEntry": true
   },
   "renderer/_default.page.server.jsx": {
-    "file": "assets/_default.page.server.002e352c.js",
+    "file": "assets/_default.page.server.a2824812.js",
     "src": "renderer/_default.page.server.jsx",
     "isDynamicEntry": true,
     "css": [
-      "assets/_default.page.server.10eab0db.css"
+      "assets/_default.page.server.df80c1da.css"
     ]
   }
 }

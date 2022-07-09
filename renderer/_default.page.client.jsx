@@ -1,17 +1,26 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
 import { useClientRouter } from 'vite-plugin-ssr/client/router'
+import { NavBar } from '../resources/components/NavBar'
 import { PageLayout } from '../resources/components/PageLayout'
 
 const { hydrationPromise } = useClientRouter({
   async render(pageContext) {
     const { Page, pageProps } = pageContext
+
+    const documentProps = pageContext.pageExports.documentProps ?? pageContext.documentProps
+
     const page = (
-      <PageLayout>
-        <Page {...(pageProps ?? {})} />
-      </PageLayout>
+      <React.StrictMode>
+        <NavBar />
+        <PageLayout hideTOC={documentProps.hideTOC}>
+          <Page {...(pageProps ?? {})} />
+        </PageLayout>
+      </React.StrictMode>
     )
+
     const container = document.getElementById('root')
+
     // `pageContext.isHydration` is set by `vite-plugin-ssr` and is `true` when the page
     // is already rendered to HTML.
     if (pageContext.isHydration) {

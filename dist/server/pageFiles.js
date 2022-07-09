@@ -8,11 +8,11 @@ const pageFiles = {
   }), "/pages/staff.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/staff.page.e95f1fd0.js");
   }), "/pages/docs/code-blocks.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/code-blocks.page.a66e4ab3.js");
+    return require("./assets/code-blocks.page.c634f954.js");
   }), "/pages/docs/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.f89430a5.js");
   }), "/pages/docs/inline-code.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/inline-code.page.4045c4a1.js");
+    return require("./assets/inline-code.page.ba9f7043.js");
   }), "/pages/labs/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.ae15c2a8.js");
   }), "/pages/projects/index.page.mdx": () => Promise.resolve().then(function() {
@@ -38,7 +38,7 @@ const pageFiles = {
     return require("./assets/_default.page.client.ebe16b42.js");
   }) },
   ".page.server": { "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.002e352c.js");
+    return require("./assets/_default.page.server.a2824812.js");
   }) },
   ".page.route": {}
 };
