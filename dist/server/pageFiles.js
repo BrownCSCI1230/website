@@ -14,13 +14,13 @@ const pageFiles = {
   }), "/pages/docs/inline-code.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/inline-code.page.ba9f7043.js");
   }), "/pages/labs/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.ae15c2a8.js");
+    return require("./assets/index.page.75814eeb.js");
   }), "/pages/projects/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.1cb9e73c.js");
   }), "/pages/labs/lab0/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.23aa30a3.js");
+    return require("./assets/index.page.8e2ec807.js");
   }), "/pages/labs/lab1/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.34d945b3.js");
+    return require("./assets/index.page.7913bcf7.js");
   }), "/pages/labs/lab2/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.4a35cbf1.js");
   }), "/pages/labs/lab4/index.page.mdx": () => Promise.resolve().then(function() {
@@ -38,7 +38,7 @@ const pageFiles = {
     return require("./assets/_default.page.client.ebe16b42.js");
   }) },
   ".page.server": { "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.21ed505a.js");
+    return require("./assets/_default.page.server.0d405714.js");
   }) },
   ".page.route": {}
 };
