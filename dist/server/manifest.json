@@ -8,6 +8,7 @@
       "pages/index.page.mdx",
       "pages/staff.page.mdx",
       "pages/docs/code-blocks.page.mdx",
+      "pages/docs/cpp-guidelines.page.mdx",
       "pages/docs/index.page.mdx",
       "pages/docs/inline-code.page.mdx",
       "pages/labs/index.page.mdx",
@@ -44,8 +45,13 @@
     "src": "pages/docs/code-blocks.page.mdx",
     "isDynamicEntry": true
   },
+  "pages/docs/cpp-guidelines.page.mdx": {
+    "file": "assets/cpp-guidelines.page.e461e627.js",
+    "src": "pages/docs/cpp-guidelines.page.mdx",
+    "isDynamicEntry": true
+  },
   "pages/docs/index.page.mdx": {
-    "file": "assets/index.page.f89430a5.js",
+    "file": "assets/index.page.aef73e37.js",
     "src": "pages/docs/index.page.mdx",
     "isDynamicEntry": true
   },
@@ -110,11 +116,11 @@
     "isDynamicEntry": true
   },
   "renderer/_default.page.server.jsx": {
-    "file": "assets/_default.page.server.e9246e68.js",
+    "file": "assets/_default.page.server.25e4cb73.js",
     "src": "renderer/_default.page.server.jsx",
     "isDynamicEntry": true,
     "css": [
-      "assets/_default.page.server.f446b14c.css"
+      "assets/_default.page.server.4654ad50.css"
     ]
   }
 }

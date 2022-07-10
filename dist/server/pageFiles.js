@@ -9,8 +9,10 @@ const pageFiles = {
     return require("./assets/staff.page.e95f1fd0.js");
   }), "/pages/docs/code-blocks.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/code-blocks.page.c634f954.js");
+  }), "/pages/docs/cpp-guidelines.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/cpp-guidelines.page.e461e627.js");
   }), "/pages/docs/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.f89430a5.js");
+    return require("./assets/index.page.aef73e37.js");
   }), "/pages/docs/inline-code.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/inline-code.page.ba9f7043.js");
   }), "/pages/labs/index.page.mdx": () => Promise.resolve().then(function() {
@@ -38,7 +40,7 @@ const pageFiles = {
     return require("./assets/_default.page.client.ebe16b42.js");
   }) },
   ".page.server": { "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.e9246e68.js");
+    return require("./assets/_default.page.server.25e4cb73.js");
   }) },
   ".page.route": {}
 };
