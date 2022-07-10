@@ -9,6 +9,7 @@ const { hydrationPromise } = useClientRouter({
     const { Page, pageProps } = pageContext
 
     const documentProps = pageContext.pageExports.documentProps ?? pageContext.documentProps
+    const title = documentProps ? documentProps.title + ' | CSCI 1230' : 'CSCI 1230'
 
     const page = (
       <React.StrictMode>
@@ -20,7 +21,6 @@ const { hydrationPromise } = useClientRouter({
     )
 
     const container = document.getElementById('root')
-    console.log(documentProps)
 
     // `pageContext.isHydration` is set by `vite-plugin-ssr` and is `true` when the page
     // is already rendered to HTML.
@@ -31,6 +31,7 @@ const { hydrationPromise } = useClientRouter({
     } else {
       // We render a new page. (When the user navigates to a new page.)
       ReactDOM.render(page, container)
+      document.title = title
     }
   },
 
