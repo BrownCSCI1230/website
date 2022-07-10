@@ -103,16 +103,31 @@ Do not use names that describe its underlying implementation, unless:
 
 ### 2.3. Be Wary Of Abbreviation
 
-- Do not abbreviate by deleting letters within a word.
-- As a rule of thumb, an abbreviation is probably OK if it's listed in Wikipedia.
-- All letters in an abbreviation should have the same case.
-  - E.g. `printVAO()`, not `printVao()`
+Avoid creating **uncommon abbreviations** by deleting letters within a word.
+
+That said, there are plenty of acceptable abbreviations, so use your own judgement (and refer to the next subsection on [verbosity vs visibility](#24-err-on-the-side-of-verbosity)):
+
+```text
+obj: object
+col: column
+mat: matrix
+vec: vector
+vert: vertex
+dist: distance
+```
+
+Additionally, all acronyms must have the same case.
+
+```cpp
+printVAO(); // good
+printVao(); // bad
+```
 
 ### 2.4. Err On The Side Of Verbosity
 
 Do not worry about saving horizontal space, as it is far more important to make your code immediately understandable by a student.
 
-Generally speaking, descriptiveness should be proportional to the name's scope of visibility: e.g. `n` may be a fine name within a 5-line function, but within the scope of a class, it's likely too vague.
+Generally speaking, **descriptiveness should be proportional to the name's scope of visibility**: e.g. `n` may be a fine name within a 5-line function, but within the scope of a class, it's likely too vague.
 
 ```cpp
 // good
