@@ -71,10 +71,10 @@ $nav-bar-font-weight: 630;
 $header-font-family: 'Open Sans', ui-sans-serif, sans-serif;
 $h1-font-size: 30px;
 $h2-font-size: 25px;
-$h3-font-size: 22px;
-$h4-font-size: 20px;
-$h5-font-size: 19px;
-$h6-font-size: 18px;
+$h3-font-size: 19px;
+$h4-font-size: 18px;
+$h5-font-size: 17px;
+$h6-font-size: 16px;
 $h1-font-weight: 630;
 $h2-font-weight: 630;
 $h3-font-weight: 630;
@@ -86,8 +86,7 @@ $header-color: hsl(0, 0%, 85%);
 
 $body-font-family: 'Inter Var', 'Inter', ui-sans-serif, sans-serif;
 $body-font-size: 14px;
-$body-font-weight: 350;
-$body-font-weight-italics: 350;
+$body-font-weight: 330;
 $body-font-weight-bold: 600;
 $body-line-height: 1.8;
 $body-color: color.scale($header-color, $lightness: -5%);
@@ -132,7 +131,7 @@ $callout-border-radius: 10px;
 $list-padding-left: 32px;
 $list-item-padding-left: 8px;
 
-$main-inner-spacing-vert: 16px;
+$main-inner-spacing-vert: 14px;
 
 // ================== Mixins
 
@@ -158,7 +157,6 @@ $main-inner-spacing-vert: 16px;
   i,
   em {
     font-style: italic;
-    font-weight: $body-font-weight-italics;
   }
 
   b,
@@ -271,20 +269,23 @@ summary {
   padding: $main-inner-spacing-vert;
 
   &.task-callout {
-    @include callout(hsl(216, 62%, 10%), hsl(216, 62%, 56%), '');
+    @include callout(hsl(216, 62%, (10 * 1.4) * 1%), hsl(216, 62%, (56 * 0.7) * 1%), '');
   }
   &.warning-callout {
-    @include callout(hsl(37, 55%, 9%), hsl(37, 55%, 46%), '');
+    @include callout(hsl(37, 55%, (9 * 1.4) * 1%), hsl(37, 55%, (46 * 0.7) * 1%), '');
   }
   &.success-callout {
-    @include callout(hsl(109, 55%, 8%), hsl(109, 55%, 39%), '');
+    @include callout(hsl(109, 55%, (8 * 1.4) * 1%), hsl(109, 55%, (39 * 0.7) * 1%), '');
   }
   &.error-callout {
-    @include callout(hsl(3, 60%, 11%), hsl(3, 60%, 55%), '');
+    @include callout(hsl(3, 60%, (11 * 1.4) * 1%), hsl(3, 60%, (55 * 0.7) * 1%), '');
   }
 
   > :only-child {
-    @include body-text($header-color, color.scale($header-color, $lightness: 5%));
+    @include body-text(
+      color.scale($header-color, $lightness: 5%),
+      color.scale($header-color, $lightness: 10%)
+    );
     margin: 0;
   }
 }

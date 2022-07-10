@@ -17,7 +17,7 @@
   line-height: inherit;
   color: inherit;
 
-  scroll-margin-top: $main-padding-top;
+  scroll-margin-top: $nav-bar-height + $page-padding-top + $main-padding-top;
 }
 
 html {
@@ -284,42 +284,42 @@ main {
     margin-bottom: $main-inner-spacing-vert;
   }
 
-  > h1,
-  > h2,
-  > h3,
-  > h4,
-  > h5,
-  > h6 {
-    margin-top: ($main-inner-spacing-vert * 2);
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 1.3em;
     margin-bottom: $main-inner-spacing-vert;
   }
 
-  > h1 {
+  h1 {
     @include header-text($h1-font-size, $h1-font-weight);
     margin-top: 0;
   }
 
-  > h2 {
+  h2 {
     @include header-text($h2-font-size, $h2-font-weight);
   }
 
-  > h3 {
+  h3 {
     @include header-text($h3-font-size, $h3-font-weight);
   }
 
-  > h4 {
+  h4 {
     @include header-text($h4-font-size, $h4-font-weight);
   }
 
-  > h5 {
+  h5 {
     @include header-text($h5-font-size, $h5-font-weight);
   }
 
-  > h6 {
+  h6 {
     @include header-text($h6-font-size, $h6-font-weight);
   }
 
-  > p {
+  p {
     @include body-text;
   }
 
@@ -329,6 +329,19 @@ main {
   }
   li {
     padding-left: $list-item-padding-left;
+  }
+
+  details {
+    border-left: 1px solid $page-divider-color;
+    padding-left: $list-padding-left * 0.5;
+
+    > summary {
+      margin-left: -($list-padding-left * 0.5 + 1px);
+      background-color: $main-background-color;
+    }
+    * {
+      margin-bottom: $main-inner-spacing-vert;
+    }
   }
 }
 

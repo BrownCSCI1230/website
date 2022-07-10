@@ -1,0 +1,140 @@
+export const documentProps = { title: 'C++ Guidelines' }
+
+# C++ Guidelines For Stencil Code
+
+## 1. Syntax & Semantics
+
+### 1.1. Use Pointers Instead of C Arrays
+
+Always use pointers instead of C arrays. This is especially relevant when dealing with `QImage`'s data.
+
+```cpp
+std::uint8_t[] arr // bad
+std::uint8_t*  ptr // good
+```
+
+To access elements:
+
+```cpp
+*(ptr + 1) // good
+ptr[1]     // good
+```
+
+### 1.2. Prefer Brace Initialization Over Parenthesis Initialization
+
+In general, most of your variable declarations should look like this:
+
+```cpp
+auto x1 = Type{}; // good
+Type x2 = Type{}; // good
+```
+
+We advise against the following:
+
+```cpp
+auto y = Type(); // bad
+Type z{}; // ugly, but okay
+Type w(); // very bad: this does not create a variable w.
+          // it declares a function w() which returns an instance of Type.
+          // this is known as the "most vexing parse" in C/C++
+```
+
+### 1.3. Avoid Using Constructors Where Possible
+
+If your class/struct has a construction/initialization process which requires functionality beyond just `x = y, z = w, ...`, use an explicit initialization member function instead.
+
+This has to do with certain hard-to-debug bugs that might appear when both (1) using value semantics (passing things around by value) and (2) defining some, but not all, of a class/struct's special member functions (constructor, destructor, etc).
+
+```cpp
+// good
+auto x = ComplicatedThing{param1, param2, param3};
+x.initializeSubThing(); // <-- some complex operation must be done, before it can be used
+```
+
+### 1.4. Prefer Range-For For Looping Over Containers
+
+```cpp
+// good
+for (auto& x : container)
+  // something involving x
+
+// bad, unless you need i elsewhere in the loop
+for (auto i = 0; i < container.size(); ++i)
+  // something involving container[i]
+```
+
+### 1.5. Use `auto`
+
+Feel free to use type deduction, e.g. `auto myVariable = myValue`, within function bodies.
+
+Avoid using them in function signatures where an explicit type could be used instead.
+
+### 1.6. Use Type Aliases
+
+In the event that writing a long, explicit type annotation (as opposed to `auto`) is unavoidable, feel free to use a type alias instead:
+
+```cpp
+// bad: not very readable
+std::vector<std::array<SuperLongTypeName, 123>> variable
+
+// good
+using InnerType = std::array<SuperLongTypeName, 123>;
+using ContainerType = std::vector<InnerType>;
+auto variable = ContainerType{};
+```
+
+## 2. Naming & Documentation
+
+### 2.1. Consider Your Target Audience
+
+Use names that would be clear to students at the **expected level of knowledge** _at or before_ the start of the assignment.
+
+E.g. if you are writing a lab that comes much earlier than the OpenGL parts of the course, avoid introducing the term "shader" in a function/variable name, as students may not appreciate its significance. Worse, they may develop an incorrect understanding of it, which they'll have to unlearn later.
+
+### 2.2. Generally, Use Names That Describe Purpose, Not Implementation
+
+Use names that describe the **purpose or intent** of the object.
+
+Do not use names that describe its underlying implementation, unless:
+
+1. The underlying implementation is the thing that students are meant to learn / interact with, OR
+2. There are multiple implementations of the same thing, and the names help to juxtapose them.
+   - e.g. `dfs()` and `bfs()`.
+
+### 2.3. Be Wary Of Abbreviation
+
+- Do not abbreviate by deleting letters within a word.
+- As a rule of thumb, an abbreviation is probably OK if it's listed in Wikipedia.
+- All letters in an abbreviation should have the same case.
+  - E.g. `printVAO()`, not `printVao()`
+
+### 2.4. Err On The Side Of Verbosity
+
+Do not worry about saving horizontal space, as it is far more important to make your code immediately understandable by a student.
+
+Generally speaking, descriptiveness should be proportional to the name's scope of visibility: e.g. `n` may be a fine name within a 5-line function, but within the scope of a class, it's likely too vague.
+
+```cpp
+// good
+std::tuple<int, int> countLeafAndNonleafNodes(MyTreeType& ast);
+
+// bad: no one will understand why there are two return values
+std::tuple<int, int> countNodes(MyTreeType& ast);
+```
+
+### 2.5. Comment Your Functions
+
+Some software developers in industry prefer keeping inline comments to a minimum, as they are a crutch for bad naming and factorization/abstraction.
+
+That said, we are writing code for students, not industry professionals, so **comment your functions**. Keep it short and simple, and follow the same guidelines as above.
+
+```cpp
+// good
+// Returns the number of leaf and non-leaf nodes in a given MyTreeType
+std::tuple<int, int> countLeafAndNonleafNodes(MyTreeType& ast);
+
+// bad: implementation detail is irrelevant, and comment is getting too long
+// Uses DFS to iterate through nodes of given MyTreeType ast, then returns a
+// tuple containing the count of leaf nodes and the count of non-leaf nodes,
+std::tuple<int, int> countLeafAndNonleafNodes(MyTreeType& ast);
+```
