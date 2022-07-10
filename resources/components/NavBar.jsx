@@ -1,4 +1,5 @@
 import React from 'react'
+import { Logo } from './Logo'
 
 export { NavBar }
 
@@ -13,13 +14,7 @@ function NavBar() {
   return (
     <nav id="nav-bar">
       <div id="nav-bar-inner">
-        <a id="logo" href="/" className="no-select">
-          <div id="a" />
-          <div id="b" />
-          <div id="c" />
-          <div id="d" />
-          <div id="e" />
-        </a>
+        <Logo />
         <div id="nav-items" className="no-select">
           {navItems.map((navItem) => (
             <a key={navItem.text} href={navItem.href} className="nav-item">

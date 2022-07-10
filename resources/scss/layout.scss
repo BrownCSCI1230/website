@@ -139,6 +139,24 @@ body {
 
   color: white;
 
+  @keyframes rollBefore {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes rollAfter {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(100%);
+    }
+  }
+
   @mixin logo-char($background-color, $character) {
     position: relative;
     overflow: hidden;
@@ -150,20 +168,14 @@ body {
       position: absolute;
       inset: $buffer-top + 2px 0 0;
       text-align: center;
-      transition: transform ease 0.4s;
-    }
-    &::after {
-      transform: translateY(-100%);
     }
 
-    &:hover {
+    &.roll {
       &::before {
-        transition: transform ease 0s;
-        transform: translateY(100%);
+        animation: rollBefore ease-in-out var(--duration) both;
       }
       &::after {
-        transition: transform ease 0s;
-        transform: translateY(0);
+        animation: rollAfter ease-in-out var(--duration) both;
       }
     }
   }
