@@ -56,7 +56,7 @@ body {
   scroll-behavior: smooth;
 }
 
-.nav-bar {
+#nav-bar {
   position: fixed;
   z-index: 999;
   top: 0;
@@ -70,25 +70,118 @@ body {
 
   box-shadow: $nav-bar-box-shadow;
 
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  justify-content: center;
+  #nav-bar-inner {
+    display: grid;
+    place-content: stretch flex-end;
+    grid-template: 'logo nav-items' minmax(0, 1fr) / min-content minmax(0, 1fr);
 
-  > a {
+    margin: 0 auto;
+    padding: 0 20px;
+
+    height: 100%;
+    width: 100%;
+    max-width: $page-max-width;
+  }
+
+  #nav-items {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: flex-end;
+  }
+
+  .nav-item {
     @include anchor-text($header-color);
+
+    font-family: $header-font-family;
+    font-size: $nav-bar-font-size;
+    font-weight: $nav-bar-font-weight;
+    line-height: $header-line-height;
+    color: $header-color;
 
     display: grid;
     place-items: center;
 
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top: 6px;
+    padding-left: 8px;
+    padding-right: 8px;
 
     white-space: nowrap;
 
     &:hover {
       background-color: $nav-bar-hover-background-color;
     }
+  }
+}
+
+#logo {
+  $buffer-top-value: 16;
+  $buffer-top: $buffer-top-value * 1px;
+
+  z-index: 1000;
+
+  position: relative;
+  top: -$buffer-top;
+  left: _linear($middle-value, 0, $high-value, -32);
+
+  height: _linear($middle-value, $nav-bar-height-value + $buffer-top-value, $high-value, 80);
+  width: _linear($middle-value, 100, $high-value, 120);
+
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 16px 0 rgba(0, 0, 0, 0.2);
+
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+
+  font-family: $logo-font-family;
+  font-size: _linear($middle-value, 32, $high-value, 36);
+  font-weight: 400;
+  line-height: $nav-bar-height;
+
+  color: white;
+
+  @mixin logo-char($background-color, $character) {
+    position: relative;
+    overflow: hidden;
+    background-color: $background-color;
+
+    &::before,
+    &::after {
+      content: $character;
+      position: absolute;
+      inset: $buffer-top + 2px 0 0;
+      text-align: center;
+      transition: transform ease 0.4s;
+    }
+    &::after {
+      transform: translateY(-100%);
+    }
+
+    &:hover {
+      &::before {
+        transition: transform ease 0s;
+        transform: translateY(100%);
+      }
+      &::after {
+        transition: transform ease 0s;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  > #a {
+    @include logo-char(hsl(355, (54 * 1.1) * 1%, 57%), 'C');
+  }
+  > #b {
+    @include logo-char(hsl(24, (64 * 1.1) * 1%, 58%), 'S');
+  }
+  > #c {
+    @include logo-char(hsl(51, (65 * 1.1) * 1%, 56%), '1');
+  }
+  > #d {
+    @include logo-char(hsl(89, (45 * 1.1) * 1%, 46%), '2');
+  }
+  > #e {
+    @include logo-char(hsl(181, (47 * 1.1) * 1%, 39%), '3');
   }
 }
 
@@ -106,7 +199,7 @@ body {
   display: grid;
   grid-template:
     'toc divider main' minmax(0, 1fr)
-    / minmax(0, 2fr) min-content minmax(0, 9fr);
+    / minmax(0, 2fr) min-content minmax(0, 7fr);
 
   &::before {
     content: ' ';

@@ -20,6 +20,7 @@ const { hydrationPromise } = useClientRouter({
     )
 
     const container = document.getElementById('root')
+    console.log(documentProps)
 
     // `pageContext.isHydration` is set by `vite-plugin-ssr` and is `true` when the page
     // is already rendered to HTML.

@@ -8,10 +8,15 @@
 // Fixme: combine font imports into one url for performance
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,630;1,630&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,365;0,400;0,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&display=swap');
 
 // ================== Responsiveness
 
-$breakpoint: 600px;
+$low-value: 600;
+$middle-value: 950;
+$high-value: 1300;
+
+$breakpoint: $low-value * 1px;
 
 @function _linear($x1, $y1, $x2, $y2) {
   $gradient: math.div($y2 - $y1, $x2 - $x1);
@@ -25,20 +30,21 @@ $breakpoint: 600px;
 
 // ================== Variables
 
-$html-background-color: hsl(205, 0%, 8%);
-$page-background-color: hsl(205, 0%, 13%);
-$main-background-color: hsl(205, 0%, 10%);
-$code-background-color: $html-background-color;
+$nav-bar-background-color: rgb(45, 45, 45);
+$html-background-color: rgb(30, 30, 30);
+$page-background-color: rgb(40, 40, 40);
+$main-background-color: rgb(35, 35, 35);
+$code-background-color: rgb(30, 30, 30);
 
-$nav-bar-background-color: hsl(205, 0%, 16%);
 $nav-bar-hover-background-color: color.mix($nav-bar-background-color, $html-background-color, 50%);
 $nav-bar-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2), 0 0 16px rgba(0, 0, 0, 0.2), 0 0 32px rgba(0, 0, 0, 0.2);
 
 $background-dot-spacing: 30px;
-$background-dot-color: hsla(35, 0%, 30%, 30%);
+$background-dot-color: rgb(55, 55, 55);
 $background-dot-size: 1.5px;
 
-$nav-bar-height: 64px;
+$nav-bar-height-value: 56;
+$nav-bar-height: $nav-bar-height-value * 1px;
 
 $page-margin: 0 auto;
 $page-padding-top: 0;
@@ -46,18 +52,23 @@ $page-padding-right: 0;
 $page-padding-bottom: 0;
 $page-padding-left: 0;
 $page-padding: $page-padding-top $page-padding-right $page-padding-bottom $page-padding-left;
-$page-max-width: 900px;
+$page-max-width: $middle-value * 1px;
 $page-divider-spacing: 20px;
 
 $main-padding-top: 20px;
-$main-padding-right: _linear(900, 20, 1600, 45);
-$main-padding-right-negative: _linear(900, -20, 1600, -45);
+$main-padding-right: _linear($middle-value, 20, 1600, 45);
+$main-padding-right-negative: _linear($middle-value, -20, 1600, -45);
 $main-padding-bottom: 20px;
 $main-padding-left: 20px;
 $main-padding-left-negative: -20px;
 $main-padding: $main-padding-top $main-padding-right $main-padding-bottom $main-padding-left;
 
-$header-font-family: 'Open Sans', ui-sans-serif, sans-serif; // Fixme: monospace is here for debugging only
+$logo-font-family: 'Bebas Neue', ui-sans-serif, sans-serif;
+
+$nav-bar-font-size: _linear($middle-value, 12, $high-value, 14);
+$nav-bar-font-weight: 630;
+
+$header-font-family: 'Open Sans', ui-sans-serif, sans-serif;
 $h1-font-size: 30px;
 $h2-font-size: 25px;
 $h3-font-size: 22px;
@@ -87,8 +98,8 @@ $toc-font-weight: 400;
 $toc-line-height: $body-font-size * $body-line-height;
 $toc-color: color.scale($header-color, $lightness: -25%);
 
-$nav-bar-border-color: color.mix($header-color, $page-background-color, 70%);
-$page-divider-color: color.mix($header-color, $page-background-color, 30%);
+$nav-bar-border-color: color.mix($header-color, $nav-bar-background-color, 10%);
+$page-divider-color: color.mix($header-color, $page-background-color, 10%);
 $page-border-color: $page-divider-color;
 $header-edge-color: $page-divider-color;
 $table-edge-color: $page-divider-color;
@@ -191,6 +202,15 @@ $main-inner-spacing-vert: 16px;
 
 // ================== General styles
 
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
+}
+
 img {
   max-width: 100%;
   min-width: 0px;
@@ -202,6 +222,11 @@ figcaption {
 
 a {
   @include anchor-text(hsl(205, 85%, 60%));
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 .math-display {
