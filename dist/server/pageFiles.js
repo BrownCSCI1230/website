@@ -10,7 +10,7 @@ const pageFiles = {
   }), "/pages/docs/code-blocks.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/code-blocks.page.c634f954.js");
   }), "/pages/docs/cpp-guidelines.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/cpp-guidelines.page.e461e627.js");
+    return require("./assets/cpp-guidelines.page.33deb205.js");
   }), "/pages/docs/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.aef73e37.js");
   }), "/pages/docs/inline-code.page.mdx": () => Promise.resolve().then(function() {
