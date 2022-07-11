@@ -14,8 +14,8 @@
 
 $critical-value: 370;
 $low-value: 600;
-$middle-value: 950;
-$high-value: 1300;
+$middle-value: 900;
+$high-value: 1200;
 
 $breakpoint: $low-value * 1px;
 
@@ -89,11 +89,12 @@ $body-color-bold: color.scale($header-color, $lightness: -3%);
 
 $link-color: hsl(205, 85%, 60%);
 
-$toc-font-size: 10px;
-$toc-font-weight: 400;
+$toc-font-size: 11px;
+$toc-font-weight: $body-font-weight;
 $toc-line-height: $body-font-size * $body-line-height;
-$toc-color: color.change($body-color, $alpha: 0.75);
+$toc-color: color.change($body-color, $alpha: 0.65);
 $toc-hover-background-color: hsla(220, 90%, 75%, 0.1);
+$toc-hover-color: color.change($body-color, $alpha: 1);
 
 $nav-bar-border-color: color.mix($header-color, $nav-bar-background-color, 10%);
 $page-divider-color: color.mix($header-color, $page-background-color, 10%);
@@ -181,7 +182,7 @@ $main-inner-spacing-vert: 14px;
   background-color: $code-inline-background-color;
 }
 
-@mixin anchor-text($color, $hover-background-color: transparent) {
+@mixin anchor-text($color, $hover-background-color: transparent, $hover-color: $color) {
   color: $color;
 
   text-decoration: underline;
@@ -190,6 +191,7 @@ $main-inner-spacing-vert: 14px;
   &:hover {
     text-decoration-color: color.scale($color, $alpha: -50%);
     background-color: $hover-background-color;
+    color: $hover-color;
   }
 }
 
