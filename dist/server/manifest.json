@@ -116,11 +116,11 @@
     "isDynamicEntry": true
   },
   "renderer/_default.page.server.jsx": {
-    "file": "assets/_default.page.server.c1330d01.js",
+    "file": "assets/_default.page.server.800eb48c.js",
     "src": "renderer/_default.page.server.jsx",
     "isDynamicEntry": true,
     "css": [
-      "assets/_default.page.server.b4990ecb.css"
+      "assets/_default.page.server.955a7891.css"
     ]
   }
 }
