@@ -17,7 +17,7 @@ auto x = Apply(Plus(20), 22); // x == 42
 auto y = Apply(Plus(-1.1), 4.24); // y == 3.14
 ```
 
-## 0. Introduction
+## Introduction
 
 Computer graphics often deals with digital images, which are made up of pixels. Pixels are stored as two-dimensional arrays of color data in a computer. The most straightforward way of creating or editing them is to change the values stored in these arrays.
 
@@ -27,15 +27,15 @@ In this lab, you will:
 - Experiment with making pixel art by modifying a canvas in code, and
 - Implement a Photoshop-like "pencil" to draw interactively
 
-## 1. Before You Begin
+## Before You Begin
 
 Before you begin, here's some basic knowledge you'll need to work with labs (and projects) in CS123:
 
-### 1.1. Stencil Code
+### Stencil Code
 
 Just like in `Lab 1: Setup`, we've provided you with some stencil code to get you started. As always, you should `git clone` this repository to your local machine and open the project in QtCreator.
 
-### 1.2. Application Windows
+### Application Windows
 
 Run the project by hitting the big "play" button, and you should see an application window (with nothing in it) appear. This will come in handy later!
 
@@ -43,7 +43,7 @@ Run the project by hitting the big "play" button, and you should see an applicat
 
 > Interested in how GUI elements like these are set up? Feel free to take a look at [ TODO: these specific files ] in our stencil code!
 
-### 1.3. Command Line Arguments
+### Command Line Arguments
 
 Most labs and projects in CS123 will use command line arguments to toggle between different configurations, and this lab is no different; specifically, you will be using it to select the type of canvas you wish to use.
 
@@ -59,7 +59,7 @@ In this lab, we use command [] and [] to control if we want to show a black-and-
 
 Once you're done with that, we may begin the lab proper!
 
-## 2. Representing Colors
+## Representing Colors
 
 In computer graphics, **images** are often represented as 2D arrays of **pixels**, which are simply stores for some form of data.
 
@@ -69,7 +69,7 @@ Of course, as in digital pictures, pixels are most often used to encode **color*
 
 In this section, we'll explore how we can represent color data in code.
 
-### 2.1. Grayscale
+### Grayscale
 
 A pixel in a grayscale image requires only a single number to encode its intensity:
 
@@ -77,7 +77,7 @@ A pixel in a grayscale image requires only a single number to encode its intensi
 
 Conventionally, we define 0 as the darkest color (completely black), and 1 as the lightest color (completely white). Correspondingly, 0.5 would be a medium-gray, and 0.7 would be a relatively lighter shade of gray.
 
-### 2.2. RGBA
+### RGBA
 
 But grayscale images are kinda boring :(
 
@@ -91,7 +91,7 @@ Observe (0.5,0,1,1) [pic] and (1,0,0.5,1) [pic].
 
 How does the change in RGBA values affect the produced color?
 
-### 2.3. A Note On Datatypes
+### A Note On Datatypes
 
 Earlier, we used floats ranging from 0 to 1 to represent color intensities.
 
@@ -124,7 +124,7 @@ To convert between the above representations, we need to scale the number up or 
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | In [function location], implement a method to convert 0-1 float representation to 0-255 integer representation.<br/><br/>**HINT**: you might want to check out round() function in cmath library. |
 
-## 3. Your First Canvas
+## Your First Canvas
 
 < picture of bob ross, but the canvas is chunky pixel art >
 
@@ -132,7 +132,7 @@ In order to operate on images, you need an image!
 
 Let's make a 2D canvas!
 
-### 3.1. Creating "2D" Arrays
+### Creating "2D" Arrays
 
 In lab 01, you learned that you can use containers like `std::vector` or `std::array` to store linear collections of data.
 
@@ -170,7 +170,7 @@ Now, lets create our very own canvas. We'll start with the basic: creating a gra
 
 Do you see a gray box?
 
-### 3.2. Modifying "2D" Arrays
+### Modifying "2D" Arrays
 
 Todo text
 
@@ -186,17 +186,17 @@ Refer to the above diagram to work out what the indices should be.
 
 - Take a screenshot of what you did.
 
-### 3.3. Make Some Pixel Art!
+### Make Some Pixel Art!
 
 take a screenshot
 
-### 2.2. The RGBA Struct
+### The RGBA Struct
 
 Now, it's time to spice things up!
 
 Let's change the canvas to a colorful one. Instead of a std::vector of numbers, we will want a std::vector of something that contains all 4 values of r,g,b,a.
 
-#### 2.2.1. Our CS1230 RGBA Struct
+#### Our CS1230 RGBA Struct
 
 To group several related variables into one place, we should create a Struct.
 
@@ -282,7 +282,7 @@ _So r[0] represent the red intensity of pixel (0,0), g[0] represents the green i
 
 </details>
 
-#### 2.2.2. Your Mission
+#### Your Mission
 
 Now, let's switch to a canvas that allows us to use colors!
 
@@ -317,11 +317,11 @@ task :
 
 - take a screenshot of your creation
 
-## 4. The Pencil Tool
+## The Pencil Tool
 
 Hope you had a little fun drawing flowers! Now, Instead of modifying a 2D canvas in code, we want to be able to modify it _interactively_.
 
-### 3.1. CanvasWidget
+### CanvasWidget
 
 The key to interactivity in Qt is events.
 
@@ -329,11 +329,11 @@ When events associated with particular _signals_ occur*,* Qt calls functions cal
 
 In this class, we will set up the functions that gets called when events occur for you, and you need to fill these functions.
 
-### 3.2. Pencil
+### Pencil
 
 The functions `MouseDown()`, `MouseMove()`, and `MouseUp()` are called to change the canvas when the user interacts with the canvas with their cursor/mouse, we will Implement the event handlers in X file
 
-#### 3.2.1. A Note On How To Survive A Weird Compromise: C Arrays
+#### A Note On How To Survive A Weird Compromise: C Arrays
 
 Though we recommend using std::vector (and std::array) for all your canvas needs, Qt's canvas … so we'll use C arrays here. However! It's used the same way.
 
@@ -348,11 +348,11 @@ _Images displayed in QT have to be a type called 'QImage', and they are defined 
 
 [By calling canvas->data], your program returns a pointer to the array of canvas pixels, which are RGBA structs. Your [] function returns a xy coordinate of your mouse in canvas space. Again, you need to work on solving the index for your pixel, and find a way to modify it.
 
-#### 3.2.2 Leaky Pencil
+#### Leaky Pencil
 
 Implement `pencilMove` such that it colors the pixel it's currently on.
 
-#### 2.2.3 Good Pencil
+#### Good Pencil
 
 Implement `pencilDown` and `pencilUp` such that the pencil only colors pixels when the mouse is held down.
 
@@ -360,6 +360,6 @@ A Boolean variable in pencil class may be useful.
 
 HINT: What happens when you click without moving?
 
-## 5. Conclusion
+## Conclusion
 
 Prepare the two screenshots and your good pencil to get checked off!

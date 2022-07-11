@@ -6,7 +6,7 @@ export const documentProps = { title: 'Lab 4' }
 
 [GitHub Classroom assignment](https://google.com)
 
-## 0. Intro
+## Intro
 
 The purpose of this lab is to help you get more comfortable with 2D and 3D transformations and coordinate spaces. Through this lab we want you to understand how to construct transformation matrices and apply them to modify objects in your scene. You will also use transformations to move between the different coordinate spaces used in building your raytracer.
 
@@ -17,9 +17,9 @@ During this lab you will learn how to:
 3. Construct a view matrix representing a specific camera transformation.
 4. Use **model** and **view** matrices to transition between **object space**, **world space**, and **camera space**.
 
-## 1. Constructing Transformations
+## Constructing Transformations
 
-### 1.1 Representing Transformations as Matrices
+### Representing Transformations as Matrices
 
 A transformation can be thought of as a function.
 
@@ -53,7 +53,7 @@ $$
   \displaylines{ T (v) = M v = v' \\ T^{-1} (v') = M^{-1} v' = v }
 $$
 
-### 1.2 Scaling
+### Scaling
 
 We learned about a few common transformations in class, the simplest being scaling. To scale $x$ by $s_x$ and $y$ by $s_y$, we want to take our standard basis vectors $e_1 = \begin{bmatrix} 1 \\ 0 \end{bmatrix}$ and $e_2 = \begin{bmatrix} 0 \\ 1 \end{bmatrix}$ and scale each by the corresponding factor. $e_1$ is the unit vector in the $x$ direction so it gets multiplied by $s_x$ becoming
 $\begin{bmatrix} s_x \\ 0 \end{bmatrix}$
@@ -97,7 +97,7 @@ $$
 | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Fill in `getScalingMatrix` so that it returns the 3x3 transformation matrix (as a `glm::mat3`) that scales along each axis given the 3 scale factors. |
 
-### 1.3 Rotation
+### Rotation
 
 Rotation in 2D follows a similar idea as scaling. We want to take our standard basis vectors and find the transformed basis vectors. Rotating $e_1$ around the origin by
 $\theta$ results in $\begin{bmatrix} \cos\theta \\ \sin\theta \end{bmatrix}$.
@@ -147,7 +147,7 @@ $$
   \text{combined} = R_z R_y R_x
 $$
 
-### 1.4 Translation
+### Translation
 
 Translation is where our previous understanding of transformation matrices stops working. Until now, we have only been working with **linear transformations**. These transformations always preserve the origin, meaning that multiplying the corresponding transformation matrix by $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ will always produce the same point,
 $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$.
@@ -170,7 +170,7 @@ $$
 
 As you can see, there is no possible 2x2 matrix that could translate the 2x1 origin. No matter what values we fill in the matrix, they will be multiplied by 0 when transforming the origin, resulting in the same point $\begin{bmatrix} 0 \\ 0 \end{bmatrix}$ limiting us to strictly linear transformations. To represent our desired non-linear transformation as a matrix, we introduce **homogeneous coordinates**.
 
-#### 1.4.1 Homogeneous Coordinates
+#### Homogeneous Coordinates
 
 Homogeneous coordinates are pretty simple to _use_, though they might be difficult to understand. The idea is that we take our existing point or vector and just add another dimension. By convention we refer to this new coordinate as $w$. For points, $w=1$ and for vectors $w=0$.
 
@@ -271,7 +271,7 @@ $$
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | You'll need to modify your previous functions so that the matrices they return are compatible with our new homogeneous coordinates. Modify `getScalingMatrix`, `getRotationMatrixX`, `getRotationMatrixY`, and `getRotationMatrixZ` to return a **`glm::mat4`**. |
 
-## 2. Applying Multiple Transformations
+## Applying Multiple Transformations
 
 As briefly mentioned when discussing rotation about multiple axes, sometimes we want to apply multiple transformations to the same point. We can do this by composing transformations. Mathematically this is represented by multiplying the respective matrices in the order that the transformations are applied. If we have two transformations $T_1$ and $T_2$ represented by matrices $M_1$ and $M_2$, then $T_2(T_1(v)) = M_2(M_1v)$. Here $T_1$ is applied first, making $M_1$ the innermost matrix that $v$ is multiplied by first.
 
@@ -283,7 +283,7 @@ $$
 
 > Note that matrix multiplication is **not commutative** and therefore the order you apply transformations does change the outcome! The product $M_2M_1$ may not be the same as $M_1M_2$.
 
-### 2.1 Ordering S, R, and T
+### Ordering S, R, and T
 
 If you have one object that you want to apply multiple individual scale, rotation, and translation transformations to, you should be careful of the order in which you compose the transformations. Usually, you want to use a standardized order in which you apply transformations to maintain consistency.
 
@@ -338,7 +338,7 @@ Which looks more like the result you'd expect?
 
 </details>
 
-### 2.2 Introducing Our Transformation Graph
+### Introducing Our Transformation Graph
 
 For the next part of the lab we'll be looking at this graph which explains the transformations we want to create for the lab demo.
 
@@ -369,7 +369,7 @@ Fill in functions `getMatrixA`, `getMatrixB`, `getMatrixC`, and `getMatrixD` usi
 
 Great! Now we have matrices corresponding to each edge of the graph. But what does it mean to have multiple of these branching off into different layers of the graph's hierarchy?
 
-### 2.3 Nesting Transformations
+### Nesting Transformations
 
 ![TODO](transforms.png)
 
@@ -389,7 +389,7 @@ Previously, we emphasized the need to order each of our T, R, and S transformati
 
 In the last task, you created the transformation matrices that take objects and transform them to different placements in the world. Just like every other object in a scene, we can represent a camera's position and rotation with a transformation matrix.
 
-## 2. Camera View Matrix
+## Camera View Matrix
 
 A key part of rendering is being able to figure out where points in the world are relative to the camera's view. To do this, we can use a transformation matrix that represents the transformation of the camera to the origin of the world. By applying this transformation to points in the world, we can convert them to coordinates that treat the camera like an origin from which it views everything else. We refer to this matrix that transforms into the camera's space as the **view matrix**.
 
@@ -470,21 +470,21 @@ $$
 | :------------------------------------------------------------------------------------------------------------------- |
 | Fill in `getCameraMatrix` to return the view matrix of the camera using the specifications given in the above graph. |
 
-## 3. Coordinate Spaces
+## Coordinate Spaces
 
 In discussing transformations, we've mentioned the idea of transforming between **coordinate spaces**, but what are coordinate spaces? This is an important concept as you work on building your raytracer. You will often find that certain calculations make sense when you work with them in specific coordinate spaces, but when you're dealing with points and vectors in different spaces you need to know how to use transformations to move between them.
 
 Here we'll cover the main coordinate spaces you will need to work with.
 
-### 3.1 World Space
+### World Space
 
 Think of world space as your default overarching coordinate system. Everything else gets placed into the scene relative to the origin and units of the world's coordinate system. World space is arbitrarily defined and acts as a fixed space within which everything else can be defined. In the transformation graph we've been looking at, it is the root that everything else stems from.
 
-### 3.2 Camera Space
+### Camera Space
 
 Camera space is what you learned about in part 2 of this lab. It is the coordinate system defined by the camera's position and rotation. In camera space, everything else in the world is relative to the camera's view, with the camera being placed at the origin, and its $uvw$ axes becoming the $xyz$. In part 2, we went over how to get the view matrix, which takes world space points and transforms them into camera space.
 
-### 3.3 Object Space
+### Object Space
 
 Object space is pretty much what it sounds like - the coordinate system in which an object is defined. In the demo, these are represented by the little sets of axes drawn for each object in the scene.
 
@@ -492,7 +492,7 @@ Why do we need coordinates specific to each object? For example, you might want 
 
 In task 2 of this lab you have already found some such transformation matrices for objects in the given graph. These take points from the object and transform them into positions in world space. Knowing this, can you think of a way to take a point from a transformed object in world space and find its position in the object's coordinate space?
 
-### 3.4 Relating All Three
+### Relating All Three
 
 That was a lot of information! Here's a simpler graphic that helps to sum up the relationships between everything we covered in this lab:
 
@@ -510,6 +510,6 @@ The arrows indicate the direction of transformation that the labeled matrix prov
 | :---------------------------- |
 | **TODO: conceptual question** |
 
-## 4. Looking Ahead
+## Looking Ahead
 
 In this lab you implemented your own functions to build transformation matrices and learned how to create cumulative transformation matrices, which you will continue to work on in the next lab, **Lab 5: Parsing**. Though you wrote the matrices yourself this time, you might find built-in functions such as `glm::scale`, `glm::rotate`, and `glm::translate` to be helpful and save you some time in the future. Be careful though! `glm::rotate` uses the angle-axis representation of rotation.

@@ -244,6 +244,14 @@ body {
     list-style: none;
   }
 
+  $content-map: (
+    1: '',
+    2: counter(toc2) '.\00a0',
+    3: counter(toc2) '.' counter(toc3) '.\00a0',
+    4: counter(toc2) '.' counter(toc3) '.' counter(toc4) '.\00a0',
+    5: counter(toc2) '.' counter(toc3) '.' counter(toc4) '.' counter(toc5) '.\00a0',
+    6: counter(toc2) '.' counter(toc3) '.' counter(toc4) '.' counter(toc5) '.' counter(toc6) '.\00a0',
+  );
   @mixin toc-level($level) {
     font-size: $toc-font-size;
     font-weight: $toc-font-weight;
@@ -275,14 +283,16 @@ body {
 
     white-space: nowrap;
 
+    counter-reset: toc#{$level + 1};
+
     &::before {
-      content: ' ';
+      counter-increment: toc#{$level};
+      content: map-get($content-map, $level);
       display: inline-block;
       height: 100%;
-      width: ($level - 1) * 8px;
+      padding-left: ($level - 1) * 8px;
     }
   }
-
   @for $i from 1 through 6 {
     .toc-level-#{$i} {
       @include toc-level($i);
@@ -320,9 +330,39 @@ main {
     margin-top: 0;
   }
 
+  // Looks complicated, but it just creates the numbers in front of the headers
+  $content-map: (
+    1: '',
+    2: counter(h2) '. ',
+    3: counter(h2) '.' counter(h3) '. ',
+    4: counter(h2) '.' counter(h3) '.' counter(h4) '. ',
+    5: counter(h2) '.' counter(h3) '.' counter(h4) '.' counter(h5) '. ',
+    6: counter(h2) '.' counter(h3) '.' counter(h4) '.' counter(h5) '.' counter(h6) '. ',
+  );
   @for $i from 1 through 6 {
     h#{$i} {
       @include header-text($i);
+
+      counter-reset: h#{$i + 1};
+      position: relative;
+
+      > a {
+        position: relative;
+        text-decoration: none;
+        color: $header-color;
+
+        &::before {
+          counter-increment: h#{$i};
+          content: map-get($content-map, $i);
+        }
+
+        &:hover {
+          color: $link-color;
+        }
+        &:active {
+          outline: none;
+        }
+      }
     }
   }
 

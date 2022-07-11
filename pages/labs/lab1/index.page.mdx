@@ -8,7 +8,7 @@ export const documentProps = { title: 'Lab 1' }
 
 This lab is due on **Sep 13, 2022**.
 
-## 0. Intro
+## Intro
 
 Welcome to CS123!
 
@@ -35,7 +35,7 @@ In the rest of this 1-2h lab, you will:
 2. Build and run a starter Qt program, and
 3. Gain some familiarity with basic C++ features.
 
-## 1. Qt and QtCreator
+## Qt and QtCreator
 
 In CS123, we use **Qt** and **QtCreator** to develop, build, and run all our projects and labs.
 
@@ -50,7 +50,7 @@ In CS123, we use **Qt** and **QtCreator** to develop, build, and run all our pro
   code works as expected!
 </details>
 
-### 1.1. Local Installation, and Opening Your First Project
+### Local Installation, and Opening Your First Project
 
 | Step | Instruction                                                                                                                                                                                                                                                                                                                                                                                          | Screenshot                                    |
 | :--: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------- |
@@ -61,7 +61,7 @@ In CS123, we use **Qt** and **QtCreator** to develop, build, and run all our pro
 |  5   | Continue, and finish the installation process.                                                                                                                                                                                                                                                                                                                                                       | ![todo](/labs/lab1/finished-install.png)      |
 |  6   | Finally, launch QtCreator, click `Open Project...`, and, in the pop-up window, select the `lab01.pro` file located in this repository.<br/><br/><details><summary>What is a `.pro` file?</summary><br/>A `.pro` file is a <i>multi-platform</i> project file, which Qt can turn into a <i>platform-specific</i> makefile. It stores configuration information, e.g. what files to include.</details> | ![todo](/labs/lab1/open-project.png)          |
 
-### 1.2. The QtCreator Interface
+### The QtCreator Interface
 
 If you completed all the steps successfully, you should see the following screen. Good work!
 
@@ -75,9 +75,9 @@ When you're ready, hit "run" and proceed to the next section.
 
 [ Note to TAs: we can make this project run some kind of setup check ]
 
-## 2. C++
+## C++
 
-### 2.1. Hello World
+### Hello World
 
 A simple C++ program that does nothing is provided below:
 
@@ -117,7 +117,7 @@ Now we can get into the more fun stuff!
 
 :::
 
-### 2.2. Primitive Types, Variables and Functions
+### Primitive Types, Variables and Functions
 
 Like many other programming languages, C++ comes with several primitive types including:
 
@@ -250,7 +250,7 @@ You should see `246`, `6.28` and `abcabc` when you run the program.
 
 :::
 
-### 2.3. Create Your Own Types
+### Create Your Own Types
 
 Similar to how we create custom types in other languages, we can combine existing types to make a data structure, and bundle it with dedicated functions to create new types in C++. Custom types are also known as _classes_ in many languages including C++. We can use the keyword `struct` or `class` to create custom types, `struct`s and `class`es are almost the exact same thing in C++, with the only difference being that `struct`s have public member access by default and `class`es have private access by default. We'll use `struct` to refer to both `struct`s and `class`es from here. The basic form of a `struct` is shown as follows
 
@@ -360,7 +360,7 @@ See if `PrintShape` exhibits the expected polymorphic behavior.
   over types. They both correspond to second order logic and in many cases, one may replace another.
 </details>
 
-### 2.4. Containers and Strings
+### Containers and Strings
 
 The C++ standard library provides us many useful utilities, and we'll focus on three most commonly used things:
 
@@ -457,7 +457,7 @@ Now print each string element in the container, and see if the result is as expe
 
 :::
 
-### 2.5. Pointers and References
+### Pointers and References
 
 Every entity in our program, variables, functions, constants, values that a register cannot hold, they all exist somewhere in memory, and they all have a unique memory location called _memory_ _address_.
 
@@ -621,7 +621,7 @@ EvenBetterF(Things); // OK, reference parameter binds to 'Things'
 EvenBetterF(std::vector{ 1, 2, 3, 4 }); // OK, as if the parameter type is non-reference
 ```
 
-### 2.6. Pointer Arithmetic
+### Pointer Arithmetic
 
 We've discussed in the previous section that a pointer is an integer storing a memory address. What will happen though, if we perform integer arithmetic on pointers? Consider the following example
 
@@ -679,4 +679,4 @@ The reason behind this oddity is that C arrays automatically decay to the pointe
 
 </details>
 
-### 2.7. Dynamic Memory Management and Smart Pointers (consider moving to Pencil)
+### Dynamic Memory Management and Smart Pointers (consider moving to Pencil)
