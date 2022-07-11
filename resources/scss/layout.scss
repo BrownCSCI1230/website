@@ -90,11 +90,19 @@ body {
     display: flex;
     flex-direction: row;
     align-items: stretch;
+
     justify-content: flex-end;
+
+    @media only screen and (max-width: ($critical-value * 1px)) {
+      > :first-child {
+        display: none;
+      }
+    }
   }
 
   .nav-item {
-    @include anchor-text($header-color);
+    @include anchor-text($header-color, $nav-bar-hover-background-color);
+    text-decoration: none !important;
 
     font-family: $header-font-family;
     font-size: $nav-bar-font-size;
@@ -105,15 +113,9 @@ body {
     display: grid;
     place-items: center;
 
-    padding-top: 1px;
-    padding-left: 7px;
-    padding-right: 7px;
+    padding: $nav-item-padding;
 
     white-space: nowrap;
-
-    &:hover {
-      background-color: $nav-bar-hover-background-color;
-    }
   }
 }
 
@@ -130,7 +132,7 @@ body {
   height: _linear($middle-value, $nav-bar-height-value + $buffer-top-value, $high-value, 80);
   width: _linear($middle-value, 20 * 6, $high-value, 24 * 6);
 
-  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: $logo-box-shadow;
 
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -233,7 +235,7 @@ body {
   position: sticky;
   top: 0;
 
-  margin: $toc-padding;
+  padding: $toc-padding;
 
   align-self: flex-start;
 
@@ -263,7 +265,8 @@ body {
     }
   }
   @mixin toc-link($level) {
-    @include anchor-text($toc-color);
+    @include anchor-text($toc-color, $toc-hover-background-color);
+    text-decoration: none !important;
 
     display: block;
     overflow: hidden;
