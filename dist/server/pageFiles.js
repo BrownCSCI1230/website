@@ -4,9 +4,7 @@ const pageFiles = {
   ".page": { "/pages/hours.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/hours.page.486b61df.js");
   }), "/pages/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.8ecfc07b.js");
-  }), "/pages/staff.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/staff.page.e95f1fd0.js");
+    return require("./assets/index.page.939f4b38.js");
   }), "/pages/docs/code-blocks.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/code-blocks.page.a66e4ab3.js");
   }), "/pages/docs/cpp-guidelines.page.mdx": () => Promise.resolve().then(function() {
@@ -40,7 +38,7 @@ const pageFiles = {
     return require("./assets/_default.page.client.ebe16b42.js");
   }) },
   ".page.server": { "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.800eb48c.js");
+    return require("./assets/_default.page.server.adb2957a.js");
   }) },
   ".page.route": {}
 };

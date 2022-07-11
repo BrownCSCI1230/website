@@ -6,7 +6,6 @@
     "dynamicImports": [
       "pages/hours.page.mdx",
       "pages/index.page.mdx",
-      "pages/staff.page.mdx",
       "pages/docs/code-blocks.page.mdx",
       "pages/docs/cpp-guidelines.page.mdx",
       "pages/docs/index.page.mdx",
@@ -31,13 +30,8 @@
     "isDynamicEntry": true
   },
   "pages/index.page.mdx": {
-    "file": "assets/index.page.8ecfc07b.js",
+    "file": "assets/index.page.939f4b38.js",
     "src": "pages/index.page.mdx",
-    "isDynamicEntry": true
-  },
-  "pages/staff.page.mdx": {
-    "file": "assets/staff.page.e95f1fd0.js",
-    "src": "pages/staff.page.mdx",
     "isDynamicEntry": true
   },
   "pages/docs/code-blocks.page.mdx": {
@@ -116,11 +110,11 @@
     "isDynamicEntry": true
   },
   "renderer/_default.page.server.jsx": {
-    "file": "assets/_default.page.server.800eb48c.js",
+    "file": "assets/_default.page.server.adb2957a.js",
     "src": "renderer/_default.page.server.jsx",
     "isDynamicEntry": true,
     "css": [
-      "assets/_default.page.server.955a7891.css"
+      "assets/_default.page.server.ba21dd3e.css"
     ]
   }
 }
