@@ -74,6 +74,7 @@ body {
     display: grid;
     place-content: stretch flex-end;
     grid-template: 'logo nav-items' minmax(0, 1fr) / min-content minmax(0, 1fr);
+    gap: 20px;
 
     margin: 0 auto;
     padding: 0 20px;
@@ -84,6 +85,8 @@ body {
   }
 
   #nav-items {
+    overflow-x: scroll;
+
     display: flex;
     flex-direction: row;
     align-items: stretch;
@@ -103,8 +106,8 @@ body {
     place-items: center;
 
     padding-top: 1px;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-left: 7px;
+    padding-right: 7px;
 
     white-space: nowrap;
 
@@ -125,15 +128,15 @@ body {
   left: _linear($middle-value, 0, $high-value, -32);
 
   height: _linear($middle-value, $nav-bar-height-value + $buffer-top-value, $high-value, 80);
-  width: _linear($middle-value, 100, $high-value, 120);
+  width: _linear($middle-value, 20 * 6, $high-value, 24 * 6);
 
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.2), 0 0 16px 0 rgba(0, 0, 0, 0.2);
 
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
 
   font-family: $logo-font-family;
-  font-size: _linear($middle-value, 32, $high-value, 36);
+  font-size: _linear($middle-value, 20 * 1.5, $high-value, 24 * 1.5);
   font-weight: 400;
   line-height: $nav-bar-height;
 
@@ -181,19 +184,22 @@ body {
   }
 
   > #a {
-    @include logo-char(hsl(355, (54 * 1.1) * 1%, 57%), 'C');
+    @include logo-char(hsl(355, 60%, 57%), 'C');
   }
   > #b {
-    @include logo-char(hsl(24, (64 * 1.1) * 1%, 58%), 'S');
+    @include logo-char(hsl(24, 73%, 58%), 'S');
   }
   > #c {
-    @include logo-char(hsl(51, (65 * 1.1) * 1%, 56%), '1');
+    @include logo-char(hsl(49, 73%, 58%), '1');
   }
   > #d {
-    @include logo-char(hsl(89, (45 * 1.1) * 1%, 46%), '2');
+    @include logo-char(hsl(95, 43%, 51%), '2');
   }
   > #e {
-    @include logo-char(hsl(181, (47 * 1.1) * 1%, 39%), '3');
+    @include logo-char(hsl(185, 48%, 44%), '3');
+  }
+  > #f {
+    @include logo-char(hsl(280, 28%, 50%), '0');
   }
 }
 
@@ -225,9 +231,9 @@ body {
 
 .toc {
   position: sticky;
-  top: $main-padding-top;
+  top: 0;
 
-  margin: $main-padding;
+  margin: $toc-padding;
 
   align-self: flex-start;
 
@@ -250,9 +256,11 @@ body {
     }
   }
   @mixin toc-item($level) {
-    position: relative;
-    left: -($level - 2) * 8px;
-    margin-left: -1px;
+    @if ($level != 1) {
+      position: relative;
+      left: -($level - 2) * 8px;
+      margin-left: -1px;
+    }
   }
   @mixin toc-link($level) {
     @include anchor-text($toc-color);
@@ -262,7 +270,6 @@ body {
     white-space: nowrap;
     text-overflow: ellipsis;
 
-    padding-right: 4px;
     white-space: nowrap;
 
     &::before {

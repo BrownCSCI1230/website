@@ -28,6 +28,7 @@ function Logo() {
   const cRef = useRef(null)
   const dRef = useRef(null)
   const eRef = useRef(null)
+  const fRef = useRef(null)
 
   return (
     <a id="logo" href="/" className="no-select" style={duration}>
@@ -36,6 +37,7 @@ function Logo() {
       <div id="c" ref={cRef} onMouseEnter={mouseEnter(cRef)} />
       <div id="d" ref={dRef} onMouseEnter={mouseEnter(dRef)} />
       <div id="e" ref={eRef} onMouseEnter={mouseEnter(eRef)} />
+      <div id="f" ref={fRef} onMouseEnter={mouseEnter(fRef)} />
     </a>
   )
 }

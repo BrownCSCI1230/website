@@ -63,6 +63,8 @@ $main-padding-left: 20px;
 $main-padding-left-negative: -20px;
 $main-padding: $main-padding-top $main-padding-right $main-padding-bottom $main-padding-left;
 
+$toc-padding: $main-padding-top $main-padding-left $main-padding-bottom $main-padding-right;
+
 $logo-font-family: 'Bebas Neue', ui-sans-serif, sans-serif;
 
 $nav-bar-font-size: _linear($middle-value, 12, $high-value, 14);
@@ -95,7 +97,7 @@ $body-color-bold: color.scale($header-color, $lightness: -3%);
 $toc-font-size: 10px;
 $toc-font-weight: 400;
 $toc-line-height: $body-font-size * $body-line-height;
-$toc-color: color.scale($header-color, $lightness: -25%);
+$toc-color: color.change($body-color, $alpha: 0.75);
 
 $nav-bar-border-color: color.mix($header-color, $nav-bar-background-color, 10%);
 $page-divider-color: color.mix($header-color, $page-background-color, 10%);
