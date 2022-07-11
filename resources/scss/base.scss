@@ -71,18 +71,8 @@ $nav-bar-font-size: _linear($middle-value, 12, $high-value, 14);
 $nav-bar-font-weight: 630;
 
 $header-font-family: 'Open Sans', ui-sans-serif, sans-serif;
-$h1-font-size: 30px;
-$h2-font-size: 25px;
-$h3-font-size: 19px;
-$h4-font-size: 18px;
-$h5-font-size: 17px;
-$h6-font-size: 16px;
-$h1-font-weight: 630;
-$h2-font-weight: 630;
-$h3-font-weight: 630;
-$h4-font-weight: 630;
-$h5-font-weight: 630;
-$h6-font-weight: 630;
+$header-font-sizes: 30px 25px 19px 18px 17px 16px;
+$header-font-weights: 630 630 630 630 630 630;
 $header-line-height: 1.8;
 $header-color: hsl(0, 0%, 85%);
 
@@ -137,14 +127,14 @@ $main-inner-spacing-vert: 14px;
 
 // ================== Mixins
 
-@mixin header-text($font-size, $font-weight) {
+@mixin header-text($header-level) {
   padding-bottom: 0.3em;
 
   border-bottom: 1px solid $header-edge-color;
 
   font-family: $header-font-family;
-  font-size: $font-size;
-  font-weight: $font-weight;
+  font-size: nth($header-font-sizes, $header-level);
+  font-weight: nth($header-font-weights, $header-level);
   line-height: $header-line-height;
   color: $header-color;
 }

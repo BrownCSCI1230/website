@@ -314,28 +314,13 @@ main {
   }
 
   h1 {
-    @include header-text($h1-font-size, $h1-font-weight);
     margin-top: 0;
   }
 
-  h2 {
-    @include header-text($h2-font-size, $h2-font-weight);
-  }
-
-  h3 {
-    @include header-text($h3-font-size, $h3-font-weight);
-  }
-
-  h4 {
-    @include header-text($h4-font-size, $h4-font-weight);
-  }
-
-  h5 {
-    @include header-text($h5-font-size, $h5-font-weight);
-  }
-
-  h6 {
-    @include header-text($h6-font-size, $h6-font-weight);
+  @for $i from 1 through 6 {
+    h#{$i} {
+      @include header-text($i);
+    }
   }
 
   p {
