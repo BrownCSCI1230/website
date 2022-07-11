@@ -25,7 +25,7 @@ function render(pageContext) {
   )
 
   return escapeInject`<!DOCTYPE html>
-    <html>
+    <html lang="en">
       <head>
         <meta charset="UTF-8">
         <title>${title}</title>

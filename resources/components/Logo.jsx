@@ -25,7 +25,7 @@ function Logo() {
   const fRef = useRef(null)
 
   return (
-    <a id="logo" href="/" className="no-select" style={duration}>
+    <a id="logo" className="no-select" href="/" aria-label="home" style={duration}>
       <div id="a" ref={aRef} onMouseEnter={mouseEnter(aRef)} />
       <div id="b" ref={bRef} onMouseEnter={mouseEnter(bRef)} />
       <div id="c" ref={cRef} onMouseEnter={mouseEnter(cRef)} />
