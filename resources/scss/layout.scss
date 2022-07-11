@@ -195,13 +195,13 @@ body {
     @include logo-char(hsl(49, 73%, 58%), '1');
   }
   > #d {
-    @include logo-char(hsl(95, 43%, 51%), '2');
+    @include logo-char(hsl(95, 44%, 55%), '2');
   }
   > #e {
-    @include logo-char(hsl(185, 48%, 44%), '3');
+    @include logo-char(hsl(190, 47%, 46%), '3');
   }
   > #f {
-    @include logo-char(hsl(280, 28%, 50%), '0');
+    @include logo-char(hsl(255, 30%, 54%), '0');
   }
 }
 
