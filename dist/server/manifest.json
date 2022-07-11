@@ -41,12 +41,12 @@
     "isDynamicEntry": true
   },
   "pages/docs/code-blocks.page.mdx": {
-    "file": "assets/code-blocks.page.c634f954.js",
+    "file": "assets/code-blocks.page.a66e4ab3.js",
     "src": "pages/docs/code-blocks.page.mdx",
     "isDynamicEntry": true
   },
   "pages/docs/cpp-guidelines.page.mdx": {
-    "file": "assets/cpp-guidelines.page.33deb205.js",
+    "file": "assets/cpp-guidelines.page.7541b504.js",
     "src": "pages/docs/cpp-guidelines.page.mdx",
     "isDynamicEntry": true
   },
@@ -71,27 +71,27 @@
     "isDynamicEntry": true
   },
   "pages/labs/lab0/index.page.mdx": {
-    "file": "assets/index.page.8e2ec807.js",
+    "file": "assets/index.page.15ce79af.js",
     "src": "pages/labs/lab0/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab1/index.page.mdx": {
-    "file": "assets/index.page.7913bcf7.js",
+    "file": "assets/index.page.35597f7a.js",
     "src": "pages/labs/lab1/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab2/index.page.mdx": {
-    "file": "assets/index.page.4a35cbf1.js",
+    "file": "assets/index.page.479d140a.js",
     "src": "pages/labs/lab2/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab4/index.page.mdx": {
-    "file": "assets/index.page.df12d625.js",
+    "file": "assets/index.page.263eee51.js",
     "src": "pages/labs/lab4/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab8/index.page.mdx": {
-    "file": "assets/index.page.e48e7d0b.js",
+    "file": "assets/index.page.a4c95dee.js",
     "src": "pages/labs/lab8/index.page.mdx",
     "isDynamicEntry": true
   },
@@ -116,11 +116,11 @@
     "isDynamicEntry": true
   },
   "renderer/_default.page.server.jsx": {
-    "file": "assets/_default.page.server.5d562a48.js",
+    "file": "assets/_default.page.server.c1330d01.js",
     "src": "renderer/_default.page.server.jsx",
     "isDynamicEntry": true,
     "css": [
-      "assets/_default.page.server.3a5c66ea.css"
+      "assets/_default.page.server.b4990ecb.css"
     ]
   }
 }

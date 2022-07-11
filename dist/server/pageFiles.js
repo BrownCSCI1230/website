@@ -8,9 +8,9 @@ const pageFiles = {
   }), "/pages/staff.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/staff.page.e95f1fd0.js");
   }), "/pages/docs/code-blocks.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/code-blocks.page.c634f954.js");
+    return require("./assets/code-blocks.page.a66e4ab3.js");
   }), "/pages/docs/cpp-guidelines.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/cpp-guidelines.page.33deb205.js");
+    return require("./assets/cpp-guidelines.page.7541b504.js");
   }), "/pages/docs/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.aef73e37.js");
   }), "/pages/docs/inline-code.page.mdx": () => Promise.resolve().then(function() {
@@ -20,15 +20,15 @@ const pageFiles = {
   }), "/pages/projects/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.1cb9e73c.js");
   }), "/pages/labs/lab0/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.8e2ec807.js");
+    return require("./assets/index.page.15ce79af.js");
   }), "/pages/labs/lab1/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.7913bcf7.js");
+    return require("./assets/index.page.35597f7a.js");
   }), "/pages/labs/lab2/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.4a35cbf1.js");
+    return require("./assets/index.page.479d140a.js");
   }), "/pages/labs/lab4/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.df12d625.js");
+    return require("./assets/index.page.263eee51.js");
   }), "/pages/labs/lab8/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.e48e7d0b.js");
+    return require("./assets/index.page.a4c95dee.js");
   }), "/pages/projects/raster/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.96c1dd0a.js");
   }), "/pages/projects/ray/index.page.mdx": () => Promise.resolve().then(function() {
@@ -40,7 +40,7 @@ const pageFiles = {
     return require("./assets/_default.page.client.ebe16b42.js");
   }) },
   ".page.server": { "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.5d562a48.js");
+    return require("./assets/_default.page.server.c1330d01.js");
   }) },
   ".page.route": {}
 };
