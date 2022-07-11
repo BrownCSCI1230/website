@@ -3,13 +3,7 @@ import React, { useRef } from 'react'
 export { Logo }
 
 const timeOut = (ref) => {
-  setTimeout(() => {
-    if (ref.current.mouseIsOver) {
-      timeOut(ref)
-      return
-    }
-    ref.current.className = ''
-  }, 350)
+  setTimeout(() => (ref.current.className = ''), 350)
 }
 
 const mouseEnter = (ref) => {
