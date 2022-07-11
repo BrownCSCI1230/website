@@ -17,7 +17,7 @@
   line-height: inherit;
   color: inherit;
 
-  scroll-margin-top: $nav-bar-height + $page-padding-top + $main-padding-top;
+  scroll-margin-top: $scroll-margin-top;
 }
 
 html {
@@ -219,7 +219,7 @@ body {
   display: grid;
   grid-template:
     'toc divider main' minmax(0, 1fr)
-    / minmax(0, 2fr) min-content minmax(0, 6fr);
+    / minmax(0, 1fr) min-content minmax(0, 3fr);
 
   &::before {
     content: ' ';
@@ -235,7 +235,7 @@ body {
   position: sticky;
   top: 0;
 
-  padding: $toc-padding;
+  padding: $toc-padding-top $toc-padding-right $toc-padding-bottom $toc-padding-left;
 
   align-self: flex-start;
 
@@ -280,6 +280,12 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    margin-left: $toc-padding-left-negative;
+    padding-left: $toc-padding-left;
+
+    margin-right: -$toc-padding-right;
+    padding-right: $toc-padding-right;
 
     counter-reset: toc#{$level + 1};
 

@@ -54,18 +54,27 @@ $page-padding-right: 0;
 $page-padding-bottom: 0;
 $page-padding-left: 0;
 $page-padding: $page-padding-top $page-padding-right $page-padding-bottom $page-padding-left;
-$page-max-width: $middle-value * 1px;
+$page-max-width: _linear($middle-value, $middle-value, $high-value, $middle-value + 40);
 $page-divider-spacing: 20px;
 
-$main-padding-top: 20px;
-$main-padding-right: _linear($middle-value, 20, 1600, 45);
-$main-padding-right-negative: _linear($middle-value, -20, 1600, -45);
-$main-padding-bottom: 20px;
+$scroll-margin-top: _linear(
+  $middle-value,
+  20 + $nav-bar-height-value,
+  $high-value,
+  30 + $nav-bar-height-value
+);
+$main-padding-top: _linear($middle-value, 20, $high-value, 25);
+$main-padding-right: _linear($middle-value, 20, $high-value, (20 + 30));
+$main-padding-right-negative: _linear($middle-value, -20, $high-value, -(20 + 30));
 $main-padding-left: 20px;
-$main-padding-left-negative: -20px;
+$main-padding-bottom: 25px;
 $main-padding: $main-padding-top $main-padding-right $main-padding-bottom $main-padding-left;
 
-$toc-padding: $main-padding-top $main-padding-left $main-padding-bottom $main-padding-right;
+$toc-padding-top: $main-padding-top;
+$toc-padding-left: _linear($middle-value, 20, $high-value, (20 + 10));
+$toc-padding-left-negative: _linear($middle-value, -20, $high-value, -(20 + 10));
+$toc-padding-right: $main-padding-left;
+$toc-padding-bottom: $main-padding-bottom;
 
 $logo-font-family: 'Bebas Neue', ui-sans-serif, sans-serif;
 
@@ -87,14 +96,14 @@ $body-line-height: 1.8;
 $body-color: color.scale($header-color, $lightness: -5%);
 $body-color-bold: color.scale($header-color, $lightness: -3%);
 
-$link-color: hsl(205, 85%, 60%);
+$link-color: hsl(213, 100%, 69%);
 
 $toc-font-size: 11px;
 $toc-font-weight: $body-font-weight;
 $toc-line-height: $body-font-size * $body-line-height;
-$toc-color: color.change($body-color, $alpha: 0.65);
-$toc-hover-background-color: hsla(220, 90%, 75%, 0.1);
-$toc-hover-color: color.change($body-color, $alpha: 1);
+$toc-color: color.change($header-color, $alpha: 0.6);
+$toc-hover-background-color: hsla(220, 90%, 75%, 0.05);
+$toc-hover-color: $header-color;
 
 $nav-bar-border-color: color.mix($header-color, $nav-bar-background-color, 10%);
 $page-divider-color: color.mix($header-color, $page-background-color, 10%);
@@ -130,7 +139,7 @@ $callout-border-radius: 10px;
 $list-padding-left: 32px;
 $list-item-padding-left: 8px;
 
-$main-inner-spacing-vert: 14px;
+$main-inner-spacing-vert: $body-font-size * $body-line-height;
 
 // ================== Mixins
 
@@ -189,7 +198,7 @@ $main-inner-spacing-vert: 14px;
   text-decoration-color: transparent;
 
   &:hover {
-    text-decoration-color: color.scale($color, $alpha: -50%);
+    text-decoration-color: color.scale($color, $alpha: -25%);
     background-color: $hover-background-color;
     color: $hover-color;
   }
