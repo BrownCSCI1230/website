@@ -1,0 +1,78 @@
+export const documentProps = { title: 'Lab 1' }
+
+# Lab 1: Setup and C++
+
+- [Github Classroom assignment](todo)
+- [Anonymous feedback form](https://forms.gle/ZYY519pzSvu8YaZK6)
+
+## Introduction
+
+Welcome to CS 1230!
+
+The purpose of this lab is twofold: to set you up with what you need to work on assignments locally, and to help you learn the basics of C++, the programming language that we will be using in this course.
+
+In the rest of this lab, you will:
+
+1. Install Qt 6 & Qt Creator locally on your computer,
+2. Build and run a starter Qt program, and
+3. Learn about the basics (and the subtleties) of C++.
+
+## Before You Begin
+
+We assume you're already familiar with using **Github Classroom** to accept assignments, **Ed** to ask questions, and **Gradescope** to submit work. Before proceeding to the next section, make sure you have done the following:
+
+- Accepted this lab's assignment from [Github Classroom](todo) and cloned the repository,
+- Joined the
+
+## Qt and Qt Creator
+
+In CS123, we use **Qt** and **Qt Creator** to develop, build, and run all our projects and labs. Here's a brief description of each:
+
+- [Qt](https://www.qt.io) is a software used for building graphical user interfaces (GUIs) and cross-platform applications, e.g. for smart TVs or in-vehicle displays.
+- [Qt Creator](https://www.qt.io/product/development-tools) is the integrated development environment (IDE) included with each Qt install. It provides useful tools for developing in C++, which you'll learn about later in the course.
+
+In this section, we'll walk you through both installing Qt and Qt Creator to your local machine and opening your first project. We'll also give you a quick tour of the Qt Creator interface.
+
+<details>
+  <summary>But I prefer developing in VS Code / Emacs / Notepad++ / etc!</summary>
+
+If you know what you're doing, you may certainly write code in your IDE of choice. In the past, students have successfully used other IDEs for writing code, before using Qt Creator to build and run their projects.
+
+That being said, the CS 1230 course staff _will_ be using Qt Creator to grade your assignments. Thus, you'll probably want to install Qt Creator anyway, if only to test that your code works as expected when running with it.
+
+</details>
+
+### Local Installation, and Opening Your First Project
+
+:::warning
+Qt and Qt Creator will take up ~3GB of space in total.
+:::
+
+| Step | Instruction                                                                                                                                                                                                                                                                                                                                                                                                         | Screenshot                                    |
+| :--: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------- |
+|  1   | **Download** and open the appropriate Qt installer for your operating system from the link below:<br/><br/>[www.qt.io/download-qt-installer](https://www.qt.io/download-qt-installer)                                                                                                                                                                                                                               | ![todo](/labs/lab1/download-qt-installer.png) |
+|  2   | Follow the instructions on the installer to **create a free Qt account** (or use an existing one).                                                                                                                                                                                                                                                                                                                  | ![todo](/labs/lab1/create-qt-account.png)     |
+|  3   | When prompted, **opt for a `Custom Installation`**.                                                                                                                                                                                                                                                                                                                                                                 | ![todo](/labs/lab1/custom-installation.png)   |
+|  4   | Next, you'll need to **select at least these three components**:<br/><br/>1. `Qt 6.2.4 > [your OS]`,<br/>2. `Developer and Designer Tools > CMake [some version]`, and<br/>3. `Developer and Designer Tools > Ninja [some version]`.<br/><br/>Note that Qt Creator, the Qt IDE, will be installed as well&mdash;you do not have to select it.                                                                       | ![todo](/labs/lab1/selected-components.png)   |
+|  5   | Continue to **finish the installation process**, and **launch Qt Creator**.                                                                                                                                                                                                                                                                                                                                         | ![todo](/labs/lab1/finished-install.png)      |
+|  6   | Finally, in the Qt Creator window, click `Open Project...`: in the file browser that appears, **choose the `lab01.pro` file** located in this lab's repository.<br/><br/><details><summary>What is a `.pro` file?</summary><br/>A `.pro` file is a _multi-platform_ project file, which Qt can turn into a _platform-specific_ makefile. It stores configuration information, e.g. what files to include.</details> | ![todo](/labs/lab1/open-project.png)          |
+
+### The Qt Creator Interface
+
+If you completed all the steps successfully, you should see the following screen. Good work!
+
+:::todo
+Insert labelled image here
+:::
+
+- [Include something about "Project View"]
+- [Include something about "Projects" aka settings]
+- [Include something about "Run"].
+
+When you're ready, hit "run" and proceed to the next section.
+
+## C++
+
+:::todo
+Insert C++ stuff here
+:::
