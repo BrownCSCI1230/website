@@ -14,19 +14,19 @@ const pageFiles = {
   }), "/pages/docs/inline-code.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/inline-code.page.ba9f7043.js");
   }), "/pages/labs/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.75814eeb.js");
+    return require("./assets/index.page.4b0d781c.js");
+  }), "/pages/labs/lab0.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/lab0.page.98ee78bf.js");
+  }), "/pages/labs/lab1.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/lab1.page.dcb76260.js");
+  }), "/pages/labs/lab2.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/lab2.page.3ddba053.js");
+  }), "/pages/labs/lab4.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/lab4.page.7404c891.js");
+  }), "/pages/labs/lab8.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/lab8.page.6d96df52.js");
   }), "/pages/projects/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.1cb9e73c.js");
-  }), "/pages/labs/lab0/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.15ce79af.js");
-  }), "/pages/labs/lab1/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.35597f7a.js");
-  }), "/pages/labs/lab2/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.479d140a.js");
-  }), "/pages/labs/lab4/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.263eee51.js");
-  }), "/pages/labs/lab8/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.a4c95dee.js");
   }), "/pages/projects/raster/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.96c1dd0a.js");
   }), "/pages/projects/ray/index.page.mdx": () => Promise.resolve().then(function() {
@@ -38,7 +38,7 @@ const pageFiles = {
     return require("./assets/_default.page.client.ebe16b42.js");
   }) },
   ".page.server": { "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.26caa299.js");
+    return require("./assets/_default.page.server.a772c1ef.js");
   }) },
   ".page.route": {}
 };
