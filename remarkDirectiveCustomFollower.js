@@ -1,13 +1,13 @@
 import { visit } from 'unist-util-visit'
 import { h } from 'hastscript'
 
-const validNodeNames = ['task', 'warning', 'success', 'error']
+const validNodeNames = ['task', 'warning', 'success', 'error', `todo`]
 
 function remarkDirectiveCustomFollower() {
   return (tree) => {
     visit(tree, (node) => {
       if (node.type !== 'containerDirective') return
-      if (!validNodeNames.includes(node.name)) return
+      if (!validNodeNames.includes(node.name.toLowerCase())) return
 
       const data = node.data || (node.data = {})
 

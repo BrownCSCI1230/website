@@ -79,7 +79,7 @@ pre {
     content: ' '; // space is really necessary for inline-block not to collapse
     display: inline-block;
     border-left: $code-highlight-edge-width solid $code-background-color;
-    padding-right: $code-block-padding-horz - $code-highlight-edge-width;
+    width: $code-block-padding-horz - $code-highlight-edge-width;
   }
 
   &.highlight-line {
