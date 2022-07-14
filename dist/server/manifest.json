@@ -13,6 +13,7 @@
       "pages/labs/index.page.mdx",
       "pages/labs/lab0.page.mdx",
       "pages/labs/lab1.page.mdx",
+      "pages/labs/lab11.page.mdx",
       "pages/labs/lab2.page.mdx",
       "pages/labs/lab4.page.mdx",
       "pages/labs/lab8.page.mdx",
@@ -67,6 +68,11 @@
   "pages/labs/lab1.page.mdx": {
     "file": "assets/lab1.page.dcb76260.js",
     "src": "pages/labs/lab1.page.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/labs/lab11.page.mdx": {
+    "file": "assets/lab11.page.564ecdb6.js",
+    "src": "pages/labs/lab11.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab2.page.mdx": {

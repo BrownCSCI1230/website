@@ -19,6 +19,8 @@ const pageFiles = {
     return require("./assets/lab0.page.98ee78bf.js");
   }), "/pages/labs/lab1.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab1.page.dcb76260.js");
+  }), "/pages/labs/lab11.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/lab11.page.564ecdb6.js");
   }), "/pages/labs/lab2.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab2.page.3ddba053.js");
   }), "/pages/labs/lab4.page.mdx": () => Promise.resolve().then(function() {
