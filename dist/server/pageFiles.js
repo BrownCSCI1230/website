@@ -14,13 +14,15 @@ const pageFiles = {
   }), "/pages/docs/inline-code.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/inline-code.page.ba9f7043.js");
   }), "/pages/labs/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.de8ac323.js");
+    return require("./assets/index.page.a90b9a30.js");
   }), "/pages/labs/lab0.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab0.page.98ee78bf.js");
   }), "/pages/labs/lab1.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab1.page.30e79bda.js");
   }), "/pages/labs/lab11.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab11.page.564ecdb6.js");
+  }), "/pages/labs/lab12.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/lab12.page.6da0cb48.js");
   }), "/pages/labs/lab2.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab2.page.70df4bb7.js");
   }), "/pages/labs/lab4.page.mdx": () => Promise.resolve().then(function() {

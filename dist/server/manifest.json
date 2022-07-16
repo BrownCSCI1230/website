@@ -14,6 +14,7 @@
       "pages/labs/lab0.page.mdx",
       "pages/labs/lab1.page.mdx",
       "pages/labs/lab11.page.mdx",
+      "pages/labs/lab12.page.mdx",
       "pages/labs/lab2.page.mdx",
       "pages/labs/lab4.page.mdx",
       "pages/labs/lab7.page.mdx",
@@ -57,7 +58,7 @@
     "isDynamicEntry": true
   },
   "pages/labs/index.page.mdx": {
-    "file": "assets/index.page.de8ac323.js",
+    "file": "assets/index.page.a90b9a30.js",
     "src": "pages/labs/index.page.mdx",
     "isDynamicEntry": true
   },
@@ -74,6 +75,11 @@
   "pages/labs/lab11.page.mdx": {
     "file": "assets/lab11.page.564ecdb6.js",
     "src": "pages/labs/lab11.page.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/labs/lab12.page.mdx": {
+    "file": "assets/lab12.page.6da0cb48.js",
+    "src": "pages/labs/lab12.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab2.page.mdx": {
