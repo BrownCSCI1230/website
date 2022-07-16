@@ -31,7 +31,7 @@
     "isDynamicEntry": true
   },
   "pages/index.page.mdx": {
-    "file": "assets/index.page.939f4b38.js",
+    "file": "assets/index.page.4ba328e2.js",
     "src": "pages/index.page.mdx",
     "isDynamicEntry": true
   },
@@ -66,7 +66,7 @@
     "isDynamicEntry": true
   },
   "pages/labs/lab1.page.mdx": {
-    "file": "assets/lab1.page.dcb76260.js",
+    "file": "assets/lab1.page.30e79bda.js",
     "src": "pages/labs/lab1.page.mdx",
     "isDynamicEntry": true
   },
@@ -76,7 +76,7 @@
     "isDynamicEntry": true
   },
   "pages/labs/lab2.page.mdx": {
-    "file": "assets/lab2.page.3ddba053.js",
+    "file": "assets/lab2.page.e6f78141.js",
     "src": "pages/labs/lab2.page.mdx",
     "isDynamicEntry": true
   },
@@ -86,7 +86,7 @@
     "isDynamicEntry": true
   },
   "pages/labs/lab8.page.mdx": {
-    "file": "assets/lab8.page.6d96df52.js",
+    "file": "assets/lab8.page.f38c15d9.js",
     "src": "pages/labs/lab8.page.mdx",
     "isDynamicEntry": true
   },
@@ -116,11 +116,11 @@
     "isDynamicEntry": true
   },
   "renderer/_default.page.server.jsx": {
-    "file": "assets/_default.page.server.a772c1ef.js",
+    "file": "assets/_default.page.server.4590ec18.js",
     "src": "renderer/_default.page.server.jsx",
     "isDynamicEntry": true,
     "css": [
-      "assets/_default.page.server.d937347a.css"
+      "assets/_default.page.server.3e92a278.css"
     ]
   }
 }

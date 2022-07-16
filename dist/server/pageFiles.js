@@ -4,7 +4,7 @@ const pageFiles = {
   ".page": { "/pages/hours.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/hours.page.486b61df.js");
   }), "/pages/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.939f4b38.js");
+    return require("./assets/index.page.4ba328e2.js");
   }), "/pages/docs/code-blocks.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/code-blocks.page.a66e4ab3.js");
   }), "/pages/docs/cpp-guidelines.page.mdx": () => Promise.resolve().then(function() {
@@ -18,15 +18,15 @@ const pageFiles = {
   }), "/pages/labs/lab0.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab0.page.98ee78bf.js");
   }), "/pages/labs/lab1.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab1.page.dcb76260.js");
+    return require("./assets/lab1.page.30e79bda.js");
   }), "/pages/labs/lab11.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab11.page.564ecdb6.js");
   }), "/pages/labs/lab2.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab2.page.3ddba053.js");
+    return require("./assets/lab2.page.e6f78141.js");
   }), "/pages/labs/lab4.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab4.page.7404c891.js");
   }), "/pages/labs/lab8.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab8.page.6d96df52.js");
+    return require("./assets/lab8.page.f38c15d9.js");
   }), "/pages/projects/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.1cb9e73c.js");
   }), "/pages/projects/raster/index.page.mdx": () => Promise.resolve().then(function() {
@@ -40,7 +40,7 @@ const pageFiles = {
     return require("./assets/_default.page.client.ebe16b42.js");
   }) },
   ".page.server": { "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.a772c1ef.js");
+    return require("./assets/_default.page.server.4590ec18.js");
   }) },
   ".page.route": {}
 };
