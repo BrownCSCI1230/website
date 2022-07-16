@@ -222,7 +222,7 @@ body {
   &::before {
     content: ' ';
     height: 100%;
-    width: 1px;
+    width: 0;
     display: grid;
     border-left: 1px solid $page-divider-color;
     grid-area: divider;
@@ -388,7 +388,7 @@ main {
       margin-left: -($list-padding-left * 0.5 + 1px);
       background-color: $main-background-color;
     }
-    * {
+    > * {
       margin-bottom: $main-inner-spacing-vert;
     }
   }
