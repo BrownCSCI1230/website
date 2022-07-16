@@ -16,6 +16,7 @@
       "pages/labs/lab11.page.mdx",
       "pages/labs/lab2.page.mdx",
       "pages/labs/lab4.page.mdx",
+      "pages/labs/lab7.page.mdx",
       "pages/labs/lab8.page.mdx",
       "pages/projects/index.page.mdx",
       "pages/projects/raster/index.page.mdx",
@@ -36,7 +37,7 @@
     "isDynamicEntry": true
   },
   "pages/docs/code-blocks.page.mdx": {
-    "file": "assets/code-blocks.page.a66e4ab3.js",
+    "file": "assets/code-blocks.page.6d766409.js",
     "src": "pages/docs/code-blocks.page.mdx",
     "isDynamicEntry": true
   },
@@ -56,7 +57,7 @@
     "isDynamicEntry": true
   },
   "pages/labs/index.page.mdx": {
-    "file": "assets/index.page.4b0d781c.js",
+    "file": "assets/index.page.de8ac323.js",
     "src": "pages/labs/index.page.mdx",
     "isDynamicEntry": true
   },
@@ -76,13 +77,18 @@
     "isDynamicEntry": true
   },
   "pages/labs/lab2.page.mdx": {
-    "file": "assets/lab2.page.e6f78141.js",
+    "file": "assets/lab2.page.70df4bb7.js",
     "src": "pages/labs/lab2.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab4.page.mdx": {
     "file": "assets/lab4.page.7404c891.js",
     "src": "pages/labs/lab4.page.mdx",
+    "isDynamicEntry": true
+  },
+  "pages/labs/lab7.page.mdx": {
+    "file": "assets/lab7.page.62262d38.js",
+    "src": "pages/labs/lab7.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab8.page.mdx": {
@@ -116,11 +122,11 @@
     "isDynamicEntry": true
   },
   "renderer/_default.page.server.jsx": {
-    "file": "assets/_default.page.server.4590ec18.js",
+    "file": "assets/_default.page.server.af5ad82c.js",
     "src": "renderer/_default.page.server.jsx",
     "isDynamicEntry": true,
     "css": [
-      "assets/_default.page.server.3e92a278.css"
+      "assets/_default.page.server.04dd1abd.css"
     ]
   }
 }
