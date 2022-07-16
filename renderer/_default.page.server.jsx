@@ -30,7 +30,7 @@ function render(pageContext) {
         <meta charset="UTF-8">
         <title>${title}</title>
         <meta name="description" content="We teach computer graphics!">
-        <meta name="keywords" content="Computer Science, Computer Graphics, CSCI 1230, Brown University, Providence">
+        <meta name="keywords" content="Computer Science, Computer Graphics, CS 1230,CSCI 1230, Brown University, Providence">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
       </head>
       <body>
