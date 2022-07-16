@@ -52,7 +52,7 @@ body {
 
   padding-top: $nav-bar-height;
 
-  overflow-y: scroll;
+  overflow-y: auto;
   scroll-behavior: smooth;
 }
 
@@ -217,7 +217,7 @@ body {
   display: grid;
   grid-template:
     'toc divider main' minmax(0, 1fr)
-    / minmax(0, 1fr) min-content minmax(0, 3fr);
+    / minmax(0, 4fr) min-content minmax(0, 13fr);
 
   &::before {
     content: ' ';

@@ -202,16 +202,16 @@ In CS 1230, we will store all our pixel data in **row-major order**.
 
 Create a _grayscale_ image using a 2D array.
 
-1. In [ todo: function ], initialize a gray canvas of `10 x 10` pixels by creating a `std::vector` of `float`s in [ todo: location], then
-2. Set the initial value of all its elements to `0.123`.
-   - Do not use any `for` loops.
-   - You may find `std::fill` or the `std::vector` constructor useful.
+1. In [ todo: function ], initialize a gray canvas of `10 x 10` pixels by creating a `std::vector` of `float`s in [ todo: location ], then
+2. Set the initial value of all its elements to `0.5f` (`f` means `float`).
+   - Don't forget to ensure that your vector is of the correct length.
+   - You may find `std::fill` useful. You may also use a `for` loop to set each element.
 
 :::
 
 :::task
 
-Display what your image by passing the vector to `displayGrayCanvas()` at [ todo: location ], then build and run the application.
+Display your image by passing the vector to `displayGrayCanvas()` at [ todo: location ], then build and run the application.
 
 Remember to check that you provided the correct command line arguments.
 
@@ -221,65 +221,126 @@ If you see a gray box, you're good. From now on, we will be using this image as 
 
 ### Modifying 2D Arrays
 
-[ WIP ]
-
-By modifying data values in the array you just created, you can make the corresponding points, or pixels turn to different colors.
-
-You can try changing a random data to 255 and observe what happen.
-
-A white dot showed up on your canvas, right?
-
-Your job in this section, is to work our which pixel correspond to which element in the array, and change their values. Refer to the explanation on row-major-order for hint.
+Now that you've got an image, your next task is to modify it.
 
 :::task
 
-Match this image by indexing and changing values of the vector you just created.
-
-![todo](/public/labs/lab2/pixelHeart.png)
+Change the first element of the `std::vector` you just created from `0.5f` to `1.0f`, then re-run the application. The _top-left_ pixel in the resulting image should now be white.
 
 :::
 
-### The RGBA Struct
+:::task
 
-Now, let's change the canvas to a colorful one. Instead of a `std::vector` of numbers, we want a `std::vector` of something that contains all 4 RGBA channels.
+Figure out which pixels correspond to which indices in the array, and change the appropriate pixels' values to match the following image:
 
-#### The CS 1230 RGBA Struct
+![todo](/labs/lab2/pixelHeart.png)
 
-Since we have to group several related variables together, we should create a `struct`. A simple example of how to define an RGBA struct is below:
+**Hint:**
 
-```c++
+Refer to the diagram on row-major ordering. How can you use a given pixel's `row` and `column` (or `y` and `x` position respectively) to determine its index in the flattened vector?
+
+:::
+
+### Arrays of RGBA Values
+
+Next, we'd like to modify our canvas to support **color**.
+
+This will require changing our image representation from a `std::vector` of scalar `float` values, to one of _something_ that contains all four **RGBA** values as `std::uint8_t`s.
+
+#### Defining An RGBA Struct
+
+Incidentally, having to group several related variables together is the perfect use case for a `struct`, which you learned about in lab 1. The definition of a simple RGBA struct might look something like this:
+
+```cpp {4-10} showLineNumbers
 #ifndef SIMPLE_RGBA
 #define SIMPLE_RGBA
 
 struct SimpleRGBA
 {
-	std::uint8_t r;
-	std::uint8_t g;
-	std::uint8_t b;
-	std::uint8_t a;
+  std::uint8_t r;
+  std::uint8_t g;
+  std::uint8_t b;
+  std::uint8_t a;
 }
 
-#endif
+#endif // SIMPLE_RGBA
+```
+
+<details>
+  <summary>What are the lines with `#ifndef`, `#define`, and `#endif` doing?</summary>
+
+This trio of **[preprocessor directives](<https://en.wikipedia.org/wiki/Directive_(programming)>)** acts as an **[include guard](https://en.wikipedia.org/wiki/Include_guard)**.
+
+Effectively, it prevents lines `2-11` from being compiled if the _macro_ `SIMPLE_RGBA` has already been defined, thus preventing an accidental second definition of the _struct_ `SimpleRGBA`. This prevents **double-inclusion**, and aids compliance with the [one definition rule](https://en.wikipedia.org/wiki/One_Definition_Rule) of C++.
+
+Every header file should have an include guard. Since these three lines can get unwieldy, a (highly recommended) alternative is to use the following preprocessor directive, [`#pragma once`](https://en.wikipedia.org/wiki/Pragma_once):
+
+```cpp {1} showLineNumbers
+#pragma once
+
+struct foo
+{
+  int member;
+};
+```
+
+</details>
+
+The above code defines a `struct` with four member variables `r`, `g`, `b`, and `a`. Instances can be initialized like so:
+
+```cpp
+auto white = RGBA{255, 255, 255, 255}; // Fully opaque white
+auto green = RGBA{0,   255,   0, 128}; // Partially opaque green
 ```
 
 ::::task
 
-Define an RGBA struct in your own project by copying the above code into a _new_ **header file**.
+Define an RGBA struct in your own project by copying the above code into a new **header file**, `SimpleRGBA.h`.
 
 <details>
-  <summary>Step by step: how to create a new file in Qt</summary>
+  <summary>Step by step: how to create a new header file in Qt</summary>
 
-- Right click on the Project side-bar and select `Add New`
-- You should see an interface asking you to select the type of file you'd like to add. Select `C/C++ header file`.
+1. Right click on the Project side-bar and select `Add New`
+2. You should see an interface asking you to select the type of file you'd like to add. Select `C/C++ header file`.
 
 :::todo
 Screenshots
 :::
 
-- Follow the interface instructions to define the name and location of your header file.
-- In the Project Management section, select `Done`.
-- You should see a new header file appear in your chosen location after a few seconds.
+3.  Follow the interface instructions to define the name and location of your header file.
+4.  In the Project Management section, select `Done`.
+5.  You should see a new header file appear in your chosen location after a few seconds.
 
 </details>
 
 ::::
+
+#### Using Your RGBA Struct
+
+To use a struct you've defined in one header file in a _different_ file, you must `#include` that header file in the second file.
+
+:::task
+
+Modify your previous canvas-generating code so that it creates a `std::vector` of `RGBA`s instead of `float`s.
+
+1. As before, you want a `10 x 10` canvas.
+2. Initialize the RGB values to any color you like, but set all alpha channel values to `255`.
+   - Feel free to scroll back up to the [color picker](#RGBA), to select a color!
+3. Pass your canvas to `displayColorCanvas()` instead of `displayGrayCanvas()`.
+4. **Remember to change your command line argument from `grayscale` to `color`!**
+
+:::
+
+### Making Pixel Art
+
+## The Pencil Tool
+
+### Canvas Widget
+
+### Mouse Interaction
+
+### Creating a Leaky Pencil
+
+### Creating a Proper Pencil
+
+## End

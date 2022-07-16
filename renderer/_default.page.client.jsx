@@ -8,7 +8,7 @@ const { hydrationPromise } = useClientRouter({
   async render(pageContext) {
     const { Page, pageProps } = pageContext
 
-    const documentProps = pageContext.pageExports.documentProps ?? pageContext.documentProps
+    const documentProps = pageContext.pageExports.documentProps
     const title = documentProps ? documentProps.title + ' | CSCI 1230' : 'CSCI 1230'
 
     const page = (

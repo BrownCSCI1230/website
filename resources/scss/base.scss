@@ -61,7 +61,7 @@ $scroll-margin-top: _linear(
   $middle-value,
   20 + $nav-bar-height-value,
   $high-value,
-  30 + $nav-bar-height-value
+  25 + $nav-bar-height-value
 );
 $main-padding-top: _linear($middle-value, 20, $high-value, 25);
 $main-padding-right: _linear($middle-value, 20, $high-value, (20 + 30));
@@ -79,20 +79,20 @@ $toc-padding-bottom: $main-padding-bottom;
 $logo-font-family: 'Bebas Neue', ui-sans-serif, sans-serif;
 
 $nav-bar-font-size: _linear($critical-value, 11, $low-value, 14);
-$nav-bar-font-weight: 630;
+$nav-bar-font-weight: 640;
 $nav-item-padding: _linear($critical-value, 3, $low-value, 1) _linear($critical-value, 7, $low-value, 8) 0;
 
 $header-font-family: 'Open Sans', ui-sans-serif, sans-serif;
 $header-font-sizes: 30px 25px 19px 18px 17px 16px;
-$header-font-weights: 630 630 630 630 630 630;
+$header-font-weights: 640 640 640 640 640 640;
 $header-line-height: 1.8;
 $header-color: hsl(0, 0%, 87%);
 
 $body-font-family: 'Inter Var', 'Inter', ui-sans-serif, sans-serif;
 $body-font-size: 14px;
-$body-font-weight: 351;
-$body-font-weight-bold: 565;
-$body-line-height: 1.75;
+$body-font-weight: 380;
+$body-font-weight-bold: 610;
+$body-line-height: 1.8;
 $body-color: color.scale($header-color, $lightness: -4%);
 $body-color-bold: color.scale($header-color, $lightness: -2%);
 
@@ -119,22 +119,27 @@ $table-font-size: $body-font-size;
 $code-font-family: 'Roboto Mono', ui-monospace, monospace;
 
 $code-block-font-size: 13px;
-$code-block-font-weight: 351;
-$code-block-line-height: 1.75;
+$code-block-font-weight: 380;
+$code-block-line-height: 1.8;
 $code-block-border-radius: 8px;
 $code-block-padding-vert: 14px;
 $code-block-padding-horz: 20px;
 
 $code-inline-padding: 0px 4px 1px 5px;
 $code-inline-border-radius: 3px;
-$code-inline-color: hsl(31, 75%, 60%);
+$code-inline-color: hsl(31, 90%, 55%);
 $code-inline-background-color: color.change($html-background-color, $alpha: 0.8);
-$code-inline-color-callout: hsl(31, 98%, 56%);
-$code-inline-background-color-callout: rgba(0, 0, 0, 25%);
+$code-inline-color-callout: hsl(31, 90%, 55%);
+$code-inline-background-color-callout: rgba(0, 0, 0, 40%);
 
 $code-highlight-edge-width: 4px;
 $code-highlight-edge-color: hsl(220, 80%, 60%);
 $code-highlight-background-color: hsla(220, 90%, 75%, 0.1);
+
+$blockquote-edge-width: 4px;
+$blockquote-padding-left: $main-padding-left;
+$blockquote-body-color: color.scale($body-color, $alpha: -35%);
+$blockquote-body-color-bold: color.scale($body-color, $alpha: -20%);
 
 $callout-border-radius: 8px;
 $callout-padding: 13px 20px 14px;
@@ -142,7 +147,7 @@ $callout-padding: 13px 20px 14px;
 $list-padding-left: 28px;
 $list-item-padding-left: 4px;
 
-$main-inner-spacing-vert: 14px;
+$main-inner-spacing-vert: 18px;
 
 $todo-red: hsl(0, 88%, 59%);
 $todo-red-dark: hsl(0, 100%, 45%);
@@ -232,7 +237,8 @@ figcaption {
 }
 
 a {
-  word-break: break-all;
+  word-break: normal;
+  overflow-wrap: anywhere;
   @include anchor-text($link-color);
 
   code {
@@ -250,7 +256,17 @@ a[href='todo'] {
 }
 
 .math-display {
-  overflow-x: scroll;
+  text-align: center;
+  overflow-x: auto;
+}
+
+blockquote {
+  border-left: $blockquote-edge-width solid $page-divider-color;
+  padding-left: $blockquote-padding-left;
+
+  p {
+    @include body-text($blockquote-body-color, $blockquote-body-color-bold);
+  }
 }
 
 // ================== Text
@@ -336,16 +352,16 @@ summary {
 
   &.task-callout {
     counter-increment: task;
-    @include callout(hsl(210, 86%, 24.5%), hsl(210, 86%, 45%), 'Task ' counter(task) ':');
+    @include callout(hsl(210, 82%, 25%), hsl(210, 82%, 50%), 'Task ' counter(task) ':');
   }
   &.warning-callout {
-    @include callout(hsl(40, 85%, 24%), hsl(40, 85%, 44%), '');
+    @include callout(hsl(46, 80%, 26%), hsl(46, 80%, 48%), '');
   }
   &.success-callout {
-    @include callout(hsl(110, 52%, 20%), hsl(110, 52%, 35%), '');
+    @include callout(hsl(110, 55%, 21%), hsl(110, 55%, 36%), '');
   }
   &.error-callout {
-    @include callout(hsl(3, 50%, 25%), hsl(356, 50%, 45%), '');
+    @include callout(hsl(356, 58%, 27.5%), hsl(356, 58%, 51%), '');
   }
   &.todo-callout {
     @include callout(white, white, 'Todo: ');
@@ -375,6 +391,10 @@ summary {
 
   > .rgb-color-picker-display {
     border: 1px solid white;
+  }
+
+  .saturation-black {
+    cursor: pointer;
   }
 }
 // ================== Tables
