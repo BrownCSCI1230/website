@@ -28,97 +28,97 @@
     ]
   },
   "pages/hours.page.mdx": {
-    "file": "assets/hours.page.486b61df.js",
+    "file": "assets/hours.page.8ccedf27.js",
     "src": "pages/hours.page.mdx",
     "isDynamicEntry": true
   },
   "pages/index.page.mdx": {
-    "file": "assets/index.page.4ba328e2.js",
+    "file": "assets/index.page.0e19335c.js",
     "src": "pages/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/docs/code-blocks.page.mdx": {
-    "file": "assets/code-blocks.page.6d766409.js",
+    "file": "assets/code-blocks.page.b270e54b.js",
     "src": "pages/docs/code-blocks.page.mdx",
     "isDynamicEntry": true
   },
   "pages/docs/cpp-guidelines.page.mdx": {
-    "file": "assets/cpp-guidelines.page.7541b504.js",
+    "file": "assets/cpp-guidelines.page.a87f7ba0.js",
     "src": "pages/docs/cpp-guidelines.page.mdx",
     "isDynamicEntry": true
   },
   "pages/docs/index.page.mdx": {
-    "file": "assets/index.page.aef73e37.js",
+    "file": "assets/index.page.0e3e5597.js",
     "src": "pages/docs/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/docs/inline-code.page.mdx": {
-    "file": "assets/inline-code.page.ba9f7043.js",
+    "file": "assets/inline-code.page.7e852f68.js",
     "src": "pages/docs/inline-code.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/index.page.mdx": {
-    "file": "assets/index.page.a90b9a30.js",
+    "file": "assets/index.page.11c2c1a9.js",
     "src": "pages/labs/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab0.page.mdx": {
-    "file": "assets/lab0.page.98ee78bf.js",
+    "file": "assets/lab0.page.e7776055.js",
     "src": "pages/labs/lab0.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab1.page.mdx": {
-    "file": "assets/lab1.page.30e79bda.js",
+    "file": "assets/lab1.page.58efe3b8.js",
     "src": "pages/labs/lab1.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab11.page.mdx": {
-    "file": "assets/lab11.page.564ecdb6.js",
+    "file": "assets/lab11.page.d5760fd4.js",
     "src": "pages/labs/lab11.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab12.page.mdx": {
-    "file": "assets/lab12.page.6da0cb48.js",
+    "file": "assets/lab12.page.1ebf0347.js",
     "src": "pages/labs/lab12.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab2.page.mdx": {
-    "file": "assets/lab2.page.70df4bb7.js",
+    "file": "assets/lab2.page.4e2db02c.js",
     "src": "pages/labs/lab2.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab4.page.mdx": {
-    "file": "assets/lab4.page.7404c891.js",
+    "file": "assets/lab4.page.568751c6.js",
     "src": "pages/labs/lab4.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab7.page.mdx": {
-    "file": "assets/lab7.page.62262d38.js",
+    "file": "assets/lab7.page.2d6c286c.js",
     "src": "pages/labs/lab7.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab8.page.mdx": {
-    "file": "assets/lab8.page.f38c15d9.js",
+    "file": "assets/lab8.page.40825783.js",
     "src": "pages/labs/lab8.page.mdx",
     "isDynamicEntry": true
   },
   "pages/projects/index.page.mdx": {
-    "file": "assets/index.page.1cb9e73c.js",
+    "file": "assets/index.page.98011fbc.js",
     "src": "pages/projects/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/projects/raster/index.page.mdx": {
-    "file": "assets/index.page.96c1dd0a.js",
+    "file": "assets/index.page.4c71eb1f.js",
     "src": "pages/projects/raster/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/projects/ray/index.page.mdx": {
-    "file": "assets/index.page.93b01175.js",
+    "file": "assets/index.page.4d965a72.js",
     "src": "pages/projects/ray/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/projects/realtime/index.page.mdx": {
-    "file": "assets/index.page.14d43bf4.js",
+    "file": "assets/index.page.14f9eb1a.js",
     "src": "pages/projects/realtime/index.page.mdx",
     "isDynamicEntry": true
   },
@@ -128,11 +128,11 @@
     "isDynamicEntry": true
   },
   "renderer/_default.page.server.jsx": {
-    "file": "assets/_default.page.server.af5ad82c.js",
+    "file": "assets/_default.page.server.583c0fbc.js",
     "src": "renderer/_default.page.server.jsx",
     "isDynamicEntry": true,
     "css": [
-      "assets/_default.page.server.04dd1abd.css"
+      "assets/_default.page.server.7a8d0909.css"
     ]
   }
 }
