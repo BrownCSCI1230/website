@@ -24,7 +24,7 @@ const config = {
         rehypeMathJax,
         rehypeStarryNightPlus,
         rehypeSlug,
-        rehypeAutolinkHeadings,
+        [rehypeAutolinkHeadings, { behavior: 'wrap' }],
         [rehypeWrap, { wrapper: 'main' }],
         [rehypeToc, { position: 'beforebegin' }],
       ],

@@ -6,20 +6,20 @@
 @import url('https://rsms.me/inter/inter.css');
 
 // Fixme: combine font imports into one url for performance
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,630;1,630&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,365;0,400;0,600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,500;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,365;0,400;0,600&display=swap');
 
 // ================== Responsiveness
 
-$critical-value: 370;
-$low-value: 600;
-$middle-value: 900;
-$high-value: 1200;
+$critical-b: 370;
+$low-b: 600;
+$middle-b: 920;
+$high-b: 1240;
 
-$breakpoint: $low-value * 1px;
+$breakpoint: $low-b * 1px;
 
-@function _linear($x1, $y1, $x2, $y2) {
+@function linear($x1, $y1, $x2, $y2) {
   $gradient: math.div($y2 - $y1, $x2 - $x1);
   $offset: $y2 - $x2 * $gradient;
   @if $y1 < $y2 {
@@ -31,11 +31,20 @@ $breakpoint: $low-value * 1px;
 
 // ================== Variables
 
-$nav-bar-background-color: rgb(46, 46, 46);
-$html-background-color: rgb(30, 30, 30);
-$page-background-color: rgb(41, 41, 41);
-$main-background-color: rgb(36, 36, 36);
-$code-background-color: rgb(30, 30, 30);
+$space-1: 15;
+$space-2: 10;
+$space: $space-1 + $space-2;
+$space-px: $space * 1px;
+$toc-fr: 4;
+$page-fr: 13;
+$toc-bonus-width: $toc-fr * 1;
+$page-bonus-width: $page-fr * 1;
+
+$nav-bar-background-color: hsl(0, 0%, 18%);
+$html-background-color: hsl(0, 0%, 12%);
+$page-background-color: hsl(0, 0%, 16%);
+$main-background-color: hsl(0, 0%, 14%);
+$code-background-color: hsl(0, 0%, 12%);
 
 $nav-bar-hover-background-color: color.mix($nav-bar-background-color, $html-background-color, 25%);
 $nav-bar-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2), 0 0 16px rgba(0, 0, 0, 0.2), 0 0 32px rgba(0, 0, 0, 0.2);
@@ -45,66 +54,88 @@ $background-dot-spacing: 30px;
 $background-dot-color: rgb(50, 50, 50);
 $background-dot-size: 1.5px;
 
-$nav-bar-height-value: 56;
+$nav-bar-height-value: 55;
 $nav-bar-height: $nav-bar-height-value * 1px;
+$nav-bar-padding: 0 $space-1 * 1px;
+$nav-item-padding: 2px 8px 0;
+
+$scroll-margin-top: ($nav-bar-height-value + $space) * 1px;
 
 $page-margin: 0 auto;
-$page-padding-top: 0;
-$page-padding-right: 0;
-$page-padding-bottom: 0;
-$page-padding-left: 0;
-$page-padding: $page-padding-top $page-padding-right $page-padding-bottom $page-padding-left;
-$page-max-width: _linear($middle-value, $middle-value, $high-value, $middle-value + 40);
-$page-divider-spacing: 20px;
+$page-padding: 0;
+$page-max-width: linear($middle-b, $middle-b, $high-b, $middle-b + $toc-bonus-width + $page-bonus-width);
 
-$scroll-margin-top: _linear(
-  $middle-value,
-  20 + $nav-bar-height-value,
-  $high-value,
-  25 + $nav-bar-height-value
-);
-$main-padding-top: _linear($middle-value, 20, $high-value, 25);
-$main-padding-right: _linear($middle-value, 20, $high-value, (20 + 30));
-$main-padding-right-negative: _linear($middle-value, -20, $high-value, -(20 + 30));
-$main-padding-left: 20px;
-$main-padding-bottom: 25px;
+$toc-padding-top: $space-px;
+$toc-padding-right: $space-px;
+$toc-padding-bottom: $space-px;
+$toc-padding-left: linear($middle-b, $space, $high-b, ($space + $toc-bonus-width));
+$toc-padding-left-negative: linear($middle-b, -$space, $high-b, -($space + $toc-bonus-width));
+$toc-padding: $toc-padding-top $toc-padding-right $toc-padding-bottom $toc-padding-left;
+
+$main-padding-top: $space-px;
+$main-padding-right: linear($middle-b, $space, $high-b, ($space + $page-bonus-width));
+$main-padding-right-negative: linear($middle-b, -$space, $high-b, -($space + $page-bonus-width));
+$main-padding-bottom: $space-px;
+$main-padding-left: $space-px;
 $main-padding: $main-padding-top $main-padding-right $main-padding-bottom $main-padding-left;
 
-$toc-padding-top: $main-padding-top;
-$toc-padding-left: _linear($middle-value, 20, $high-value, (20 + 10));
-$toc-padding-left-negative: _linear($middle-value, -20, $high-value, -(20 + 10));
-$toc-padding-right: $main-padding-left;
-$toc-padding-bottom: $main-padding-bottom;
+// ================== Logo
+
+$middle-logo-column-width: 20;
+$high-logo-column-width: 24;
+$middle-logo-font-size: $middle-logo-column-width * 1.5;
+$high-logo-font-size: $high-logo-column-width * 1.5;
 
 $logo-font-family: 'Bebas Neue', ui-sans-serif, sans-serif;
+$logo-font-size: linear($middle-b, $middle-logo-font-size, $high-b, $high-logo-font-size);
+$logo-font-weight: 400;
+$logo-line-height: $nav-bar-height;
+$logo-color: white;
 
-$nav-bar-font-size: _linear($critical-value, 11, $low-value, 14);
-$nav-bar-font-weight: 640;
-$nav-item-padding: _linear($critical-value, 3, $low-value, 1) _linear($critical-value, 7, $low-value, 8) 0;
+$logo-top: 0;
+$logo-left: linear($middle-b, 0, $high-b, -$space-1 - 0.5 * $high-logo-column-width);
+$logo-height: linear($middle-b, $nav-bar-height-value, $high-b, $nav-bar-height-value + 10);
+$logo-width: 4em; // depends implicitly on $logo-font-size
+
+// ================== Fonts
+
+$nav-item-font-family: 'Open Sans', ui-sans-serif, sans-serif;
+$nav-item-font-size: linear($critical-b, 12, $high-b, 15);
+$nav-item-font-weight: 500;
+$nav-item-line-height: 1.8;
+$nav-item-color: hsl(0, 0%, 90%);
 
 $header-font-family: 'Open Sans', ui-sans-serif, sans-serif;
-$header-font-sizes: 30px 25px 19px 18px 17px 16px;
-$header-font-weights: 640 640 640 640 640 640;
+$header-font-sizes: 30px 25px 20px 19px 18px 17px;
+$header-font-weights: 500 500 500 500 500 500;
 $header-line-height: 1.8;
-$header-color: hsl(0, 0%, 87%);
+$header-color: hsl(0, 0%, 91%);
 
-$body-font-family: 'Inter Var', 'Inter', ui-sans-serif, sans-serif;
-$body-font-size: 14px;
-$body-font-weight: 380;
-$body-font-weight-bold: 610;
+$low-body-font-size: 14;
+$body-font-family: 'Inter Var', monospace, ui-sans-serif, sans-serif;
+$body-font-size: linear($critical-b, 15, $low-b, $low-body-font-size);
+$body-font-weight: 365;
 $body-line-height: 1.8;
-$body-color: color.scale($header-color, $lightness: -4%);
-$body-color-bold: color.scale($header-color, $lightness: -2%);
+$body-color: color.scale($header-color, $lightness: -6%);
+$body-font-weight-bold: 625;
+$body-color-bold: color.scale($header-color, $lightness: -4%);
 
 $link-color: hsl(213, 100%, 72%);
 $code-inline-link-color: hsl(213, 100%, 72%);
 
 $toc-font-size: 11px;
 $toc-font-weight: $body-font-weight;
-$toc-line-height: $body-font-size * $body-line-height;
+$toc-line-height: $low-body-font-size * $body-line-height * 1px;
 $toc-color: color.change($header-color, $alpha: 0.6);
-$toc-hover-background-color: hsla(220, 90%, 75%, 0.05);
+$toc-hover-background-color: hsla(220, 90%, 75%, 0.1);
 $toc-hover-color: $header-color;
+
+$code-font-family: 'Roboto Mono', ui-monospace, monospace;
+$code-block-font-size: linear($critical-b, 13, $low-b, 14);
+$code-block-font-weight: 365;
+$code-block-line-height: $body-line-height;
+
+// ================== Other
 
 $nav-bar-border-color: color.mix($header-color, $nav-bar-background-color, 10%);
 $page-divider-color: color.mix($header-color, $page-background-color, 10%);
@@ -116,11 +147,6 @@ $toc-edge-color: color.mix($header-color, $page-background-color, 10%);
 $table-cell-padding: 4px 8px;
 $table-font-size: $body-font-size;
 
-$code-font-family: 'Roboto Mono', ui-monospace, monospace;
-
-$code-block-font-size: 13px;
-$code-block-font-weight: 380;
-$code-block-line-height: 1.8;
 $code-block-border-radius: 8px;
 $code-block-padding-vert: 14px;
 $code-block-padding-horz: 20px;
@@ -141,13 +167,13 @@ $blockquote-padding-left: $main-padding-left;
 $blockquote-body-color: color.scale($body-color, $alpha: -35%);
 $blockquote-body-color-bold: color.scale($body-color, $alpha: -20%);
 
+$main-inner-spacing-vert: 20px;
+
 $callout-border-radius: 8px;
-$callout-padding: 13px 20px 14px;
+$callout-padding: $main-inner-spacing-vert $space-px;
 
 $list-padding-left: 28px;
 $list-item-padding-left: 4px;
-
-$main-inner-spacing-vert: 18px;
 
 $todo-red: hsl(0, 88%, 59%);
 $todo-red-dark: hsl(0, 100%, 45%);
@@ -207,10 +233,17 @@ $todo-red-dark: hsl(0, 100%, 45%);
   color: $color;
 
   text-decoration: underline;
-  text-decoration-color: transparent;
+  text-underline-offset: 0.1em;
 
+  text-decoration-color: transparent;
+  transition: text-decoration-color ease-in-out 0.23s 0.02s, background-color ease-in-out 0.23s 0.02s,
+    color ease-in-out 0.23s 0.02s;
+
+  &:focus,
   &:hover {
-    text-decoration-color: color.scale($color, $alpha: -25%);
+    text-decoration-color: color.scale($color, $alpha: 0%);
+    transition: text-decoration-color 0s, background-color 0s, color 0s;
+
     background-color: $hover-background-color;
     color: $hover-color;
   }
@@ -252,7 +285,7 @@ button {
 }
 
 a[href='todo'] {
-  color: $todo-red !important;
+  @include anchor-text($todo-red);
 }
 
 .math-display {
@@ -313,8 +346,8 @@ summary {
       margin-left: -($list-padding-left * 0.5 + 1px);
       background-color: $background-color;
     }
-    > * {
-      margin-bottom: $main-inner-spacing-vert;
+    > :not(:first-child) {
+      margin-top: $main-inner-spacing-vert;
     }
   }
 
@@ -350,6 +383,15 @@ summary {
   border-radius: $callout-border-radius;
   padding: $callout-padding;
 
+  @media only screen and (max-width: $breakpoint) {
+    border-radius: 0;
+    border-left: none !important;
+    border-right: none !important;
+
+    margin-left: -$main-padding-left;
+    margin-right: $main-padding-right-negative;
+  }
+
   &.task-callout {
     counter-increment: task;
     @include callout(hsl(210, 82%, 25%), hsl(210, 82%, 50%), 'Task ' counter(task) ':');
@@ -361,7 +403,7 @@ summary {
     @include callout(hsl(110, 55%, 21%), hsl(110, 55%, 36%), '');
   }
   &.error-callout {
-    @include callout(hsl(356, 58%, 27.5%), hsl(356, 58%, 51%), '');
+    @include callout(hsl(356, 58%, 25.5%), hsl(356, 58%, 51%), '');
   }
   &.todo-callout {
     @include callout(white, white, 'Todo: ');
@@ -393,10 +435,13 @@ summary {
     border: 1px solid white;
   }
 
+  // selector doesn't have a class, but it overlaps exactly with this thing
   .saturation-black {
+    touch-action: none; // disables scrolling
     cursor: pointer;
   }
 }
+
 // ================== Tables
 
 table {
