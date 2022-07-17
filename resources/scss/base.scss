@@ -7,7 +7,6 @@
 
 // Fixme: combine font imports into one url for performance
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,500;1,500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,365;0,400;0,600&display=swap');
 
 // ================== Responsiveness
@@ -99,24 +98,24 @@ $logo-width: 4em; // depends implicitly on $logo-font-size
 
 // ================== Fonts
 
-$nav-item-font-family: 'Open Sans', ui-sans-serif, sans-serif;
-$nav-item-font-size: linear($critical-b, 12, $high-b, 15);
-$nav-item-font-weight: 500;
+$nav-item-font-family: 'Inter Var', 'Inter', ui-sans-serif, sans-serif;
+$nav-item-font-size: linear($critical-b, 12, $high-b, 14);
+$nav-item-font-weight: 625;
 $nav-item-line-height: 1.8;
 $nav-item-color: hsl(0, 0%, 90%);
 
-$header-font-family: 'Open Sans', ui-sans-serif, sans-serif;
-$header-font-sizes: 30px 25px 20px 19px 18px 17px;
-$header-font-weights: 500 500 500 500 500 500;
+$header-font-family: 'Inter Var', 'Inter', ui-sans-serif, sans-serif;
+$header-font-sizes: 28px 24px 20px 19px 18px 17px;
+$header-font-weights: 545 515 515 515 515 515;
 $header-line-height: 1.8;
-$header-color: hsl(0, 0%, 91%);
+$header-color: hsl(0, 0%, 92%);
 
 $low-body-font-size: 14;
 $body-font-family: 'Inter Var', monospace, ui-sans-serif, sans-serif;
 $body-font-size: linear($critical-b, 15, $low-b, $low-body-font-size);
 $body-font-weight: 365;
 $body-line-height: 1.8;
-$body-color: color.scale($header-color, $lightness: -6%);
+$body-color: color.scale($header-color, $lightness: -7%);
 $body-font-weight-bold: 625;
 $body-color-bold: color.scale($header-color, $lightness: -4%);
 
@@ -163,16 +162,16 @@ $code-highlight-edge-color: hsl(220, 80%, 60%);
 $code-highlight-background-color: hsla(220, 90%, 75%, 0.1);
 
 $blockquote-edge-width: 4px;
-$blockquote-padding-left: $main-padding-left;
+$blockquote-padding-left: $main-padding-left - $blockquote-edge-width + 1px;
 $blockquote-body-color: color.scale($body-color, $alpha: -35%);
 $blockquote-body-color-bold: color.scale($body-color, $alpha: -20%);
 
-$main-inner-spacing-vert: 20px;
+$main-inner-spacing-vert: 18px;
 
 $callout-border-radius: 8px;
 $callout-padding: $main-inner-spacing-vert $space-px;
 
-$list-padding-left: 28px;
+$list-padding-left: 32px;
 $list-item-padding-left: 4px;
 
 $todo-red: hsl(0, 88%, 59%);
@@ -294,11 +293,12 @@ a[href='todo'] {
 }
 
 blockquote {
-  border-left: $blockquote-edge-width solid $page-divider-color;
   padding-left: $blockquote-padding-left;
+  border-left: $blockquote-edge-width solid $page-divider-color;
 
   p {
     @include body-text($blockquote-body-color, $blockquote-body-color-bold);
+    margin-bottom: $main-inner-spacing-vert;
   }
 }
 
