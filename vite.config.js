@@ -29,7 +29,7 @@ const config = {
         [rehypeToc, { position: 'beforebegin' }],
       ],
     }),
-    ssr(),
+    ssr({ prerender: true }),
   ],
   clearScreen: false,
   resolve: {
