@@ -7,7 +7,7 @@
 
 // Fixme: combine font imports into one url for performance
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,365;0,400;0,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,335;0,515;0,545;0,600&display=swap');
 
 // ================== Responsiveness
 
@@ -43,7 +43,7 @@ $nav-bar-background-color: hsl(0, 0%, 18%);
 $html-background-color: hsl(0, 0%, 12%);
 $page-background-color: hsl(0, 0%, 16%);
 $main-background-color: hsl(0, 0%, 14%);
-$code-background-color: hsl(0, 0%, 12%);
+$code-background-color: hsl(0, 0%, 11%);
 
 $nav-bar-hover-background-color: color.mix($nav-bar-background-color, $html-background-color, 25%);
 $nav-bar-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2), 0 0 16px rgba(0, 0, 0, 0.2), 0 0 32px rgba(0, 0, 0, 0.2);
@@ -100,27 +100,28 @@ $logo-width: 4em; // depends implicitly on $logo-font-size
 
 $nav-item-font-family: 'Inter Var', 'Inter', ui-sans-serif, sans-serif;
 $nav-item-font-size: linear($critical-b, 12, $high-b, 14);
-$nav-item-font-weight: 625;
+$nav-item-font-weight: 600;
 $nav-item-line-height: 1.8;
 $nav-item-color: hsl(0, 0%, 90%);
 
 $header-font-family: 'Inter Var', 'Inter', ui-sans-serif, sans-serif;
-$header-font-sizes: 28px 24px 20px 19px 18px 17px;
+$header-font-sizes: 30px 25px 21px 18px 17px 16px;
 $header-font-weights: 545 515 515 515 515 515;
 $header-line-height: 1.8;
-$header-color: hsl(0, 0%, 92%);
+$header-color: hsl(0, 0%, 95%);
 
 $low-body-font-size: 14;
 $body-font-family: 'Inter Var', monospace, ui-sans-serif, sans-serif;
 $body-font-size: linear($critical-b, 15, $low-b, $low-body-font-size);
-$body-font-weight: 365;
+$body-font-weight: 335;
 $body-line-height: 1.8;
-$body-color: color.scale($header-color, $lightness: -7%);
-$body-font-weight-bold: 625;
-$body-color-bold: color.scale($header-color, $lightness: -4%);
+$body-color: hsl(0, 0%, 88%);
+$body-font-weight-bold: 600;
+$body-color-bold: hsl(0, 0%, 92%);
+$body-letter-spacing-bold: unset;
 
-$link-color: hsl(213, 100%, 72%);
-$code-inline-link-color: hsl(213, 100%, 72%);
+$link-color: hsl(212, 100%, 67%);
+$code-inline-link-color: $link-color;
 
 $toc-font-size: 11px;
 $toc-font-weight: $body-font-weight;
@@ -130,23 +131,27 @@ $toc-hover-background-color: hsla(220, 90%, 75%, 0.1);
 $toc-hover-color: $header-color;
 
 $code-font-family: 'Roboto Mono', ui-monospace, monospace;
-$code-block-font-size: linear($critical-b, 13, $low-b, 14);
-$code-block-font-weight: 365;
+$code-block-font-size: 13px;
+$code-block-font-weight: 335;
 $code-block-line-height: $body-line-height;
 
 // ================== Other
 
-$nav-bar-border-color: color.mix($header-color, $nav-bar-background-color, 10%);
-$page-divider-color: color.mix($header-color, $page-background-color, 10%);
+$border-radius: 10px;
+
+$nav-bar-border-color: color.mix($header-color, $nav-bar-background-color, 12%);
+$page-divider-color: color.mix($header-color, $page-background-color, 12%);
 $page-border-color: $page-divider-color;
 $header-edge-color: $page-divider-color;
 $table-edge-color: $page-divider-color;
 $toc-edge-color: color.mix($header-color, $page-background-color, 10%);
 
-$table-cell-padding: 4px 8px;
+$table-cell-padding: 8px 16px;
 $table-font-size: $body-font-size;
+$table-header-row-background-color: color.mix($main-background-color, $code-background-color, 25%);
+$table-body-row-alt-background-color: color.mix($main-background-color, $code-background-color, 50%);
 
-$code-block-border-radius: 8px;
+$code-block-border-radius: $border-radius;
 $code-block-padding-vert: 14px;
 $code-block-padding-horz: 20px;
 
@@ -158,8 +163,8 @@ $code-inline-color-callout: hsl(31, 90%, 55%);
 $code-inline-background-color-callout: rgba(0, 0, 0, 40%);
 
 $code-highlight-edge-width: 4px;
-$code-highlight-edge-color: hsl(220, 80%, 60%);
-$code-highlight-background-color: hsla(220, 90%, 75%, 0.1);
+$code-highlight-edge-color: hsl(212, 70%, 55%);
+$code-highlight-background-color: hsla(212, 70%, 70%, 0.1);
 
 $blockquote-edge-width: 4px;
 $blockquote-padding-left: $main-padding-left - $blockquote-edge-width + 1px;
@@ -168,11 +173,13 @@ $blockquote-body-color-bold: color.scale($body-color, $alpha: -20%);
 
 $main-inner-spacing-vert: 18px;
 
-$callout-border-radius: 8px;
-$callout-padding: $main-inner-spacing-vert $space-px;
-
 $list-padding-left: 32px;
 $list-item-padding-left: 4px;
+
+$details-padding-left: $space-px;
+
+$callout-border-radius: $border-radius;
+$callout-padding: $main-inner-spacing-vert $details-padding-left;
 
 $todo-red: hsl(0, 88%, 59%);
 $todo-red-dark: hsl(0, 100%, 45%);
@@ -206,6 +213,7 @@ $todo-red-dark: hsl(0, 100%, 45%);
   b,
   strong {
     font-weight: $body-font-weight-bold;
+    letter-spacing: $body-letter-spacing-bold;
     color: $color-bold;
   }
 }
@@ -250,6 +258,23 @@ $todo-red-dark: hsl(0, 100%, 45%);
 
 // ================== General styles
 
+* {
+  -webkit-font-smoothing: subpixel-antialiased;
+
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  color: inherit;
+
+  scroll-margin-top: $scroll-margin-top;
+}
+
 .no-select {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -259,158 +284,18 @@ $todo-red-dark: hsl(0, 100%, 45%);
   user-select: none;
 }
 
-img {
-  max-width: 100%;
-  min-width: 0px;
-}
-
-figcaption {
-  text-align: center;
-}
-
-a {
-  word-break: normal;
-  overflow-wrap: anywhere;
-  @include anchor-text($link-color);
-
-  code {
-    color: $code-inline-link-color !important;
-  }
-}
-
 a,
 button {
   -webkit-tap-highlight-color: transparent;
 }
 
-a[href='todo'] {
-  @include anchor-text($todo-red);
-}
+a {
+  word-break: normal;
+  overflow-wrap: anywhere;
 
-.math-display {
-  text-align: center;
-  overflow-x: auto;
-}
-
-blockquote {
-  padding-left: $blockquote-padding-left;
-  border-left: $blockquote-edge-width solid $page-divider-color;
-
-  p {
-    @include body-text($blockquote-body-color, $blockquote-body-color-bold);
-    margin-bottom: $main-inner-spacing-vert;
-  }
-}
-
-// ================== Text
-
-.image-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-slot.summarySlot,
-summary {
-  cursor: pointer;
-}
-
-// ================== Callouts
-
-@mixin callout($background-color, $border-color, $content) {
-  $background-color: color.mix($background-color, $main-background-color, 75%);
-  $border-color: color.mix($border-color, $main-background-color, 75%);
-
-  background-color: $background-color;
-  border: 1px solid $border-color;
-
-  > * {
-    @include body-text(
-      color.scale($header-color, $lightness: 15%),
-      color.scale($header-color, $lightness: 30%)
-    );
-
-    margin-bottom: $main-inner-spacing-vert;
-  }
-
-  :not(pre) > code {
-    color: $code-inline-color-callout;
-    background-color: $code-inline-background-color-callout;
-  }
-
-  details {
-    border-left: 1px solid $border-color;
-    padding-left: $list-padding-left * 0.5;
-
-    > summary {
-      margin-left: -($list-padding-left * 0.5 + 1px);
-      background-color: $background-color;
-    }
-    > :not(:first-child) {
-      margin-top: $main-inner-spacing-vert;
-    }
-  }
-
-  @if ($content == 'Todo: ') {
-    background-color: white;
-    border: white;
-
-    > :first-child::before {
-      content: $content;
-    }
-  } @else if ($content != '') {
-    &::before {
-      content: $content;
-      display: inline-block;
-
-      margin-bottom: $main-inner-spacing-vert;
-
-      font-weight: $body-font-weight-bold;
-      color: color.scale($header-color, $lightness: 50%);
-    }
-  }
-
-  > :last-child {
-    margin-bottom: 0;
-  }
-}
-
-.task-callout,
-.warning-callout,
-.success-callout,
-.error-callout,
-.todo-callout {
-  border-radius: $callout-border-radius;
-  padding: $callout-padding;
-
-  @media only screen and (max-width: $breakpoint) {
-    border-radius: 0;
-    border-left: none !important;
-    border-right: none !important;
-
-    margin-left: -$main-padding-left;
-    margin-right: $main-padding-right-negative;
-  }
-
-  &.task-callout {
-    counter-increment: task;
-    @include callout(hsl(210, 82%, 25%), hsl(210, 82%, 50%), 'Task ' counter(task) ':');
-  }
-  &.warning-callout {
-    @include callout(hsl(46, 80%, 26%), hsl(46, 80%, 48%), '');
-  }
-  &.success-callout {
-    @include callout(hsl(110, 55%, 21%), hsl(110, 55%, 36%), '');
-  }
-  &.error-callout {
-    @include callout(hsl(356, 58%, 25.5%), hsl(356, 58%, 51%), '');
-  }
-  &.todo-callout {
-    @include callout(white, white, 'Todo: ');
-    border-radius: 0;
-    > :only-child {
-      color: $todo-red-dark !important;
-    }
+  // Temporary
+  &[href='todo'] {
+    @include anchor-text($todo-red);
   }
 }
 
@@ -427,7 +312,7 @@ summary {
   user-select: none;
 
   > * {
-    border-radius: $code-block-border-radius !important;
+    border-radius: $border-radius !important;
     color: black;
   }
 
@@ -457,4 +342,13 @@ th {
 
 th {
   font-weight: $body-font-weight-bold;
+  letter-spacing: $body-letter-spacing-bold;
+}
+
+thead {
+  background-color: $table-header-row-background-color;
+}
+
+tbody > :nth-child(even) {
+  background-color: $table-body-row-alt-background-color;
 }

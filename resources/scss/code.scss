@@ -16,7 +16,6 @@ $code-line-number-color: color.mix($code-block-white, $code-block-gray, 25%);
 // ================== Code Blocks
 
 pre {
-  margin: 0 0 $main-inner-spacing-vert;
   padding: $code-block-padding-vert 0;
   overflow-x: auto;
   overscroll-behavior-x: contain;

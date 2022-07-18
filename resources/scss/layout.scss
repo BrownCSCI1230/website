@@ -3,23 +3,6 @@
 
 @import 'base.scss';
 
-* {
-  -webkit-font-smoothing: subpixel-antialiased;
-
-  box-sizing: border-box;
-
-  margin: 0;
-  padding: 0;
-
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
-  color: inherit;
-
-  scroll-margin-top: $scroll-margin-top;
-}
-
 html {
   -webkit-text-size-adjust: none;
   text-size-adjust: none;
@@ -210,6 +193,11 @@ body {
   border-left: 1px solid $page-border-color;
   border-right: 1px solid $page-border-color;
 
+  @media only screen and (max-width: ($middle-b * 1px)) {
+    border-left: none;
+    border-right: none;
+  }
+
   display: grid;
   grid-template:
     'toc divider main' minmax(0, 1fr)
@@ -306,28 +294,40 @@ body {
 
 main {
   padding: $main-padding;
-
   background-color: $main-background-color;
 
-  > * {
-    margin-bottom: $main-inner-spacing-vert;
-  }
-
+  > *,
   h1,
   h2,
   h3,
   h4,
   h5,
-  h6 {
-    margin-top: $main-inner-spacing-vert * 1.5;
-    margin-bottom: $main-inner-spacing-vert;
+  h6,
+  p,
+  pre,
+  ol,
+  ul,
+  figcaption,
+  blockquote,
+  details,
+  details > *,
+  table,
+  .math-display,
+  .image-wrapper,
+  .callout,
+  .callout > * {
+    &:not(:last-child) {
+      margin-bottom: $main-inner-spacing-vert;
+    }
   }
 
-  h1 {
-    margin-top: 0;
+  img,
+  table {
+    min-width: 0;
+    max-width: 100%;
   }
 
-  // Looks complicated, but it just creates the numbers in front of the headers
+  // Creates the numbers in front of headers
   $content-map: (
     1: '',
     2: counter(h2) '. ',
@@ -343,6 +343,10 @@ main {
       counter-reset: h#{$i + 1};
       position: relative;
 
+      @if ($i != 1) {
+        margin-top: $main-inner-spacing-vert * 1.5;
+      }
+
       > a {
         @include anchor-text($header-color);
 
@@ -352,16 +356,20 @@ main {
           counter-increment: h#{$i};
           content: map-get($content-map, $i);
         }
-
-        &:active {
-          outline: none;
-        }
       }
     }
   }
 
   p {
     @include body-text;
+  }
+
+  a {
+    @include anchor-text($link-color);
+
+    code {
+      color: $code-inline-link-color;
+    }
   }
 
   ol,
@@ -372,24 +380,153 @@ main {
     padding-left: $list-item-padding-left;
   }
 
+  img {
+    background-color: white;
+    margin-bottom: math.div($main-inner-spacing-vert, 2);
+    padding: 10px;
+    border-radius: $border-radius;
+  }
+
+  figcaption {
+    text-align: center;
+    > * {
+      margin: 0 !important;
+    }
+  }
+
+  blockquote {
+    padding-left: $blockquote-padding-left;
+    border-left: $blockquote-edge-width solid $page-divider-color;
+
+    figcaption,
+    p {
+      @include body-text($blockquote-body-color, $blockquote-body-color-bold);
+    }
+  }
+
   details {
-    border-left: 1px solid $page-divider-color;
-    padding-left: $list-padding-left * 0.5;
+    border-left: 4px solid $page-divider-color;
+    padding-left: $details-padding-left;
 
     > summary {
-      margin-left: -($list-padding-left * 0.5 + 1px);
+      cursor: pointer;
+      margin-left: -$details-padding-left - 4px;
+      margin-bottom: 0 !important;
       background-color: $main-background-color;
     }
-    > :not(:first-child) {
+
+    > :nth-child(2) {
       margin-top: $main-inner-spacing-vert;
     }
   }
-}
 
-@media only screen and (max-width: ($middle-b * 1px)) {
-  #page {
-    border-left: none;
-    border-right: none;
+  .math-display {
+    text-align: center;
+    overflow-x: auto;
+  }
+
+  .image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @mixin callout($background-color, $border-color, $content) {
+    background-color: $background-color;
+    border: 1px solid $border-color;
+
+    > * {
+      @include body-text(
+        color.scale($header-color, $lightness: 15%),
+        color.scale($header-color, $lightness: 30%)
+      );
+    }
+
+    :not(pre) > code {
+      color: $code-inline-color-callout;
+      background-color: $code-inline-background-color-callout;
+    }
+
+    details {
+      border-left: 1px solid $border-color;
+      > summary {
+        background-color: $background-color;
+      }
+    }
+
+    @if ($content == 'Todo: ') {
+      background-color: white;
+      border: white;
+
+      > :first-child::before {
+        content: $content;
+      }
+    } @else if ($content != '') {
+      &::before {
+        content: $content;
+        display: inline-block;
+
+        margin-bottom: $main-inner-spacing-vert;
+
+        font-weight: $body-font-weight-bold;
+        letter-spacing: $body-letter-spacing-bold;
+        color: color.scale($header-color, $lightness: 50%);
+      }
+    }
+  }
+
+  .callout {
+    border-radius: $callout-border-radius;
+    padding: $callout-padding;
+
+    @media only screen and (max-width: $breakpoint) {
+      border-radius: 0;
+      border-left: none !important;
+      border-right: none !important;
+
+      margin-left: -$main-padding-left;
+      margin-right: $main-padding-right-negative;
+    }
+
+    $saturation-scale: 0.7;
+    $brightness-scale: 0.75;
+
+    &.task-callout {
+      counter-increment: task;
+      @include callout(
+        hsl(212, (80 * $saturation-scale) * 1%, (27 * $brightness-scale) * 1%),
+        hsl(212, (80 * $saturation-scale) * 1%, (52 * $brightness-scale) * 1%),
+        'Task ' counter(task) ':'
+      );
+    }
+    &.warning-callout {
+      @include callout(
+        hsl(48, (76 * $saturation-scale) * 1%, (29.5 * $brightness-scale) * 1%),
+        hsl(48, (76 * $saturation-scale) * 1%, (49 * $brightness-scale) * 1%),
+        ''
+      );
+    }
+    &.success-callout {
+      @include callout(
+        hsl(110, (60 * $saturation-scale) * 1%, (23 * $brightness-scale) * 1%),
+        hsl(110, (60 * $saturation-scale) * 1%, (44 * $brightness-scale) * 1%),
+        ''
+      );
+    }
+    &.error-callout {
+      @include callout(
+        hsl(356, (58 * $saturation-scale) * 1%, (27 * $brightness-scale) * 1%),
+        hsl(356, (58 * $saturation-scale) * 1%, (53 * $brightness-scale) * 1%),
+        ''
+      );
+    }
+    &.todo-callout {
+      @include callout(white, white, 'Todo: ');
+
+      > :only-child {
+        color: $todo-red-dark !important;
+      }
+    }
   }
 }
 

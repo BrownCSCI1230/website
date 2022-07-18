@@ -13,7 +13,7 @@ function remarkDirectiveCustomFollower() {
 
       data.hName = 'div'
       data.hProperties = h('div', node.attributes).properties
-      data.hProperties.className = node.name + '-callout'
+      data.hProperties.className = node.name + '-callout callout'
     })
   }
 }
