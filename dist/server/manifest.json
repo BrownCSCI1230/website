@@ -17,6 +17,7 @@
       "pages/labs/lab12.page.mdx",
       "pages/labs/lab2.page.mdx",
       "pages/labs/lab4.page.mdx",
+      "pages/labs/lab6.page.mdx",
       "pages/labs/lab7.page.mdx",
       "pages/labs/lab8.page.mdx",
       "pages/projects/index.page.mdx",
@@ -58,22 +59,22 @@
     "isDynamicEntry": true
   },
   "pages/labs/index.page.mdx": {
-    "file": "assets/index.page.11c2c1a9.js",
+    "file": "assets/index.page.1e9994a2.js",
     "src": "pages/labs/index.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab0.page.mdx": {
-    "file": "assets/lab0.page.e7776055.js",
+    "file": "assets/lab0.page.7b05200a.js",
     "src": "pages/labs/lab0.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab1.page.mdx": {
-    "file": "assets/lab1.page.58efe3b8.js",
+    "file": "assets/lab1.page.56baabef.js",
     "src": "pages/labs/lab1.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab11.page.mdx": {
-    "file": "assets/lab11.page.d5760fd4.js",
+    "file": "assets/lab11.page.35e87e51.js",
     "src": "pages/labs/lab11.page.mdx",
     "isDynamicEntry": true
   },
@@ -83,27 +84,41 @@
     "isDynamicEntry": true
   },
   "pages/labs/lab2.page.mdx": {
-    "file": "assets/lab2.page.4e2db02c.js",
+    "file": "assets/lab2.page.1384f070.js",
     "src": "pages/labs/lab2.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab4.page.mdx": {
-    "file": "assets/lab4.page.568751c6.js",
+    "file": "assets/lab4.page.be25e230.js",
     "src": "pages/labs/lab4.page.mdx",
-    "isDynamicEntry": true
+    "isDynamicEntry": true,
+    "imports": [
+      "_ImageFigure.722819d7.js"
+    ]
+  },
+  "_ImageFigure.722819d7.js": {
+    "file": "assets/ImageFigure.722819d7.js"
+  },
+  "pages/labs/lab6.page.mdx": {
+    "file": "assets/lab6.page.f9c8303c.js",
+    "src": "pages/labs/lab6.page.mdx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_ImageFigure.722819d7.js"
+    ]
   },
   "pages/labs/lab7.page.mdx": {
-    "file": "assets/lab7.page.2d6c286c.js",
+    "file": "assets/lab7.page.65fdc167.js",
     "src": "pages/labs/lab7.page.mdx",
     "isDynamicEntry": true
   },
   "pages/labs/lab8.page.mdx": {
-    "file": "assets/lab8.page.40825783.js",
+    "file": "assets/lab8.page.a404d5c8.js",
     "src": "pages/labs/lab8.page.mdx",
     "isDynamicEntry": true
   },
   "pages/projects/index.page.mdx": {
-    "file": "assets/index.page.98011fbc.js",
+    "file": "assets/index.page.fdb0aa69.js",
     "src": "pages/projects/index.page.mdx",
     "isDynamicEntry": true
   },
@@ -128,11 +143,11 @@
     "isDynamicEntry": true
   },
   "renderer/_default.page.server.jsx": {
-    "file": "assets/_default.page.server.583c0fbc.js",
+    "file": "assets/_default.page.server.a5f14460.js",
     "src": "renderer/_default.page.server.jsx",
     "isDynamicEntry": true,
     "css": [
-      "assets/_default.page.server.7a8d0909.css"
+      "assets/_default.page.server.4ec66ba5.css"
     ]
   }
 }

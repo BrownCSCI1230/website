@@ -14,25 +14,27 @@ const pageFiles = {
   }), "/pages/docs/inline-code.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/inline-code.page.7e852f68.js");
   }), "/pages/labs/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.11c2c1a9.js");
+    return require("./assets/index.page.1e9994a2.js");
   }), "/pages/labs/lab0.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab0.page.e7776055.js");
+    return require("./assets/lab0.page.7b05200a.js");
   }), "/pages/labs/lab1.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab1.page.58efe3b8.js");
+    return require("./assets/lab1.page.56baabef.js");
   }), "/pages/labs/lab11.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab11.page.d5760fd4.js");
+    return require("./assets/lab11.page.35e87e51.js");
   }), "/pages/labs/lab12.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab12.page.1ebf0347.js");
   }), "/pages/labs/lab2.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab2.page.4e2db02c.js");
+    return require("./assets/lab2.page.1384f070.js");
   }), "/pages/labs/lab4.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab4.page.568751c6.js");
+    return require("./assets/lab4.page.be25e230.js");
+  }), "/pages/labs/lab6.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/lab6.page.f9c8303c.js");
   }), "/pages/labs/lab7.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab7.page.2d6c286c.js");
+    return require("./assets/lab7.page.65fdc167.js");
   }), "/pages/labs/lab8.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab8.page.40825783.js");
+    return require("./assets/lab8.page.a404d5c8.js");
   }), "/pages/projects/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.98011fbc.js");
+    return require("./assets/index.page.fdb0aa69.js");
   }), "/pages/projects/raster/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/index.page.4c71eb1f.js");
   }), "/pages/projects/ray/index.page.mdx": () => Promise.resolve().then(function() {
@@ -44,7 +46,7 @@ const pageFiles = {
     return require("./assets/_default.page.client.ebe16b42.js");
   }) },
   ".page.server": { "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.583c0fbc.js");
+    return require("./assets/_default.page.server.a5f14460.js");
   }) },
   ".page.route": {}
 };
