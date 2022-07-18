@@ -380,13 +380,6 @@ main {
     padding-left: $list-item-padding-left;
   }
 
-  img {
-    background-color: white;
-    margin-bottom: math.div($main-inner-spacing-vert, 2);
-    padding: 10px;
-    border-radius: $border-radius;
-  }
-
   figcaption {
     text-align: center;
     > * {
@@ -429,6 +422,25 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    > .image-grid {
+      display: grid;
+      gap: math.div($main-inner-spacing-vert, 2);
+      grid-template: minmax(0, 1fr) / repeat(auto-fit, minmax(0, 1fr));
+      place-items: stretch;
+
+      margin-bottom: math.div($main-inner-spacing-vert, 2);
+    }
+
+    img {
+      object-fit: contain;
+
+      background-color: white;
+    }
+
+    > * {
+      width: max(var(--target-width), min(100%, 500px));
+    }
   }
 
   @mixin callout($background-color, $border-color, $content) {

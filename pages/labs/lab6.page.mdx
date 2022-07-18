@@ -27,12 +27,9 @@ We will be covering quite a bit of background knowledge in this lab before we ca
 **Lighting** is the simulation of how light interacts with objects. It is an essential part of **photorealistic [rendering](<https://en.wikipedia.org/wiki/Rendering_(computer_graphics)>)**&mdash;the generation of a physically-_plausible_ image from a scene.
 
 <ImageFigure
-  src={'/labs/lab6/raytracing.png'}
-  alt={'TODO'}
-  figureNumber={1}
-  figureCaption={
-    'Raytracing is a method of photorealistic rendering. Naturally, it includes a lighting step.'
-  }
+  images={[{ src: '/labs/lab6/raytracing.png', alt: 'TODO' }]}
+  figNumber={1}
+  figCaption={'Raytracing is a method of photorealistic rendering. Naturally, it includes a lighting step.'}
 />
 
 Unfortunately, accurately simulating light is really hard. Instead, we _approximate_ lighting effects using simplified **lighting models**, such as the [Phong](https://users.cs.northwestern.edu/~ago820/cs395/Papers/Phong_1975.pdf), [Cook-Torrance](https://graphics.pixar.com/library/ReflectanceModel/paper.pdf), [Minnaert](https://adsabs.harvard.edu/full/1941ApJ....93..403M) and [Oren-Nayer](https://www1.cs.columbia.edu/CAVE/publications/pdfs/Oren_SIGGRAPH94.pdf) models.
@@ -40,11 +37,11 @@ Unfortunately, accurately simulating light is really hard. Instead, we _approxim
 Each lighting model mathematically describes the interactions between objects' **surfaces** and **light**, though they might differ in their **underlying physical bases** and assumptions.
 
 <ImageFigure
-  src={'/labs/lab6/lightingModels.png'}
-  alt={'TODO'}
-  figureNumber={2}
-  figureCaption={'Different lighting models'}
+  images={[{ src: '/labs/lab6/lightingModels.png', alt: 'TODO' }]}
+  figNumber={2}
+  figCaption={'Different lighting models'}
 />
+
 ### The Phong Lighting Model
 
 In this lab, and in your raytracer, you will be using the **Phong lighting model**.
@@ -62,10 +59,9 @@ $$
 And here it is again, as an image:
 
 <ImageFigure
-  src={'/labs/lab6/phongOverview.png'}
-  alt={'TODO'}
-  figureNumber={3}
-  figureCaption={'The three main terms, or components, of the Phong lighting model'}
+  images={[{ src: '/labs/lab6/phongOverview.png', alt: 'TODO' }]}
+  figNumber={3}
+  figCaption={'The three main terms, or components, of the Phong lighting model'}
 />
 
 <details>
@@ -120,10 +116,9 @@ Specifically, this data will come in the form of a **2D array of structs (each c
 Your function will work at the **pixel level**, and you will use it to map every element in this array to an output RGBA color.
 
 <ImageFigure
-  src={'/labs/lab6/array.png'}
-  alt={'TODO'}
-  figureNumber={4}
-  figureCaption={'Your "Phong function" will be used to map an array of data to an array of RGBA colors.'}
+  images={[{ src: '/labs/lab6/array.png', alt: 'TODO' }]}
+  figNumber={4}
+  figCaption={'Your "Phong function" will be used to map an array of data to an array of RGBA colors.'}
 />
 
 <details>
@@ -194,9 +189,8 @@ Many different methods of tone-mapping exist, each producing images with **uniqu
 Mapping can either be globally-consistent across the whole image (e.g. uniform scaling), or be locally-adaptive, so that overly-bright and overly-dark areas can be shown with minimal loss of detail. Images #3 and #4 below show how a locally-adaptive form of tone-mapping can improve the visual clarity of the final image.
 
 <ImageFigure
-  src={'/labs/lab6/toneMapping.jpg'}
-  alt={'TODO'}
-  figureNumber={undefined}
+  images={[{ src: '/labs/lab6/toneMapping.png', alt: 'TODO' }]}
+  figNumber={5}
 >
 
 **#1** is the over-exposed original image. **#2** is linearly tone-mapped from **#1**.
@@ -405,10 +399,9 @@ Now you have an image with great lighting effect after finishing the phong light
 One interesting and simple extension is the mirror reflection. In a way, diffuse and specular are reflections that are loose or less concentrated. And mirror reflections are the reflections that are completely concentrated, which usually happens on perfect mirror surface. You can see the mirror reflection effect almost everywhere in your life.
 
 <ImageFigure
-  src={'/labs/lab6/reflection.png'}
-  alt={'TODO'}
-  figureNumber={14}
-  figureCaption={'Mirror reflection example'}
+  images={[{ src: '/labs/lab6/reflection.png', alt: 'TODO' }]}
+  figNumber={6}
+  figCaption={'Mirror reflection example'}
 />
 
 In raytracing, we achieve reflection through recursive raytracing. When we track a ray to a reflective surface, we perform raytracing again from that intersection point in the direction of reflected eyesight. However, directly adding the reflection illumination will make the overall intensity too strong. Some lighting models calculate the contribution of reflection to overall lighting according to more complex material parameters. Here we give you a fixed global coefficient $k_r$ for this.

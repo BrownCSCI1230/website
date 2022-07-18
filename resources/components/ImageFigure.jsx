@@ -2,20 +2,18 @@ import React from 'react'
 
 export { ImageFigure }
 
-function ImageFigure({
-  src,
-  alt,
-  width = 'max(75%, min(100%, 500px))',
-  figureNumber,
-  figureCaption,
-  children,
-}) {
+function ImageFigure({ images, targetWidth = '75%', figNumber, figCaption, children }) {
   return (
-    <figure id={figureNumber ? `figure-${figureNumber}` : undefined} className="image-wrapper">
-      <img src={src} alt={alt} style={{ width }} />
-      <figcaption style={{ width }}>
-        {figureNumber && <strong>{`Figure ${figureNumber}: `}</strong>}
-        {children ?? figureCaption}
+    <figure id={`figure-${figNumber}`} className="image-wrapper">
+      <div className="image-grid" style={{ '--target-width': targetWidth }}>
+        {images.map((image) => (
+          <img {...image} />
+        ))}
+      </div>
+
+      <figcaption>
+        <strong>{`Figure ${figNumber}: `}</strong>
+        {figCaption ?? children}
       </figcaption>
     </figure>
   )
