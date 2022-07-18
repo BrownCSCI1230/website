@@ -35,7 +35,7 @@ We will be covering quite a bit of background knowledge in this lab before we ca
   }
 />
 
-Unfortunately, accurately simulating light is hard. Instead, we often approximate lighting effects using simplified **lighting models**, such as the [Phong](https://users.cs.northwestern.edu/~ago820/cs395/Papers/Phong_1975.pdf), [Cook-Torrance](https://graphics.pixar.com/library/ReflectanceModel/paper.pdf), [Minnaert](https://adsabs.harvard.edu/full/1941ApJ....93..403M) and [Oren-Nayer](https://www1.cs.columbia.edu/CAVE/publications/pdfs/Oren_SIGGRAPH94.pdf) models.
+Unfortunately, accurately simulating light is really hard. Instead, we _approximate_ lighting effects using simplified **lighting models**, such as the [Phong](https://users.cs.northwestern.edu/~ago820/cs395/Papers/Phong_1975.pdf), [Cook-Torrance](https://graphics.pixar.com/library/ReflectanceModel/paper.pdf), [Minnaert](https://adsabs.harvard.edu/full/1941ApJ....93..403M) and [Oren-Nayer](https://www1.cs.columbia.edu/CAVE/publications/pdfs/Oren_SIGGRAPH94.pdf) models.
 
 Each lighting model mathematically describes the interactions between objects' **surfaces** and **light**, though they might differ in their **underlying physical bases** and assumptions.
 
@@ -178,7 +178,7 @@ In the helper function at [ todo: some location ], implement the above clamping 
 
 > "... we must **map** our output intensity values ..."
 
-"This" is known as **[tone-mapping](https://en.wikipedia.org/wiki/Tone_mapping)**.
+"This" refers to **[tone-mapping](https://en.wikipedia.org/wiki/Tone_mapping)**.
 
 It describes the **mapping** of wider set of intensities/colors into a narrower set. Tone-mapping is typically done to convert **high dynamic range (HDR)** images to more limited-range, **24-bit RGB** formats like JPEG or PNG, while **approximating** the appearance of HDR.
 
@@ -196,7 +196,7 @@ Mapping can either be globally-consistent across the whole image (e.g. uniform s
 <ImageFigure
   src={'/labs/lab6/toneMapping.jpg'}
   alt={'TODO'}
-  figureNumber={5}
+  figureNumber={undefined}
 >
 
 **#1** is the over-exposed original image. **#2** is linearly tone-mapped from **#1**.
@@ -227,27 +227,32 @@ $$
 
 :::
 
+This is one of the most important equations you'll learn in CS 1230. You are **not** expected to understand this in full, but you will know it like the back of your hand by the end of this course. For now, simply bask in its glory (and complete the next task).
+
 :::task
-Bask in its glory. This is one of the most important equations you'll learn in CS 1230.
 
-Then, attempt to identify the three main terms&mdash;**ambient**, **diffuse**, and **specular**.
+A _very_ detailed breakdown of each symbol in the equation is available in the collapsible section below. Using this as reference, answer the following questions:
+
+1. Supposing that you wish to output a single RGB color, how many **times** would you need to perform the above calculation for a given intersection point?
+2. How many _distinct, **scalar**-valued_ **material parameters** are necessary for the above RGB color computation(s)?
+
+Jot these down for your lab checkoff later.
+
 :::
-
-You are **not** expected to understand this in full right now, as we will be dissecting it in subsequent sections. However, if you'd like to try, a _very_ detailed term-by-term breakdown is available below.
 
 <details>
   <summary>Click here for a full breakdown of the equation's terms.</summary>
 
-|     Subscript      | Meaning                                                                                       |
+|     Subscript      | What It Represents                                                                            |
 | :----------------: | :-------------------------------------------------------------------------------------------- |
 |     $_\lambda$     | A given **wavelength** (either red, green, or blue).                                          |
 | $_a$ / $_d$ / $_s$ | A given **component of the Phong illumination model** (either ambient, diffuse, or specular). |
 |        $_i$        | A given **light source**, one of $m$ lights in the scene.                                     |
 
-|     Symbol     | Meaning                                                                                                                                                                                                                                               |
+|     Symbol     | What It Represents                                                                                                                                                                                                                                    |
 | :------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 |      $I$       | The **intensity of light**.<br/>E.g. $I_{\lambda=\text{red}}$ would represent the intensity of red light, and $I_{\lambda=\text{blue},i}$ is the intensity of blue light for a given light with index $i$.                                            |
-|      $k$       | A **model parameter**.<br/>E.g. $k_{a}$ would represent the ambient coefficient.                                                                                                                                                                      |
+|      $k$       | A **model parameter** used to tweak the relative weights of the Phong lighting model's three terms.<br/>E.g. $k_{a}$ would represent the ambient coefficient.                                                                                         |
 |      $O$       | A **material property**, which you can think of as the material's "amount of color" for a given illumination component.<br/>E.g. $O_{a \lambda=\text{red}}$ represents how red the material is, when counting only ambient illumination.              |
 |      $m$       | The **total number of light sources** in the scene.                                                                                                                                                                                                   |
 |  $\bf\hat{N}$  | The **surface normal** at the point of intersection.                                                                                                                                                                                                  |
@@ -261,112 +266,105 @@ You are **not** expected to understand this in full right now, as we will be dis
 
 ### The Ambient Term
 
+:::todo
+A decent image of ambient light alone
+:::
+
 $$
   \newcommand{\highlight}[1]{\colorbox{black}{$\color{BurntOrange}\displaystyle#1$}}
 
   \color{gray} \large I_\lambda = \highlight{ k_a O_{a\lambda} } + \sum_{i = 1}^{m} f_\text{att} I_{\lambda,i} \left[ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) + k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n \right]
 $$
 
-We'll start by adding in the ambient component. This component simply adds a constant amount of lighting to all objects in the scene, regardless of light sources. It simulates the effect of indirect light in a scene to avoid some parts being too dark due to lack of direct light.
+The first thing to do in implementing Phong lighting will be to add in the **ambient** term. This simply adds some amount of uniform light to every object, independent of any light sources in the scene. It is used to _fake_ the effect of **indirect lighting**, so as to avoid having to perform expensive simulations of indirect light from rays which bounce multiple times.
 
-<ImageFigure
-  src={'/labs/lab6/teapot.png'}
-  alt={'TODO'}
-  figureNumber={6}
-  figureCaption={
-    'Teapot with light coming from one direction. If we only have diffuse and specular light the bottom and right side of the tea pot are not visible.'
-  }
-/>
-
-<ImageFigure
-  src={'/labs/lab6/ambient.png'}
-  alt={'TODO'}
-  figureNumber={7}
-  figureCaption={'Ambient effect alone'}
-/>
-
-The amount of ambient light will be given by the object color (color) times the amount of ambient light (ambient Intensity). Note that there is an additional factor of ambient coefficient. The three global coefficients are human assigned values that control how much each component of the phong model contributes to the final illumination.
+:::todo
+A decent illustration of ambient lighting and why it is necessary to avoid regions being completely in the dark
+:::
 
 :::task
 
-Fill in the ambient illumination in the phong equation. Remember to apply the ambient coefficient.
+In your Phong lighting function, **add the ambient term to the return value**. Refer to the equation above.
 
 :::
 
 ### The Diffuse Term
 
+:::todo
+A decent image of diffuse light alone
+:::
+
 $$
   \newcommand{\highlight}[1]{\colorbox{black}{$\color{BurntOrange}\displaystyle#1$}}
 
-  \color{gray} \large I_\lambda = k_a O_{a\lambda} + \sum_{i = 1}^{m} f_\text{att} I_{\lambda,i} \left[ \highlight{ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) } + k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n \right]
+  \color{gray} \large I_\lambda = k_a O_{a\lambda} + \highlight{ \sum_{i = 1}^{m} f_\text{att} I_{\lambda,i} } \left[ \highlight{ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) } + k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n \right]
 $$
 
-Now let's add the diffuse component, which makes surfaces that are facing towards the light source appear brighter. This term is an approximation to the real world physical effect of a surface scattering the absorbed incident photons uniformly across the hemisphere. We will represent how much a surface is facing the light source with the expression ${\bf\hat{N}}\cdot{\bf\hat{L}_{i}}$, where N is the normal vector and L is the normalized vector from the surface point to the light source.
+Next, we'll add the **diffuse** term to make surfaces facing light sources appear brighter. This emulates the real-world phenomenon of **[Lambertian reflectance](https://en.wikipedia.org/wiki/Lambertian_reflectance)** (aka ideal **[diffuse reflection](https://en.wikipedia.org/wiki/Diffuse_reflection)**), wherein a surface scatters incident photons uniformly across the hemisphere centered on its normal.
 
-<ImageFigure
-  src={'/labs/lab6/diffuse.png'}
-  alt={'TODO'}
-  figureNumber={8}
-  figureCaption={'Diffuse effect alone'}
-/>
+:::todo
+A decent illustration of Lambertian reflectance at work and why it helps sell three-dimensionality
+:::
 
-<ImageFigure
-  src={'/labs/lab6/lightDiffuse.png'}
-  alt={'TODO'}
-  figureNumber={9}
-  figureCaption={'Illustration of diffuse light'}
-/>
+To quantify how much a surface is facing a light source, we use the dot product $\bf\hat{N} \cdot \bf\hat{L}_i$, where $\bf\hat{N}$ is the **surface normal** at the point of intersection and $\bf\hat{L}_i$ is the **normalized direction** _from_ the intersection point _to_ the light source.
 
-Second, we have the diffuse component. The product of light intensity and material color should be easily understood. But you may wonder why there is a term of ${\bf\hat{N}}\cdot{\bf\hat{L}_{i}}$. based on the observation of Lambert. Lambert observed that most flat, rough surfaces reflect light energy proportional to the cosine of the angle between their surface normal and the direction of the incoming light. This is known as Lambert's Law. The dot production of normalized vectors of surface normal and incident light calculates the cosine value of the incident angle. To understand the intuition behind this operation, you can imagine that only the component that is perpendicular to the surface of the incident light vector can be absorbed.
-
-<ImageFigure src={'/labs/lab6/lambert.png'} alt={'TODO'} figureNumber={10} figureCaption={"Lambert's law"} />
+**If a surface is facing _away_ from a light source, it should not be lit by that light source**, i.e. it should add **_zero_** (not _negative_!) intensity to the result.
 
 :::task
 
-Compute the diffuse component and add it to the illumination. For this, you need to:
+In your Phong lighting function, **add the diffuse term to the return value**. Refer to the equation above.
 
-- Get the direcion from intersection point to light sources
-- calculate the cosine value of angle between surface normal and light direction
-- Calculate the diffuse term and apply its corresponding weight
-
-Remember to normalize both vectors when you calculate $\bf\hat{N} \cdot \bf\hat{L}\_{i}$.
+- For now, **ignore attenuation** (set $f_\text{att}$ to 1).
+- Make sure to normalize all your directions.
+- Consider how you might determine if a surface is facing away from a light source.
+- Remember that you have to sum over _all_ the lights in the scene.
 
 :::
 
+<details>
+  <summary>What do the sub-terms in the diffuse term mean?</summary>
+
+Ignoring attenuation, there is first the product of light intensity, the diffuse coefficient, and the material's diffuse color. This should be easily understood.
+
+Besides that, there is also the dot product $\bf\hat{N} \cdot \bf\hat{L}_i$.
+
+This is based on **[Lambert's cosine law](https://en.wikipedia.org/wiki/Lambert%27s_cosine_law)**. It was Johann Heinrich Lambert who first introduced the concept of perfect diffusion in his 1760 book on optics, _[Photometria](https://en.wikipedia.org/wiki/Photometria)_. He had observed that most flat, rough surfaces would reflect light in a way _roughly_ proportional to the **cosine** of the angle between their surface normal and the direction toward the incoming light.
+
+Fortunately for us, we can easily and efficiently compute **cosines** using a **dot product of normalized vectors**. Thus, by using the dot product above, we can suggest **diffuse reflectance**.
+
+</details>
+
 ### The Specular Term
+
+:::todo
+A decent image of specular light alone
+:::
 
 $$
   \newcommand{\highlight}[1]{\colorbox{black}{$\color{BurntOrange}\displaystyle#1$}}
 
-  \color{gray} \large I_\lambda = k_a O_{a\lambda} + \sum_{i = 1}^{m} f_\text{att} I_{\lambda,i} \left[ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) + \highlight{ k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n } \right]
+  \color{gray} \large I_\lambda = k_a O_{a\lambda} + \highlight{ \sum_{i = 1}^{m} f_\text{att} I_{\lambda,i} } \left[ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) + \highlight{ k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n } \right]
 $$
 
-Third, we have the specular component, which adds a highlight that makes objects appear shiny. This term is the approximation of the reflection of direct light. The specular component peaks in brightness when light is reflected in the direction of the eye. We will now use the dot product ${\bf\hat{R}_{i}}\cdot{\bf\hat{V}}$.
+> Specular, adj.<br/>
+> Relating to or having the properties of a mirror
 
-<ImageFigure
-  src={'/labs/lab6/eyeSpecular.png'}
-  alt={'TODO'}
-  figureNumber={11}
-  figureCaption={'Mechanism of specular light'}
-/>
+Our third step is to add the **specular** term, which creates a **specular highlight** that makes objects appear shiny or mirror-_like_. This approximates the **[specular reflection](https://en.wikipedia.org/wiki/Specular_reflection)** of incident light, which peaks in intensity when the reflected light is "close" to the direction of the eye. Again, we use a dot product, $\bf\hat{R}_i \cdot \bf\hat{V}$, to quantify this "close"-ness.
 
-In order to make the specular highlight small, we raise the dot product to an exponent called shininess. The higher the exponent, the smaller the highlight. The image below shows the diffuse part of Fig.3.
+In order to make this specular highlight wider or narrower, we can lower or raise the exponent $n$, which represents the material's shininess. The higher the exponent, the smaller the highlight, and the more mirror-like the resulting surface.
 
-<ImageFigure
-  src={'/labs/lab6/specular.png'}
-  alt={'TODO'}
-  figureNumber={12}
-  figureCaption={'Specular effect alone'}
-/>
+:::todo
+A decent illustration of specular light and how it varies with shininess and viewing angle
+:::
 
 :::task
 
-Calculate the specular component.
+In your Phong lighting function, **add the specular term to the return value**. Refer to the equation above.
 
-- Get reflection direction of the incoming light
-- Get eyesight direction based on the data provided.
-
-Calculate the [ todo ]
+- Again, **ignore attenuation** (set $f_\text{att}$ to 1).
+- Make sure to normalize all your directions.
+- Remember to consider the case of a surface facing away from a light source.
+- Remember that you have to sum over _all_ the lights in the scene.
 
 :::
 
@@ -375,34 +373,32 @@ Calculate the [ todo ]
 $$
   \newcommand{\highlight}[1]{\colorbox{black}{$\color{BurntOrange}\displaystyle#1$}}
 
-  \color{gray} \large I_\lambda = k_a O_{a\lambda} + \sum_{i = 1}^{m} \highlight{ f_\text{att} I_{\lambda,i} } \left[ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) + k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n \right]
+  \color{gray} \large I_\lambda = k_a O_{a\lambda} + \sum_{i = 1}^{m} \highlight{ f_\text{att} }  I_{\lambda,i}\left[ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) + k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n \right]
 $$
 
-In real life, the intensity of light decreases as the distance between object and light source increases. We demonstrate the effect of attenuation in the picture below. The areas far from the light source (left or right edges) are obviously darker than areas close to the light source (center of plain).
+Finally, we get to the **attenuation** factor. In the real world, the intensity of light is usually **diminished with increasing distance from light source** (with the notable exception of collimated light, i.e. _ideal_ lasers). For example, the intensity of a point source's light is scaled by a factor of $r^{-2}$ at distance $r$ from the source, due to the dispersal of energy over an expanding surface.
 
-<ImageFigure
-  src={'/labs/lab6/attenuation.png'}
-  alt={'TODO'}
-  figureNumber={13}
-  figureCaption={'Attenuation effect demonstration'}
-/>
+This is demonstrated in the image below: the objects farthest from the light source are noticeably darker than those closest to it. This effect is not entirely attributable to the differences in angles formed by the light directions, camera directions, and surface normals (refer back to the diffuse and specular terms).
+
+:::todo
+A decent image demonstrating attenuation, e.g. a light, and some objects in a dark room
+:::
 
 :::task
 
-[ May be optional? ]
-
-Calculate the distance from intersection point to light source. Apply attenuation to the diffuse and specular component according to the function below.
+Modify your Phong lighting function to account for attenuation. Use the following, generalized substitution:
 
 $$
-
-f\_{att} = min(1, \frac{1}{c_1 + distance*c_2 + distance^2*c_3})
-
-
+  f_\text{att} = \text{min}\left( 1, \frac{1}{c_1 + \text{distance} * c_2 + \text{distance}^2 * c_3} \right)
 $$
+
+Experiment with tweaking the parameters $c_1$, $c_2$, and $c_3$ as you wish. Note how this affects the render.
 
 :::
 
 ## Reflection
+
+[ TODO: WIP ]
 
 Now you have an image with great lighting effect after finishing the phong lighting model. We can extend the phong lighting model by adding some other component to make the image look better!
 
@@ -418,21 +414,15 @@ One interesting and simple extension is the mirror reflection. In a way, diffuse
 In raytracing, we achieve reflection through recursive raytracing. When we track a ray to a reflective surface, we perform raytracing again from that intersection point in the direction of reflected eyesight. However, directly adding the reflection illumination will make the overall intensity too strong. Some lighting models calculate the contribution of reflection to overall lighting according to more complex material parameters. Here we give you a fixed global coefficient $k_r$ for this.
 
 $$
-
-I\_{r,\lambda} = k_r\*Phong(Intersection, reflect({\bf N}, {\bf V}))
-
-
+  I_{r,\lambda} = k_r * \text{Phong} \left( \text{intersection}, \text{reflect}(\bf\hat{N}, \bf\hat{V}) \right)
 $$
 
 You may wonder how many time we should do recursive tracing since the illumination from reflection intersection may have its own reflection. Usually we use the term depth to refer to the number of times we perform recursive tracing. In a well-developed raytracing program, you could set your depth to be really large for very cool effect! But we only do recursive raytracing for one time within the scope of this lab.
 
 :::task
 
-Calculate the reflected eyesight direction. Perform raytracing again to get reflected illumination. We provide you with an interface getReflection(source, dir) to acquire reflection illumination.
+Calculate the reflected eyesight direction. Perform raytracing again to get reflected illumination. We provide you with a function `getReflection(source, dir)` to acquire reflection illumination.
 
 :::
 
 ## End
-
-$$
-$$

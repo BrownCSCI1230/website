@@ -447,6 +447,10 @@ main {
       background-color: $code-inline-background-color-callout;
     }
 
+    blockquote {
+      border-color: $border-color;
+    }
+
     details {
       border-left: 1px solid $border-color;
       > summary {
@@ -489,7 +493,7 @@ main {
     }
 
     $saturation-scale: 0.7;
-    $brightness-scale: 0.75;
+    $brightness-scale: 0.85;
 
     &.task-callout {
       counter-increment: task;
@@ -508,8 +512,8 @@ main {
     }
     &.success-callout {
       @include callout(
-        hsl(110, (60 * $saturation-scale) * 1%, (23 * $brightness-scale) * 1%),
-        hsl(110, (60 * $saturation-scale) * 1%, (44 * $brightness-scale) * 1%),
+        hsl(110, (58 * $saturation-scale) * 1%, (25 * $brightness-scale) * 1%),
+        hsl(110, (58 * $saturation-scale) * 1%, (46 * $brightness-scale) * 1%),
         ''
       );
     }

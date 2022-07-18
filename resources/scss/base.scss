@@ -168,8 +168,8 @@ $code-highlight-background-color: hsla(212, 70%, 70%, 0.1);
 
 $blockquote-edge-width: 4px;
 $blockquote-padding-left: $main-padding-left - $blockquote-edge-width + 1px;
-$blockquote-body-color: color.scale($body-color, $alpha: -35%);
-$blockquote-body-color-bold: color.scale($body-color, $alpha: -20%);
+$blockquote-body-color: color.scale($body-color, $alpha: -20%);
+$blockquote-body-color-bold: color.scale($body-color-bold, $alpha: -20%);
 
 $main-inner-spacing-vert: 18px;
 
