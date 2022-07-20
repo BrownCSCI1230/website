@@ -20,57 +20,75 @@ By the end of this lab you should be able to…
 The concept of procedural noise in graphics is simply any method that can create randomized data with certain desirable properties (like continuity for example). It is used to make a wide variety of assets, from geometry, to textures.
 
 <ImageFigure
-  src={'/labs/lab7/image5.png'}
+  images={[
+	{src: '/labs/lab7/image5.png', alt: 'TODO'},
+	{src: '/labs/lab7/image6.jpg', alt: 'TODO'},
+	{src: '/labs/lab7/image7.png', alt: 'TODO'},
+	]}
   alt={'TODO'}
-  width = {'30%'}
-/>
-
-<ImageFigure
-  src={'/labs/lab7/image6.jpg'}
-  alt={'TODO'}
-  width = {'30%'}
-/>
-
-<ImageFigure
-  src={'/labs/lab7/image7.png'}
-  alt={'TODO'}
-  width = {'30%'}
+  figNumber={1}
+  figCaption={'Art Made With Procedural Noise'}
 />
 
 As you can see from these examples, well constructed noise can be used to create really incredible scenes and images from completely random data!
 
 In this lab we will be primarily focused on using procedural methods to generate 2D textures, specifically a height map, which we will use to generate geometry. There are a wide vareiety of methods to choose from.
 
-:::todo
-src="readmeImages/whiteExample.png" style="width: 16%;"
-src="readmeImages/valueExample.png" style="width: 16%;"
-src="readmeImages/perlinExample.png" style="width: 16%;"
-src="readmeImages/simplexExample.png" style="width: 16%;"
-src="readmeImages/voronoiExample.png" style="width: 16%;"
-src="readmeImages/CellularExample.png" style="width: 16%;"
-:::
+
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/whiteExample.png', alt: 'TODO'},
+	{src: '/labs/lab7/valueExample.png', alt: 'TODO'},
+	{src: '/labs/lab7/perlinExample.png', alt: 'TODO'},
+	{src: '/labs/lab7/simplexExample.png', alt: 'TODO'},
+	{src: '/labs/lab7/voronoiExample.png', alt: 'TODO'},
+	{src: '/labs/lab7/CellularExample.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={2}
+  figCaption={'Examples of Procedural Noise'}
+/>
 
 ### White Noise
 
-:::todo
-src="readmeImages/whiteExample.png" width="400"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/whiteExample.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={3}
+  targetWidth={'70%'}
+  figCaption={'Picture of White Noise'}
+/>
 
 The most primative form of noise is "white noise" which you may have heard of before. Think of every pixel as having a completely random value completely uncorrelated with the values of its neighbors. However, this ends up looking too random and there is no structure we can make use of.
 
 ### Value Noise
 
-:::todo
-src="readmeImages/valueExample.png" width="400"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/valueExample.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={4}
+  targetWidth={'70%'}
+  figCaption={'Picture of Value Noise'}
+/>
+
 
 The next form of noise to consider is "value noise." This form of noise is essentially white noise scaled up and interpolated to try to give some smooth gradients and larger structure to the texture (remember the scaling filter?). However, you can see from the results that the final product does not look entirely organic as the gradients are all aligned to the pixel grid.
 
 ### Perlin Noise
 
-:::todo
-src="readmeImages/perlinExample.png" width="400"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/perlinExample.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={5}
+  targetWidth={'70%'}
+  figCaption={'Picture of Perlin Noise'}
+/>
 
 This is where "perlin noise", which is what we will be implementing in this lab, comes in. By defining a grid of _vectors_ instead of values, we can add a lot more interest to the final product as the gradients are no longer aligned along the pixel grid!
 
@@ -100,9 +118,15 @@ To give you a quick overview of the stencil you need to worry about for this sec
 
 #### Get the Four Closest Grid Indices
 
-:::todo
-src="readmeImages/pic1.png" width="800"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/pic1.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={6}
+  targetWidth={'70%'}
+  figCaption={'Get Grid Indicies'}
+/>
 
 Given the floating point coordinates to evaluate, we need to compute the integer indices of the four closest grid points. The simplest way of doing this is casting to an `int` and then incrementing when you need the adjacent indicies. Remember that `computePerlin` takes in floating point coordinates from the Real Plane and that the grid of random vectors is defined for all pairs of **integers**.
 
@@ -112,9 +136,16 @@ Obtain four closest grid points
 
 #### Compute Offset Vectors
 
-:::todo
-src="readmeImages/pic2.png" width="800"
-:::
+
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/pic2.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={7}
+  targetWidth={'70%'}
+  figCaption={'Offset Vectors'}
+/>
 
 Using the coordinates of the four closest grid points and the input location, compute the four offset vectors from the grid points to the interest point. Do NOT normalize these offset vectors.
 
@@ -124,9 +155,15 @@ Compute the four offset vectors for each relevant grid point
 
 #### Compute Dot Products
 
-:::todo
-src="readmeImages/pic3.png" width="800"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/pic3.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={8}
+  targetWidth={'70%'}
+  figCaption={'Dot Products'}
+/>
 
 We have four offset vectors and can look up the corresponding random grid vector for each using `randVec`.
 
@@ -160,17 +197,30 @@ $$
 
 So now when $m = 0$ $y = y_1$, when $m = 1$ $y = y_2$, and for values in the middle we get a linear combination! We can represent this visually by graphing the interpolation function.
 
-:::todo
-src="readmeImages/image3.png" width="300"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/image3.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={9}
+  targetWidth={'70%'}
+  figCaption={'Linear Interpolation'}
+/>
 
 Where the line shows how the interpolation value changes as a function of the independent variable. Upon using this linear interpolation for our terrain generation, we get the following results.
 
-:::todo
-src="readmeImages/image12.png" height="300"
-src="readmeImages/image15.png" height="300"
-(Value Noise on the Left, Perlin on the Right)
-:::
+
+
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/image12.png', alt: 'TODO'},
+	{src: '/labs/lab7/image15.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={10}
+  targetWidth={'70%'}
+  figCaption={'Value Noise on the Left, Perlin Noise on the Right'}
+/>
 
 Hmm... it's a start at least.
 
@@ -192,25 +242,50 @@ $$
 
 The choice of easing function is a creative design decision, not one that can be analytically correct, for example you could choose this weird function if you really wanted
 
-:::todo
-src="readmeImages/image8.png" width="300"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/image8.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={11}
+  targetWidth={'70%'}
+  figCaption={'Funky Interpolation'}
+/>
 
-:::todo
-src="readmeImages/image13.PNG" width="300"
-src="readmeImages/image16.png" width="300"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/image13.png', alt: 'TODO'},
+	{src: '/labs/lab7/image16.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={12}
+  targetWidth={'70%'}
+  figCaption={'Value Noise on the Left, Perlin Noise on the Right'}
+/>
 
 Remember that we want to generate reasonable looking terrain. For that reason, we recommend using cubic easing, given by the formula $ease(x) = 3x^{2}-2x^{3} $, as it yields smooth results.
 
-:::todo
-src="readmeImages/image4.png" width="300"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/image4.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={13}
+  targetWidth={'70%'}
+  figCaption={'Cubic Interpolation'}
+/>
 
-:::todo
-src="readmeImages/image14.png" width="300"
-src="readmeImages/image17.png" width="300"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/image14.png', alt: 'TODO'},
+	{src: '/labs/lab7/image17.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={14}
+  targetWidth={'70%'}
+  figCaption={'Value Noise on the Left, Perlin Noise on the Right'}
+/>
+
 
 Feel free to try out your own easing function and show us any cool results! This [website](https://easings.net/) provides a cheat-sheet of common easing functions used in website styling (CSS) but can give you a general sense of the types of things easing functions can do.
 
@@ -224,9 +299,15 @@ Now that we have all our data, we need to combine it into one value representing
 
 The answer is to perform multiple interpolations and then compose them to get one final value.
 
-:::todo
-src="readmeImages/pic4.png" width="800"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/pic4.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={15}
+  targetWidth={'70%'}
+  figCaption={'Combining Interpolation'}
+/>
 
 Suppose we have the four values A, B, C, and D at their corresponding grid points.
 
@@ -244,9 +325,15 @@ Using your interpolation function to merge four values into a single value
 
 Now that we have a simple, bumpy terrain, we are going to add some visual detail by adding multiple copies of noise with different scales. This will replace the smooth unnatural hills with rugged mountains!
 
-:::todo
-src="readmeImages/fractalNoiseWireFrame.png" height=500
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/fractalNoiseWireFrame.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={16}
+  targetWidth={'70%'}
+  figCaption={'Example of Fractal Noise'}
+/>
 
 ### Scaling our Perlin Noise
 
@@ -258,9 +345,16 @@ Modify just the inputs to `computePerlin` and generate noise with a different sc
 
 ### What are Octaves
 
-:::todo
-src="readmeImages/Octave Noise Example.png" style="width: 100%;"
-:::
+
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/Octave Noise Example.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={17}
+  targetWidth={'70%'}
+  figCaption={'Octave Combination'}
+/>
 
 Now that we know how to scale the noise, the question is how much? Well we could pick any arbitrary amount to be honest. However, one technique which gives natural looking results is to increase the frequency by powers of two. By doubling the frequency we get the next "octave" of the noise (to people with some knowledge of music this may be familiar).
 
@@ -274,10 +368,16 @@ In the (compute height function) use multiple calls to the generate noise functi
 
 Now that the height map has been specified, we have some mountainous terrain but there is no color variation leading to a somewhat bland scene. To add some visual interest, we are going to introduce a per-vertex color based on the slope of the surrounding terrain. The end goal will be gray stone-line mountain slopes with white snow covering flat areas and peaks.
 
-:::todo
-src="readmeImages/normalsComputerd.png" style="width: 45%;"
-src="readmeImages/coloredTerrain.png" style="width: 45%;"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/normalsComputerd.png', alt: 'TODO'},
+	{src: '/labs/lab7/coloredTerrain.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={18}
+  targetWidth={'70%'}
+  figCaption={'Normals Computed on the Left, Color Added on the Right'}
+/>
 
 ::::task
 To start off switch `m_wireshade` to false in the constructor.
@@ -289,28 +389,53 @@ Your terrain should now appear solid white. This is because the normals are bein
 
 We are now faced with the problem of computing the normal for any given vertex. As the geometry is procedurally generated, we cannot use the same formulaic approach as we did for implicit geometry. Instead we need a dynamic algorithm for computing the normals given arbitary geometry. As we are looking for a mountain-like appearance, a simple, smooth surface should suffice as the height map itself describes the roughness. With this in mind, a simple local average should suffice to smooth out the surface.
 
-:::todo
-src="readmeImages/Normals1.png" style="width: 40%;"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/Normals1.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={19}
+  targetWidth={'70%'}
+  figCaption={'Normal Computation Step 1'}
+/>
 
 Start by considering a vertex $V$ surrounded by its eight neighbors $n_0$ through $n_7$.
 
-:::todo
-src="readmeImages/Normals2.png" style="width: 40%;"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/Normals2.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={20}
+  targetWidth={'70%'}
+  figCaption={'Normal Computation Step 2'}
+/>
 
 Begin by grouping the vertices in triangles such that all triangles have a corner in $V$,
 this creates triangles of the following form $(V, n_i, n_{i+1})$.
 
-:::todo
-src="readmeImages/Normals3.png" style="width: 40%;"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/Normals3.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={21}
+  targetWidth={'70%'}
+  figCaption={'Normal Computation Step 3'}
+/>
+
 
 To compute the normal for triangle $(V, n_i, n_{i+1})$, Take the cross product (math equation here) and then normalize the result.
 
-:::todo
-src="readmeImages/Normals4.png" style="width: 40%;"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/Normals4.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={22}
+  targetWidth={'70%'}
+  figCaption={'Normal Computation Step 4'}
+/>
 
 Now that we have the normals for each triangle, sum and normalize to find the final normal for $V$.
 
@@ -324,9 +449,15 @@ Now that we have the normal, we need to use this slope information to make verti
 
 To do this we are going to use our old friend, Interpolation! The first step is to get the mix factor. To do this take a dot product with the normal and a vector pointing directly up. The result will range from 1.0 when the slope is exactly horizontal to 0.0 when the slope is exactly vertical. We then use this value to interpolate between gray and white!
 
-:::todo
-src="readmeImages/image10.png" width="400"
-:::
+<ImageFigure
+  images={[
+	{src: '/labs/lab7/image10.png', alt: 'TODO'},
+	]}
+  alt={'TODO'}
+  figNumber={23}
+  targetWidth={'70%'}
+  figCaption={'Getting Interpolation Value'}
+/>
 
 ::::task
 Fill in Compute Color. Use a dot product with a vertical unit vector to interpolate between gray and white.
