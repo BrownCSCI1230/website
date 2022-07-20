@@ -104,14 +104,18 @@ Further reading: [forward and backward raytracing](https://www.scratchapixel.com
 In this lab, you will complete a single **function** which implements **Phong lighting**: it will produce an **output** RGBA color, given some **input** data.
 
 :::todo
-possibly include code fragment here
+include function stub here
 :::
 
-In order that you may focus solely on the lighting part of raytracing, you **will not** have to generate rays and obtain intersections. We will provide you with all the necessary data, e.g. intersection position, surface normals, and global parameters.
+The above function can be found in **`lightmodel.cpp`**. This is the _only_ file you have to modify.
+
+That said, we strongly recommend that you at least take a look at the rest of the stencil, particularly `param.h` and `main.cpp`. The former declares global parameters (discussed in [a later section](#global_parameters)), along with some of the data structures you'll be working with, and the latter gives you a broader-picture understanding of what you're implementing.
 
 ### It's Always Arrays
 
-Specifically, this data will come in the form of a **2D array of structs (each containing the necessary data)** with height and width equal to the final image we're expecting.
+In order that you may focus solely on the lighting part of raytracing, you **will not** have to generate rays and obtain intersections. We will provide you with all the necessary data, e.g. intersection position, surface normals, and global parameters.
+
+This data will come in the form of a **2D array of structs (each containing the necessary data)** with height and width equal to the final image we're expecting.
 
 Your function will work at the **pixel level**, and you will use it to map every element in this array to an output RGBA color.
 
