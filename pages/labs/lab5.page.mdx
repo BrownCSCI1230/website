@@ -26,10 +26,8 @@ However, when **rendering a scene**, we need the **final transformation matrices
 See the drawing below. Your goal is to tranform ```SceneData``` to ```RenderData```. Don't worry if you don't understand all the elements in the image, they'll be covered in this lab!
 
 <ImageFigure
-  src={'/labs/lab5/SceneVrsRender.png'}
-  alt={'TODO'}
-  width={700}
-  figureNumber={1}
+  images={[{ src: '/labs/lab5/SceneVrsRender.png', alt: 'TODO' }]}
+  figNumber={1}
   figureCaption={'Transforming SceneData into RenderData'}
 />
 
@@ -41,7 +39,7 @@ If you have started Ray 1, you might have noticed that one of the reasons Ray Tr
 Using a list to iterate through the primitives is a simple way of doing this and sufficient for the requirements of this course, but there isn't any reason this part of the ```RenderData``` __has__ to be a simple list. If you want to be fancy, there are more efficient ways of doing it (see accelerated data structures like Octee, BVH and KD-Tree covered in lectures).
 </details>
 
-## Understanding Scene Data
+## Scene Data
 
 Take a look at ```parser/SceneData.h```. In this file, you will find all the data structures you need to build a scene. This section will go over the conceptual aspects of the scene elements.
 
@@ -235,10 +233,8 @@ _Aside: A final transformation matrix is also called a **cumulative transformati
 Consider the graph below that represents four primitives in a scene (two spheres, one cube, one cone and a cylinder):
 
 <ImageFigure
-  src={'/labs/lab5/Parsing_Lab_Simple_Graph-2.png'}
-  alt={'TODO'}
-  width={700}
-  figureNumber={2}
+  images={[{ src: '/labs/lab5/Parsing_Lab_Simple_Graph-2.png', alt: 'TODO' }]}
+  figNumber={2}
   figureCaption={'Transformation Graph with 5 Primitives'}
 />
 
@@ -252,14 +248,12 @@ Write the final transformation matrix for the Cube, Cone and Cylinder.
     - Keep in mind that order matters when multiplying matricies!
 :::
 
-### A More Complex Transformation Graph
+#### A More Complex Transformation Graph
 Now, consider the graph below:
  
 <ImageFigure
-  src={'/labs/lab5/Parsing_Lab_City_Graph_v6.png'}
-  alt={'TODO'}
-  width={700}
-  figureNumber={3}
+  images={[{ src: '/labs/lab5/Parsing_Lab_City_Graph_v6.png', alt: 'TODO' }]}
+  figNumber={3}
   figureCaption={'Transformation Graph with 8 Primitives'}
 />
 Instead of transformation matricies ```M1```, ```M2```, etc. we have individual transformations such as Scaling, Translation and Rotation. These are written in the form ```S```, ```T``` and ```R``` followed by the parameters needed for each transformation. For example ```S(15,.1,1)``` scales by ```15``` in the x direction, by ```.1``` in the y direction and by ```1``` in the z direction. Note that Rotations have four parameters, like ```R(x, y, z, angle)```. The first three parameters describe the axis of rotation in terms of ```x```, ```y``` and ```z``` axes, and the last parameter is the angle of rotation in degrees.
@@ -287,17 +281,11 @@ In the previous exercise, you should have noticed that the same transformations 
 Consider how you might build the final transformation matricies from a scene graph using depth first search. Explain how your approach is better in terms of time complexity, and write pseudocode for it.
 :::
 
-## Creating Render Data
+## Render Data
 
 By now, you should know all about how we represent global, light, camera, primitive and transformation data.
 
 You will also implement a depth first search to generate the final transformation matrices for each primitive. To do this, you will be filling in out a struct called CS123SceneMetaData in `CS123SceneLoader::load`, based off of data found in the scene provided by a SceneData struct (SceneData.h).
-
-### Understanding Scene Data
-
-Throughout this course, we will use a CSCI1230-specific scene file format to describe a scene. Our scene file contains necessary information of a scene, namely global data, camera data, light data, and object data. You should refer to this document to understand scene files and scene graphs in detail.
-
-Throughout this course, we will use a CSCI1230-specific scene file format to describe a scene. Our scene file contains necessary information of a scene, namely global data, camera data, light data, and object data. You should refer to this document to understand scene files and scene graphs in detail.
 
 ### Implementing CS123SceneLoader::load()
   **Explain the sencil structure, what files do the parsing, what functions to fill in.**
