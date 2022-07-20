@@ -2,7 +2,7 @@ import React from 'react'
 
 export { ImageFigure }
 
-function ImageFigure({ images, targetWidth = '75%', figNumber, figCaption, children }) {
+function ImageFigure({ images, targetWidth = '100%', figNumber, figCaption, children }) {
   return (
     <figure id={`figure-${figNumber}`} className="image-wrapper">
       <div className="image-grid" style={{ '--target-width': targetWidth }}>
