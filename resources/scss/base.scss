@@ -7,14 +7,19 @@
 
 // Fixme: combine font imports into one url for performance
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,335;0,515;0,545;0,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;0,700;1,400;1,700;1,700&display=swap');
+
+@import url('https://use.typekit.net/oac4ohm.css');
+
+@import '../fonts/darkmode-off.css';
+@import '../fonts/darkmode-on.css';
 
 // ================== Responsiveness
 
 $critical-b: 370;
 $low-b: 600;
-$middle-b: 920;
-$high-b: 1240;
+$middle-b: 1000;
+$high-b: 1400;
 
 $breakpoint: $low-b * 1px;
 
@@ -30,30 +35,55 @@ $breakpoint: $low-b * 1px;
 
 // ================== Variables
 
-$space-1: 15;
-$space-2: 10;
+:root {
+  $ground: rgb(31, 31, 31);
+  $text: hsl(24, 50%, 94%);
+
+  --ground: #{$ground};
+  --text: #{$text};
+  --font: 'Darkmode On';
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    $ground: hsl(24, 85%, 97.5%);
+    $text: rgb(31, 31, 31);
+
+    --ground: #{$ground};
+    --text: #{$text};
+    --font: 'Darkmode Off';
+  }
+}
+
+$ground: var(--ground);
+$text: var(--text);
+
+$border-radius: 10px;
+
+$space-1: 20;
+$space-2: 20;
 $space: $space-1 + $space-2;
 $space-px: $space * 1px;
-$toc-fr: 4;
+$toc-fr: 5;
 $page-fr: 13;
 $toc-bonus-width: $toc-fr * 1;
 $page-bonus-width: $page-fr * 1;
 
-$nav-bar-background-color: hsl(0, 0%, 18%);
-$html-background-color: hsl(0, 0%, 12%);
-$page-background-color: hsl(0, 0%, 16%);
-$main-background-color: hsl(0, 0%, 14%);
-$code-background-color: hsl(0, 0%, 11%);
+$nav-bar-background-color: $ground;
+$html-background-color: $ground;
+$page-background-color: $ground;
+$main-background-color: transparent;
+$code-background-color: $ground;
 
-$nav-bar-hover-background-color: color.mix($nav-bar-background-color, $html-background-color, 25%);
-$nav-bar-box-shadow: 0 0 8px rgba(0, 0, 0, 0.2), 0 0 16px rgba(0, 0, 0, 0.2), 0 0 32px rgba(0, 0, 0, 0.2);
-$logo-box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2), 4px 4px 16px 0 rgba(0, 0, 0, 0.2);
+$nav-bar-hover-background-color: $ground;
+$nav-bar-box-shadow: none; // 0 0 8px rgba(0, 0, 0, 0.2), 0 0 16px rgba(0, 0, 0, 0.2), 0 0 32px rgba(0, 0, 0, 0.2);
+$logo-box-shadow: none; // 4px 4px 8px 0 rgba(0, 0, 0, 0.2), 4px 4px 16px 0 rgba(0, 0, 0, 0.2);
 
 $background-dot-spacing: 30px;
-$background-dot-color: rgb(50, 50, 50);
+$background-dot-color: transparent;
 $background-dot-size: 1.5px;
 
-$nav-bar-height-value: 55;
+$nav-bar-height-value: 60;
 $nav-bar-height: $nav-bar-height-value * 1px;
 $nav-bar-padding: 0 $space-1 * 1px;
 $nav-item-padding: 2px 8px 0;
@@ -62,21 +92,24 @@ $scroll-margin-top: ($nav-bar-height-value + $space) * 1px;
 
 $page-margin: 0 auto;
 $page-padding: 0;
-$page-max-width: linear($middle-b, $middle-b, $high-b, $middle-b + $toc-bonus-width + $page-bonus-width);
+$page-max-width: $middle-b * 1px;
 
-$toc-padding-top: $space-px;
-$toc-padding-right: $space-px;
-$toc-padding-bottom: $space-px;
-$toc-padding-left: linear($middle-b, $space, $high-b, ($space + $toc-bonus-width));
-$toc-padding-left-negative: linear($middle-b, -$space, $high-b, -($space + $toc-bonus-width));
+$toc-padding-top: 40px;
+$toc-padding-right: 40px;
+$toc-padding-bottom: $toc-padding-top;
+$toc-padding-left: 40px;
+$toc-padding-left-negative: -40px;
 $toc-padding: $toc-padding-top $toc-padding-right $toc-padding-bottom $toc-padding-left;
 
-$main-padding-top: $space-px;
-$main-padding-right: linear($middle-b, $space, $high-b, ($space + $page-bonus-width));
-$main-padding-right-negative: linear($middle-b, -$space, $high-b, -($space + $page-bonus-width));
-$main-padding-bottom: $space-px;
-$main-padding-left: $space-px;
+$main-padding-top: 40px;
+$main-padding-right: 40px;
+$main-padding-right-negative: -40px;
+$main-padding-bottom: $main-padding-top;
+$main-padding-left: 40px;
 $main-padding: $main-padding-top $main-padding-right $main-padding-bottom $main-padding-left;
+
+$img-padding: $border-radius;
+$img-border-radius: $border-radius;
 
 // ================== Logo
 
@@ -93,42 +126,40 @@ $logo-color: white;
 
 $logo-top: 0;
 $logo-left: linear($middle-b, 0, $high-b, -$space-1 - 0.5 * $high-logo-column-width);
-$logo-height: linear($middle-b, $nav-bar-height-value, $high-b, $nav-bar-height-value + 10);
+$logo-height: linear($middle-b, $nav-bar-height-value, $high-b, $nav-bar-height-value + 6);
 $logo-width: 4em; // depends implicitly on $logo-font-size
 
 // ================== Fonts
 
-$nav-item-font-family: 'Inter Var', 'Inter', ui-sans-serif, sans-serif;
+$nav-item-font-family: var(--font), ui-sans-serif, sans-serif;
 $nav-item-font-size: linear($critical-b, 12, $high-b, 14);
 $nav-item-font-weight: 600;
-$nav-item-line-height: 1.8;
-$nav-item-color: hsl(0, 0%, 90%);
+$nav-item-line-height: 1.4;
+$nav-item-color: $text;
 
-$header-font-family: 'Inter Var', 'Inter', ui-sans-serif, sans-serif;
-$header-font-sizes: 30px 25px 21px 18px 17px 16px;
-$header-font-weights: 545 515 515 515 515 515;
-$header-line-height: 1.8;
-$header-color: hsl(0, 0%, 95%);
+$header-font-family: var(--font), ui-sans-serif, sans-serif;
+$header-font-sizes: 30px 26px 22px 20px 18px 16px;
+$header-font-weights: 700 700 700 700 700 700;
+$header-line-height: 1.4;
+$header-color: $text;
 
 $low-body-font-size: 14;
-$body-font-family: 'Inter Var', monospace, ui-sans-serif, sans-serif;
-$body-font-size: linear($critical-b, 15, $low-b, $low-body-font-size);
-$body-font-weight: 335;
-$body-line-height: 1.8;
-$body-color: hsl(0, 0%, 88%);
-$body-font-weight-bold: 600;
-$body-color-bold: hsl(0, 0%, 92%);
-$body-letter-spacing-bold: unset;
+$body-font-family: var(--font), ui-sans-serif, sans-serif;
+$body-font-size: 14px;
+$body-font-weight: 400;
+$body-line-height: 26px;
+$body-color: $text;
+$body-font-weight-bold: 700;
 
-$link-color: hsl(212, 100%, 67%);
-$code-inline-link-color: $link-color;
+$link-color: $text;
+$code-inline-link-color: $text;
 
 $toc-font-size: 11px;
 $toc-font-weight: $body-font-weight;
-$toc-line-height: $low-body-font-size * $body-line-height * 1px;
-$toc-color: color.change($header-color, $alpha: 0.6);
+$toc-line-height: 26px;
+$toc-color: $text;
 $toc-hover-background-color: hsla(220, 90%, 75%, 0.1);
-$toc-hover-color: $header-color;
+$toc-hover-color: $text;
 
 $code-font-family: 'Roboto Mono', ui-monospace, monospace;
 $code-block-font-size: 13px;
@@ -137,29 +168,27 @@ $code-block-line-height: $body-line-height;
 
 // ================== Other
 
-$border-radius: 10px;
-
-$nav-bar-border-color: color.mix($header-color, $nav-bar-background-color, 12%);
-$page-divider-color: color.mix($header-color, $page-background-color, 12%);
-$page-border-color: $page-divider-color;
-$header-edge-color: $page-divider-color;
-$table-edge-color: $page-divider-color;
-$toc-edge-color: color.mix($header-color, $page-background-color, 10%);
+$nav-bar-border-color: transparent;
+$page-divider-color: transparent;
+$page-border-color: transparent;
+$header-edge-color: transparent;
+$table-edge-color: transparent;
+$toc-edge-color: transparent;
 
 $table-cell-padding: 8px 16px;
 $table-font-size: $body-font-size;
-$table-header-row-background-color: color.mix($main-background-color, $code-background-color, 25%);
-$table-body-row-alt-background-color: color.mix($main-background-color, $code-background-color, 50%);
+$table-header-row-background-color: $ground;
+$table-body-row-alt-background-color: $ground;
 
 $code-block-border-radius: $border-radius;
 $code-block-padding-vert: 14px;
 $code-block-padding-horz: 20px;
 
-$code-inline-padding: 0px 4px 1px 5px;
+$code-inline-padding: 2px 5px;
 $code-inline-border-radius: 3px;
-$code-inline-color: hsl(31, 90%, 55%);
-$code-inline-background-color: color.change($html-background-color, $alpha: 0.8);
-$code-inline-color-callout: hsl(31, 90%, 55%);
+$code-inline-color: $text;
+$code-inline-background-color: hsla(0, 0%, 50%, 0.2);
+$code-inline-color-callout: $text;
 $code-inline-background-color-callout: rgba(0, 0, 0, 40%);
 
 $code-highlight-edge-width: 4px;
@@ -168,10 +197,9 @@ $code-highlight-background-color: hsla(212, 70%, 70%, 0.1);
 
 $blockquote-edge-width: 4px;
 $blockquote-padding-left: $main-padding-left - $blockquote-edge-width + 1px;
-$blockquote-body-color: color.scale($body-color, $alpha: -20%);
-$blockquote-body-color-bold: color.scale($body-color-bold, $alpha: -20%);
+$blockquote-body-color: $body-color;
 
-$main-inner-spacing-vert: 18px;
+$main-inner-spacing-vert: 20px;
 
 $list-padding-left: 32px;
 $list-item-padding-left: 4px;
@@ -187,9 +215,8 @@ $todo-red-dark: hsl(0, 100%, 45%);
 // ================== Mixins
 
 @mixin header-text($header-level) {
-  padding-bottom: 0.3em;
-
-  border-bottom: 1px solid $header-edge-color;
+  margin-bottom: 1 * $main-inner-spacing-vert !important;
+  padding-bottom: 0.25em;
 
   font-family: $header-font-family;
   font-size: nth($header-font-sizes, $header-level);
@@ -198,12 +225,12 @@ $todo-red-dark: hsl(0, 100%, 45%);
   color: $header-color;
 }
 
-@mixin body-text($color: $body-color, $color-bold: $body-color-bold) {
+@mixin body-text() {
   font-family: $body-font-family;
   font-size: $body-font-size;
   font-weight: $body-font-weight;
   line-height: $body-line-height;
-  color: $color;
+  color: $body-color;
 
   i,
   em {
@@ -213,8 +240,6 @@ $todo-red-dark: hsl(0, 100%, 45%);
   b,
   strong {
     font-weight: $body-font-weight-bold;
-    letter-spacing: $body-letter-spacing-bold;
-    color: $color-bold;
   }
 }
 
@@ -248,7 +273,7 @@ $todo-red-dark: hsl(0, 100%, 45%);
 
   &:focus,
   &:hover {
-    text-decoration-color: color.scale($color, $alpha: 0%);
+    text-decoration-color: $color;
     transition: text-decoration-color 0s, background-color 0s, color 0s;
 
     background-color: $hover-background-color;
@@ -259,6 +284,9 @@ $todo-red-dark: hsl(0, 100%, 45%);
 // ================== General styles
 
 * {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em !important;
+
   -webkit-font-smoothing: subpixel-antialiased;
 
   box-sizing: border-box;
@@ -342,7 +370,6 @@ th {
 
 th {
   font-weight: $body-font-weight-bold;
-  letter-spacing: $body-letter-spacing-bold;
 }
 
 thead {

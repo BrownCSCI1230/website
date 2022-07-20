@@ -1,0 +1,134 @@
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_Blk.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: italic;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_BlkIt.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_XBd.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: italic;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_XBdIt.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_Bd.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_BdIt.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_SBd.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_SBdIt.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_Md.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_MdIt.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_Rg.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_It.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_Lt.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: italic;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_LtIt.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_Th.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: italic;
+  font-weight: 200;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_ThIt.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_Hair.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Darkmode On';
+  font-style: italic;
+  font-weight: 100;
+  font-display: swap;
+  src: url('/font-files/DarkmodeOn_HairIt.ttf') format('truetype');
+}

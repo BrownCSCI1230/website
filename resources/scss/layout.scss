@@ -121,7 +121,7 @@ body {
   line-height: $logo-line-height;
   color: $logo-color;
 
-  @keyframes rollBefore {
+  @keyframes rollIn {
     from {
       transform: translateY(-100%);
     }
@@ -130,7 +130,7 @@ body {
     }
   }
 
-  @keyframes rollAfter {
+  @keyframes rollOut {
     from {
       transform: translateY(0);
     }
@@ -142,6 +142,7 @@ body {
   @mixin logo-char($background-color, $character) {
     position: relative;
     overflow: hidden;
+    color: white;
     background-color: $background-color;
 
     &::before,
@@ -152,33 +153,40 @@ body {
       text-align: center;
     }
 
+    &::before {
+      transform: translateY(-100%);
+    }
+
     &.roll {
       &::before {
-        animation: rollBefore ease-in-out var(--duration) both;
+        animation: rollIn ease-in-out var(--duration) forwards;
       }
       &::after {
-        animation: rollAfter ease-in-out var(--duration) both;
+        animation: rollOut ease-in-out var(--duration) forwards;
       }
     }
   }
 
+  $saturation-scale: 1.08;
+  $lightness-scale: 1.02;
+
   > #a {
-    @include logo-char(hsl(355, 60%, 57%), 'C');
+    @include logo-char(hsl(0, (62 * $saturation-scale) * 1%, (55 * $lightness-scale) * 1%), 'C');
   }
   > #b {
-    @include logo-char(hsl(24, 73%, 58%), 'S');
+    @include logo-char(hsl(28, (84 * $saturation-scale) * 1%, (52 * $lightness-scale) * 1%), 'S');
   }
   > #c {
-    @include logo-char(hsl(49, 73%, 58%), '1');
+    @include logo-char(hsl(49, (90 * $saturation-scale) * 1%, (52 * $lightness-scale) * 1%), '1');
   }
   > #d {
-    @include logo-char(hsl(95, 44%, 55%), '2');
+    @include logo-char(hsl(100, (55 * $saturation-scale) * 1%, (46.5 * $lightness-scale) * 1%), '2');
   }
   > #e {
-    @include logo-char(hsl(190, 47%, 46%), '3');
+    @include logo-char(hsl(195, (55 * $saturation-scale) * 1%, (42.5 * $lightness-scale) * 1%), '3');
   }
   > #f {
-    @include logo-char(hsl(255, 30%, 54%), '0');
+    @include logo-char(hsl(250, (39 * $saturation-scale) * 1%, (51 * $lightness-scale) * 1%), '0');
   }
 }
 
@@ -343,10 +351,6 @@ main {
       counter-reset: h#{$i + 1};
       position: relative;
 
-      @if ($i != 1) {
-        margin-top: $main-inner-spacing-vert * 1.5;
-      }
-
       > a {
         @include anchor-text($header-color);
 
@@ -393,7 +397,8 @@ main {
 
     figcaption,
     p {
-      @include body-text($blockquote-body-color, $blockquote-body-color-bold);
+      @include body-text;
+      color: $blockquote-body-color;
     }
   }
 
@@ -425,17 +430,18 @@ main {
 
     > .image-grid {
       display: grid;
-      gap: math.div($main-inner-spacing-vert, 2);
+      gap: $main-inner-spacing-vert;
       grid-template: minmax(0, 1fr) / repeat(auto-fit, minmax(0, 1fr));
       place-items: stretch;
 
-      margin-bottom: math.div($main-inner-spacing-vert, 2);
+      margin-bottom: $main-inner-spacing-vert;
     }
 
     img {
-      object-fit: contain;
-
+      padding: $img-padding;
+      border-radius: $border-radius;
       background-color: white;
+      object-fit: contain;
     }
 
     > * {
@@ -448,10 +454,7 @@ main {
     border: 1px solid $border-color;
 
     > * {
-      @include body-text(
-        color.scale($header-color, $lightness: 15%),
-        color.scale($header-color, $lightness: 30%)
-      );
+      @include body-text;
     }
 
     :not(pre) > code {
@@ -485,8 +488,7 @@ main {
         margin-bottom: $main-inner-spacing-vert;
 
         font-weight: $body-font-weight-bold;
-        letter-spacing: $body-letter-spacing-bold;
-        color: color.scale($header-color, $lightness: 50%);
+        color: $header-color;
       }
     }
   }
