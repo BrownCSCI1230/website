@@ -1,66 +1,51 @@
-import ReactDOM from 'react-dom'
 import React from 'react'
-import { useClientRouter } from 'vite-plugin-ssr/client/router'
+import ReactDOM from 'react-dom'
 import { NavBar } from '../resources/components/NavBar'
 import { PageLayout } from '../resources/components/PageLayout'
 
-const { hydrationPromise } = useClientRouter({
-  async render(pageContext) {
-    const { Page, pageProps } = pageContext
+export const clientRouting = true
+export { render }
+export { onHydrationEnd }
+export { onPageTransitionStart }
+export { onPageTransitionEnd }
 
-    const documentProps = pageContext.pageExports.documentProps
-    const title = documentProps ? documentProps.title + ' | CSCI 1230' : 'CSCI 1230'
+async function render(pageContext) {
+  const { Page, documentProps } = pageContext.exports
+  const title = documentProps ? documentProps.title + ' | CSCI 1230' : 'CSCI 1230'
 
-    const page = (
-      <React.StrictMode>
-        <NavBar />
-        <PageLayout hideTOC={documentProps.hideTOC}>
-          <Page {...(pageProps ?? {})} />
-        </PageLayout>
-      </React.StrictMode>
-    )
+  const page = (
+    <React.StrictMode>
+      <NavBar />
+      <PageLayout hideTOC={documentProps.hideTOC}>
+        <Page />
+      </PageLayout>
+    </React.StrictMode>
+  )
 
-    const container = document.getElementById('root')
+  const container = document.getElementById('root')
 
-    // `pageContext.isHydration` is set by `vite-plugin-ssr` and is `true` when the page
-    // is already rendered to HTML.
-    if (pageContext.isHydration) {
-      // We hydrate the first page. (Since we do SSR, the first page is already
-      // rendered to HTML and we merely have to hydrate it.)
-      ReactDOM.hydrate(page, container)
-    } else {
-      // We render a new page. (When the user navigates to a new page.)
-      ReactDOM.render(page, container)
-      document.title = title
-    }
-  },
+  // `pageContext.isHydration` is set by `vite-plugin-ssr` and is `true` when the page
+  // is already rendered to HTML.
+  if (pageContext.isHydration) {
+    // We hydrate the first page. (Since we do SSR, the first page is already
+    // rendered to HTML and we merely have to hydrate it.)
+    ReactDOM.hydrate(page, container)
+  } else {
+    // We render a new page. (When the user navigates to a new page.)
+    ReactDOM.render(page, container)
+    document.title = title
+  }
+}
 
-  // If `ensureHydration: true` then `vite-plugin-ssr` ensures that the first render is always
-  // a hydration. (In other words, the hydration process is never interrupted — even if the
-  // user clicks on a link before the hydration started. Default value: `false`.)
-  // If we use Vue, we need `ensureHydration: true` to avoid "Hydration Mismatch" errors.
-  // If we use React, we can leave `ensureHydration: false` for a slight performance improvement.
-  ensureHydration: false,
-
-  // See `Link prefetching` section below. Default value: `false`.
-  prefetchLinks: true,
-
-  // To create custom page transition animations
-  onTransitionStart,
-  onTransitionEnd,
-})
-
-hydrationPromise.then(() => {
+function onHydrationEnd() {
   console.log('Hydration finished; page is now interactive.')
-})
+}
 
-function onTransitionStart() {
+function onPageTransitionStart() {
   console.log('Page transition start')
-  // For example:
   document.body.classList.add('page-transition')
 }
-function onTransitionEnd() {
+function onPageTransitionEnd() {
   console.log('Page transition end')
-  // For example:
   document.body.classList.remove('page-transition')
 }

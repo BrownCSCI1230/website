@@ -4,22 +4,17 @@ import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr'
 import { NavBar } from '../resources/components/NavBar'
 import { PageLayout } from '../resources/components/PageLayout'
 
-export { passToClient, render }
-
-// Tells `vite-plugin-ssr` to make `pageContext.pageProps` available in the browser
-const passToClient = ['pageProps']
+export { render }
 
 function render(pageContext) {
-  const { Page, pageProps } = pageContext
-
-  const documentProps = pageContext.pageExports.documentProps ?? pageContext.documentProps
+  const { Page, documentProps } = pageContext.exports
   const title = documentProps ? documentProps.title + ' | CSCI 1230' : 'CSCI 1230'
 
   const pageHtml = ReactDOMServer.renderToString(
     <React.StrictMode>
       <NavBar />
       <PageLayout hideTOC={documentProps.hideTOC}>
-        <Page {...(pageProps ?? {})} />
+        <Page />
       </PageLayout>
     </React.StrictMode>
   )
