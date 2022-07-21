@@ -7,10 +7,25 @@
 
 // ================== Variables
 
-$code-line-number-width: 4ch;
+$code-block-border-radius: $border-radius;
+$code-block-padding-vert: $medium-space;
+$code-block-padding-horz: $medium-space;
 
-$code-block-white: #d4d4d4;
-$code-block-gray: #808080;
+$code-highlight-edge-width: 4px;
+$code-highlight-edge-color: hsl(212, 70%, 55%);
+$code-highlight-background-color: hsla(212, 70%, 70%, 0.1);
+
+$code-line-number-width: 5ch;
+
+$code-inline-padding: 1px 4px;
+$code-inline-border-radius: 2px;
+$code-inline-color: $text;
+$code-inline-background-color: $less-faint;
+$code-inline-color-callout: $text;
+
+$code-background-color: $code-background;
+$code-block-white: hsl(0, 0%, 90%);
+$code-block-gray: hsl(0, 0%, 45%);
 $code-line-number-color: color.mix($code-block-white, $code-block-gray, 25%);
 
 // ================== Code Blocks
@@ -25,7 +40,7 @@ pre {
   @media only screen and (max-width: $breakpoint) {
     border-radius: 0;
     margin-left: -$main-padding-left;
-    margin-right: $main-padding-right-negative;
+    margin-right: -$main-padding-right;
   }
 
   background: $code-background-color;

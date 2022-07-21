@@ -10,14 +10,17 @@ const navItems = [
   { text: 'Projects', href: '/projects' },
 ]
 
-function NavBar() {
+function NavBar({ url }) {
   return (
     <nav id="nav-bar">
       <div id="nav-bar-inner">
         <Logo />
         <div id="nav-items" className="no-select">
           {navItems.map((navItem) => (
-            <a key={navItem.text} href={navItem.href} className="nav-item">
+            <a
+              key={navItem.text}
+              href={navItem.href}
+              className={'nav-item' + (navItem.href === url ? ' active' : '')}>
               {navItem.text}
             </a>
           ))}

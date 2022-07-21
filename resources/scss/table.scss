@@ -1,0 +1,32 @@
+@use 'sass:color';
+@use 'sass:math';
+
+@import 'base.scss';
+
+table {
+  min-width: 0;
+  max-width: 100%;
+
+  border-collapse: collapse;
+
+  font-size: $table-font-size;
+}
+
+td,
+th {
+  padding: $table-cell-padding;
+
+  border: 1px solid $table-border-color;
+}
+
+th {
+  font-weight: $body-font-weight-bold;
+}
+
+thead {
+  background-color: $table-header-row-background-color;
+}
+
+tbody > :nth-child(even) {
+  background-color: $table-body-row-alt-background-color;
+}

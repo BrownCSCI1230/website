@@ -189,7 +189,7 @@ Many different methods of tone-mapping exist, each producing images with **uniqu
 Mapping can either be globally-consistent across the whole image (e.g. uniform scaling), or be locally-adaptive, so that overly-bright and overly-dark areas can be shown with minimal loss of detail. Images #3 and #4 below show how a locally-adaptive form of tone-mapping can improve the visual clarity of the final image.
 
 <ImageFigure
-  images={[{ src: '/labs/lab6/toneMapping.png', alt: 'TODO' }]}
+  images={[{ src: '/labs/lab6/toneMapping.jpg', alt: 'TODO' }]}
   figNumber={5}
 >
 
@@ -216,7 +216,7 @@ Here it is in full!
 :::success
 
 $$
-  \color{white} \large I_\lambda = k_a O_{a\lambda} + \sum_{i = 1}^{m} f_\text{att} I_{\lambda,i} \left[ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) + k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n \right]
+  \large I_\lambda = k_a O_{a\lambda} + \sum_{i = 1}^{m} f_\text{att} I_{\lambda,i} \left[ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) + k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n \right]
 $$
 
 :::
@@ -265,7 +265,7 @@ A decent image of ambient light alone
 :::
 
 $$
-  \newcommand{\highlight}[1]{\colorbox{LimeGreen}{$\color{black}\displaystyle#1$}}
+  \newcommand{\highlight}[1]{\colorbox{yellow}{$\color{black}\displaystyle#1$}}
 
   \color{gray} \large I_\lambda = \highlight{ k_a O_{a\lambda} } + \sum_{i = 1}^{m} f_\text{att} I_{\lambda,i} \left[ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) + k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n \right]
 $$
@@ -289,7 +289,7 @@ A decent image of diffuse light alone
 :::
 
 $$
-  \newcommand{\highlight}[1]{\colorbox{LimeGreen}{$\color{black}\displaystyle#1$}}
+  \newcommand{\highlight}[1]{\colorbox{yellow}{$\color{black}\displaystyle#1$}}
 
   \color{gray} \large I_\lambda = k_a O_{a\lambda} + \highlight{ \sum_{i = 1}^{m} f_\text{att} I_{\lambda,i} } \left[ \highlight{ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) } + k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n \right]
 $$
@@ -335,7 +335,7 @@ A decent image of specular light alone
 :::
 
 $$
-  \newcommand{\highlight}[1]{\colorbox{LimeGreen}{$\color{black}\displaystyle#1$}}
+  \newcommand{\highlight}[1]{\colorbox{yellow}{$\color{black}\displaystyle#1$}}
 
   \color{gray} \large I_\lambda = k_a O_{a\lambda} + \highlight{ \sum_{i = 1}^{m} f_\text{att} I_{\lambda,i} } \left[ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) + \highlight{ k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n } \right]
 $$
@@ -365,7 +365,7 @@ In your Phong lighting function, **add the specular term to the return value**. 
 ### Attenuation
 
 $$
-  \newcommand{\highlight}[1]{\colorbox{LimeGreen}{$\color{black}\displaystyle#1$}}
+  \newcommand{\highlight}[1]{\colorbox{yellow}{$\color{black}\displaystyle#1$}}
 
   \color{gray} \large I_\lambda = k_a O_{a\lambda} + \sum_{i = 1}^{m} \highlight{ f_\text{att} }  I_{\lambda,i}\left[ k_d O_{d\lambda} \left( \bf\hat{N} \cdot \bf\hat{L}_i \right) + k_s O_{s\lambda} \left( \bf\hat{R}_i \cdot \bf\hat{V} \right)^n \right]
 $$

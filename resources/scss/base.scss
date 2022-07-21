@@ -7,7 +7,7 @@
 
 // Fixme: combine font imports into one url for performance
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;0,700;1,400;1,700;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,350;0,700;1,350;1,700&display=swap');
 
 @import url('https://use.typekit.net/oac4ohm.css');
 
@@ -18,8 +18,8 @@
 
 $critical-b: 370;
 $low-b: 600;
-$middle-b: 1000;
-$high-b: 1400;
+$middle-b: 950;
+$high-b: 1300;
 
 $breakpoint: $low-b * 1px;
 
@@ -33,83 +33,154 @@ $breakpoint: $low-b * 1px;
   }
 }
 
-// ================== Variables
+// ================== Dark Mode / Light Mode
+
+$line-percent: 20%;
+$less-faint-percent: 0.09;
+$faint-percent: 0.04;
 
 :root {
-  $ground: rgb(31, 31, 31);
-  $text: hsl(24, 50%, 94%);
+  $ground: hsl(0, 0%, 13%);
+  $text: hsl(25, 9%, 86%);
+  $link: hsl(216, 100%, 72%);
+  $line: color.mix($text, $ground, $line-percent);
+  $faint: color.change($text, $alpha: $faint-percent);
+  $less-faint: color.change($text, $alpha: $less-faint-percent);
 
   --ground: #{$ground};
   --text: #{$text};
+  --link: #{$link};
   --font: 'Darkmode On';
+  --extreme: black;
+  --opposite: white;
+
+  --line: #{$line};
+  --faint: #{$faint};
+  --less-faint: #{$less-faint};
+
+  --task: hsl(212, 48%, 16%);
+  --warning: hsl(39, 47%, 16%);
+  --success: hsl(120, 31%, 15%);
+  --error: hsl(359, 45%, 16%);
+
+  --task-line: hsl(212, 48%, 36%);
+  --warning-line: hsl(39, 47%, 36%);
+  --success-line: hsl(120, 31%, 35%);
+  --error-line: hsl(359, 45%, 36%);
+
+  --code-background: hsl(0, 0%, 9.5%);
+  --blue-highlight: hsl(212, 50%, 34%);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    $ground: hsl(24, 85%, 97.5%);
-    $text: rgb(31, 31, 31);
+    $ground: hsl(25, 100%, 97%);
+    $text: hsl(0, 0%, 0%);
+    $link: hsl(224, 100%, 48%);
+    $line: color.mix($text, $ground, $line-percent);
+    $faint: color.change($text, $alpha: $faint-percent);
+    $less-faint: color.change($text, $alpha: $less-faint-percent);
 
     --ground: #{$ground};
     --text: #{$text};
+    --link: #{$link};
     --font: 'Darkmode Off';
+    --extreme: white;
+    --opposite: black;
+
+    --line: #{$line};
+    --faint: #{$faint};
+    --less-faint: #{$less-faint};
+
+    --task: hsl(212, 91%, 93%);
+    --warning: hsl(39, 96%, 90%);
+    --success: hsl(120, 40%, 88%);
+    --error: hsl(359, 90%, 90%);
+
+    --task-line: hsl(212, 91%, 60%);
+    --warning-line: hsl(39, 96%, 58%);
+    --success-line: hsl(120, 40%, 55%);
+    --error-line: hsl(359, 90%, 58%);
+
+    --code-background: hsl(0, 0%, 13%);
+    --blue-highlight: hsl(201, 82%, 80%);
   }
 }
 
 $ground: var(--ground);
 $text: var(--text);
+$link: var(--link);
+$font: var(--font);
+
+$line: var(--line);
+$faint: var(--faint);
+$less-faint: var(--less-faint);
+
+$extreme: var(--extreme);
+$opposite: var(--opposite);
+
+$task: var(--task);
+$warning: var(--warning);
+$success: var(--success);
+$error: var(--error);
+
+$task-line: var(--task-line);
+$warning-line: var(--warning-line);
+$success-line: var(--success-line);
+$error-line: var(--error-line);
+
+$code-background: var(--code-background);
+$blue-highlight: var(--blue-highlight);
+
+$medium-space-value: 20;
+$medium-space: $medium-space-value * 1px;
+$cell-padding-vert: $medium-space * 0.5;
+$cell-padding-horz: $medium-space;
+
+// ================== Variables
 
 $border-radius: 10px;
+$nav-bar-padding-horz: 20px;
+$page-padding-horz: 20px;
+$page-padding-vert: 20px;
 
-$space-1: 20;
-$space-2: 20;
-$space: $space-1 + $space-2;
-$space-px: $space * 1px;
 $toc-fr: 5;
-$page-fr: 13;
+$page-fr: 14;
 $toc-bonus-width: $toc-fr * 1;
 $page-bonus-width: $page-fr * 1;
 
 $nav-bar-background-color: $ground;
 $html-background-color: $ground;
 $page-background-color: $ground;
-$main-background-color: transparent;
-$code-background-color: $ground;
 
-$nav-bar-hover-background-color: $ground;
-$nav-bar-box-shadow: none; // 0 0 8px rgba(0, 0, 0, 0.2), 0 0 16px rgba(0, 0, 0, 0.2), 0 0 32px rgba(0, 0, 0, 0.2);
-$logo-box-shadow: none; // 4px 4px 8px 0 rgba(0, 0, 0, 0.2), 4px 4px 16px 0 rgba(0, 0, 0, 0.2);
+$nav-bar-hover-background-color: $blue-highlight;
 
 $background-dot-spacing: 30px;
-$background-dot-color: transparent;
+$background-dot-color: transparent; //rgba(108, 108, 108, 0.5);
 $background-dot-size: 1.5px;
 
 $nav-bar-height-value: 60;
 $nav-bar-height: $nav-bar-height-value * 1px;
-$nav-bar-padding: 0 $space-1 * 1px;
+$nav-bar-padding: 0 $nav-bar-padding-horz;
 $nav-item-padding: 2px 8px 0;
 
-$scroll-margin-top: ($nav-bar-height-value + $space) * 1px;
+$scroll-margin-top: $nav-bar-height + $medium-space;
 
 $page-margin: 0 auto;
 $page-padding: 0;
 $page-max-width: $middle-b * 1px;
 
-$toc-padding-top: 40px;
-$toc-padding-right: 40px;
+$toc-padding-top: $medium-space * 1.5;
+$toc-padding-right: $medium-space * 1.5;
 $toc-padding-bottom: $toc-padding-top;
-$toc-padding-left: 40px;
-$toc-padding-left-negative: -40px;
+$toc-padding-left: $toc-padding-right;
 $toc-padding: $toc-padding-top $toc-padding-right $toc-padding-bottom $toc-padding-left;
 
-$main-padding-top: 40px;
-$main-padding-right: 40px;
-$main-padding-right-negative: -40px;
+$main-padding-top: $medium-space * 1.5;
+$main-padding-right: $medium-space * 1.5;
 $main-padding-bottom: $main-padding-top;
-$main-padding-left: 40px;
+$main-padding-left: $main-padding-right;
 $main-padding: $main-padding-top $main-padding-right $main-padding-bottom $main-padding-left;
-
-$img-padding: $border-radius;
-$img-border-radius: $border-radius;
 
 // ================== Logo
 
@@ -125,46 +196,42 @@ $logo-line-height: $nav-bar-height;
 $logo-color: white;
 
 $logo-top: 0;
-$logo-left: linear($middle-b, 0, $high-b, -$space-1 - 0.5 * $high-logo-column-width);
+$logo-left: linear($middle-b, 0, $high-b, -($medium-space-value + math.div($middle-logo-column-width, 2)));
 $logo-height: linear($middle-b, $nav-bar-height-value, $high-b, $nav-bar-height-value + 6);
 $logo-width: 4em; // depends implicitly on $logo-font-size
 
 // ================== Fonts
 
-$nav-item-font-family: var(--font), ui-sans-serif, sans-serif;
+$nav-item-font-family: $font, ui-sans-serif, sans-serif;
 $nav-item-font-size: linear($critical-b, 12, $high-b, 14);
 $nav-item-font-weight: 600;
-$nav-item-line-height: 1.4;
+$nav-item-line-height: 1.5;
 $nav-item-color: $text;
 
-$header-font-family: var(--font), ui-sans-serif, sans-serif;
+$header-font-family: $font, ui-sans-serif, sans-serif;
 $header-font-sizes: 30px 26px 22px 20px 18px 16px;
 $header-font-weights: 700 700 700 700 700 700;
-$header-line-height: 1.4;
+$header-line-height: 1.5;
 $header-color: $text;
 
-$low-body-font-size: 14;
-$body-font-family: var(--font), ui-sans-serif, sans-serif;
+$body-font-family: $font, ui-sans-serif, sans-serif;
 $body-font-size: 14px;
 $body-font-weight: 400;
 $body-line-height: 26px;
 $body-color: $text;
 $body-font-weight-bold: 700;
 
-$link-color: $text;
-$code-inline-link-color: $text;
-
 $toc-font-size: 11px;
 $toc-font-weight: $body-font-weight;
 $toc-line-height: 26px;
 $toc-color: $text;
-$toc-hover-background-color: hsla(220, 90%, 75%, 0.1);
+$toc-hover-background-color: $blue-highlight;
 $toc-hover-color: $text;
 
 $code-font-family: 'Roboto Mono', ui-monospace, monospace;
 $code-block-font-size: 13px;
-$code-block-font-weight: 335;
-$code-block-line-height: $body-line-height;
+$code-block-font-weight: 350;
+$code-block-line-height: math.div($body-line-height, $body-font-size);
 
 // ================== Other
 
@@ -172,42 +239,14 @@ $nav-bar-border-color: transparent;
 $page-divider-color: transparent;
 $page-border-color: transparent;
 $header-edge-color: transparent;
-$table-edge-color: transparent;
 $toc-edge-color: transparent;
+
+$table-border-color: $line;
 
 $table-cell-padding: 8px 16px;
 $table-font-size: $body-font-size;
 $table-header-row-background-color: $ground;
 $table-body-row-alt-background-color: $ground;
-
-$code-block-border-radius: $border-radius;
-$code-block-padding-vert: 14px;
-$code-block-padding-horz: 20px;
-
-$code-inline-padding: 2px 5px;
-$code-inline-border-radius: 3px;
-$code-inline-color: $text;
-$code-inline-background-color: hsla(0, 0%, 50%, 0.2);
-$code-inline-color-callout: $text;
-$code-inline-background-color-callout: rgba(0, 0, 0, 40%);
-
-$code-highlight-edge-width: 4px;
-$code-highlight-edge-color: hsl(212, 70%, 55%);
-$code-highlight-background-color: hsla(212, 70%, 70%, 0.1);
-
-$blockquote-edge-width: 4px;
-$blockquote-padding-left: $main-padding-left - $blockquote-edge-width + 1px;
-$blockquote-body-color: $body-color;
-
-$main-inner-spacing-vert: 20px;
-
-$list-padding-left: 32px;
-$list-item-padding-left: 4px;
-
-$details-padding-left: $space-px;
-
-$callout-border-radius: $border-radius;
-$callout-padding: $main-inner-spacing-vert $details-padding-left;
 
 $todo-red: hsl(0, 88%, 59%);
 $todo-red-dark: hsl(0, 100%, 45%);
@@ -215,9 +254,6 @@ $todo-red-dark: hsl(0, 100%, 45%);
 // ================== Mixins
 
 @mixin header-text($header-level) {
-  margin-bottom: 1 * $main-inner-spacing-vert !important;
-  padding-bottom: 0.25em;
-
   font-family: $header-font-family;
   font-size: nth($header-font-sizes, $header-level);
   font-weight: nth($header-font-weights, $header-level);
@@ -225,12 +261,12 @@ $todo-red-dark: hsl(0, 100%, 45%);
   color: $header-color;
 }
 
-@mixin body-text() {
+@mixin body-text($color: $body-color) {
   font-family: $body-font-family;
   font-size: $body-font-size;
   font-weight: $body-font-weight;
   line-height: $body-line-height;
-  color: $body-color;
+  color: $color;
 
   i,
   em {
@@ -261,23 +297,28 @@ $todo-red-dark: hsl(0, 100%, 45%);
   letter-spacing: -0.2px;
 }
 
-@mixin anchor-text($color, $hover-background-color: transparent, $hover-color: $color) {
-  color: $color;
-
+@mixin anchor-text($color: $link, $hover-color: $color, $hover-background-color: transparent) {
   text-decoration: underline;
-  text-underline-offset: 0.1em;
+  text-decoration-thickness: 1px;
 
   text-decoration-color: transparent;
-  transition: text-decoration-color ease-in-out 0.23s 0.02s, background-color ease-in-out 0.23s 0.02s,
-    color ease-in-out 0.23s 0.02s;
+  transition: text-decoration-color ease-in-out 0.28s 0.02s, background-color ease-in-out 0.28s 0.02s,
+    color ease-in-out 0.28s 0.02s;
+
+  color: $color;
+
+  &:visited {
+    color: $color;
+  }
 
   &:focus,
   &:hover {
     text-decoration-color: $color;
-    transition: text-decoration-color 0s, background-color 0s, color 0s;
+    transition: text-decoration-color ease-in-out 0.01s, background-color ease-in-out 0.01s,
+      color ease-in-out 0.01s;
 
-    background-color: $hover-background-color;
     color: $hover-color;
+    background-color: $hover-background-color;
   }
 }
 
@@ -320,62 +361,4 @@ button {
 a {
   word-break: normal;
   overflow-wrap: anywhere;
-
-  // Temporary
-  &[href='todo'] {
-    @include anchor-text($todo-red);
-  }
-}
-
-// ================== Other
-
-.rgb-color-picker {
-  display: grid;
-  grid-template-columns: min-content minmax(0, 1fr);
-  gap: $main-inner-spacing-vert;
-  place-items: stretch;
-
-  width: 100%;
-
-  user-select: none;
-
-  > * {
-    border-radius: $border-radius !important;
-    color: black;
-  }
-
-  > .rgb-color-picker-display {
-    border: 1px solid white;
-  }
-
-  // selector doesn't have a class, but it overlaps exactly with this thing
-  .saturation-black {
-    touch-action: none; // disables scrolling
-    cursor: pointer;
-  }
-}
-
-// ================== Tables
-
-table {
-  border-collapse: collapse;
-  font-size: $table-font-size;
-}
-
-td,
-th {
-  border: 1px solid $table-edge-color;
-  padding: $table-cell-padding;
-}
-
-th {
-  font-weight: $body-font-weight-bold;
-}
-
-thead {
-  background-color: $table-header-row-background-color;
-}
-
-tbody > :nth-child(even) {
-  background-color: $table-body-row-alt-background-color;
 }

@@ -4,14 +4,43 @@ export const documentProps = { title: 'Lab 0' }
 
 ## Introduction
 
-The purpose of `lab 0` is twofold: to serve as a handy _base_ template for other lab handouts, and to teach you some tricks of the trade! You will get to try your hand at doing certain things like `XYZ` and `ABC`, and (hopefully) learn something new in the process. It might also help with your projects (i.e. handouts and algos) :wink:.
+The purpose of `lab 0` is twofold: to serve as a **handy** _base_ template for [other lab handouts](/labs), and to teach you some tricks of the trade! You will get to try your hand at doing certain things like `XYZ` and `ABC`, and (hopefully) learn something new in the process. It might also help with your projects (i.e. handouts and algos) :wink:. Inline code can also be **`bold`**.
 
 In the rest of **this 1-2h lab** (NB: actually 5 min), you will:
+
+1. One
+2. Two
+
+- Do one thing
+- Do another thing
+
+10. One
+11. Two
+
+> Hey, listen!
+> Note that matrix multiplication is **not commutative** and therefore the order you apply transformations does change the outcome!
+>
+> Note that matrix multiplication is **not commutative** and therefore the order you apply transformations does change the outcome!
+
+<details>
+  <summary>Why is it so hot in NYC?</summary>
+
+For the love of god, somebody get this man into a refrigerator, stat!
+
+Try your hand at doing certain things like `XYZ` and `ABC`, and (hopefully) learn something new in the process. It might also help with your projects (i.e. handouts and algos)
+
+</details>
+
+|     Subscript      | What It Represents                                                                            |
+| :----------------: | :-------------------------------------------------------------------------------------------- |
+|     $_\lambda$     | A given **wavelength** (either red, green, or blue).                                          |
+| $_a$ / $_d$ / $_s$ | A given **component of the Phong illumination model** (either ambient, diffuse, or specular). |
+|        $_i$        | A given **light source**, one of $m$ lights in the scene.                                     |
 
 :::task
 Hey! a **task** callout!
 
-Lorem ipsum dolor sit amet.
+> Lorem ipsum dolor sit amet.
 
 Some `code`.
 :::
@@ -19,7 +48,7 @@ Some `code`.
 :::warning
 Hey! a **warning** callout!
 
-Lorem ipsum dolor sit amet.
+> Lorem ipsum dolor sit amet.
 
 Some `code`.
 :::
@@ -27,7 +56,7 @@ Some `code`.
 :::success
 Hey! a **success** callout!
 
-Lorem ipsum dolor sit amet.
+> Lorem ipsum dolor sit amet.
 
 Some `code`.
 :::
@@ -35,7 +64,7 @@ Some `code`.
 :::error
 Hey! an **error** callout!
 
-Lorem ipsum dolor sit amet.
+> Lorem ipsum dolor sit amet.
 
 Some `code`.
 :::
@@ -44,9 +73,23 @@ Some `code`.
 
 If you know what you're doing, you <i>can</i> write code in your preferred IDE or text editor. Do note, however, that our course uses a standardized environment for grading&mdash;that is to say, we will build and run your projects through Qt Creator. Therefore, you'll probably want to have Qt and Qt Creator, if only to test that your code works as expected!
 
+> If you know what you're doing, you <i>can</i> write code in your preferred IDE or text editor
+>
+> Do note, however, that our course uses a standardized environment for grading&mdash;that is to say, we will build and run your projects through Qt Creator. Therefore, you'll probably want to have Qt and Qt Creator, if only to test that your code works as expected!
+
 ### Dummy
 
 If you know what you're doing, you <i>can</i> write code in your preferred IDE or text editor. Do note, however, that our course uses a standardized environment for grading&mdash;that is to say, we will build and run your projects through Qt Creator. Therefore, you'll probably want to have Qt and Qt Creator, if only to test that your code works as expected!
+
+```cpp
+std::uint8_t[] arr // bad
+std::uint8_t*  ptr // good
+```
+
+```cpp
+*(ptr + 1) // good
+ptr[1]     // good
+```
 
 :::error
 Hey! an **error** callout!

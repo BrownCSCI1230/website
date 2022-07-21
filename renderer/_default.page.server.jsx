@@ -7,13 +7,16 @@ import { PageLayout } from '../resources/components/PageLayout'
 export { render }
 
 function render(pageContext) {
-  const { Page, documentProps } = pageContext.exports
-  const title = documentProps ? documentProps.title + ' | CSCI 1230' : 'CSCI 1230'
+  const { Page, exports, url } = pageContext
+  const { documentProps } = exports
+
+  const title = documentProps?.title != null ? documentProps.title + ' | CSCI 1230' : 'CSCI 1230'
+  const hideTOC = documentProps?.hideTOC != null ? documentProps.hideTOC : false
 
   const pageHtml = ReactDOMServer.renderToString(
     <React.StrictMode>
-      <NavBar />
-      <PageLayout hideTOC={documentProps.hideTOC}>
+      <NavBar url={url} />
+      <PageLayout hideTOC={hideTOC}>
         <Page />
       </PageLayout>
     </React.StrictMode>

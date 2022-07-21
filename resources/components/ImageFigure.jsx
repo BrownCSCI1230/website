@@ -6,8 +6,8 @@ function ImageFigure({ images, targetWidth = '100%', figNumber, figCaption, chil
   return (
     <figure id={`figure-${figNumber}`} className="image-wrapper">
       <div className="image-grid" style={{ '--target-width': targetWidth }}>
-        {images.map((image) => (
-          <img {...image} />
+        {images.map((image, index) => (
+          <img {...image} key={index} />
         ))}
       </div>
 

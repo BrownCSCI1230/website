@@ -1,0 +1,51 @@
+@use 'sass:color';
+@use 'sass:math';
+
+@import 'base.scss';
+
+$img-padding: 0;
+$img-border: none;
+$img-border-radius: 0;
+$img-background-color: white;
+
+$figcaption-cell-padding-vert: $cell-padding-vert;
+$figcaption-cell-padding-horz: $cell-padding-horz;
+
+img {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.image-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  > .image-grid {
+    display: grid;
+    gap: $medium-space;
+    grid-template: minmax(0, 1fr) / repeat(auto-fit, minmax(0, 1fr));
+    place-items: stretch;
+  }
+
+  img {
+    border: $img-border;
+    border-radius: $img-border-radius;
+
+    background-color: $img-background-color;
+    object-fit: contain;
+  }
+
+  > * {
+    width: max(var(--target-width), min(100%, 500px));
+  }
+
+  figcaption {
+    padding: $figcaption-cell-padding-vert $figcaption-cell-padding-horz;
+
+    border: $img-border;
+    border-top: none;
+
+    text-align: center;
+  }
+}

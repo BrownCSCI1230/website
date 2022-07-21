@@ -1,0 +1,234 @@
+@use 'sass:color';
+@use 'sass:math';
+
+@import 'base.scss';
+
+$list-padding-left: $medium-space * 2;
+$list-item-padding-left: $medium-space * 0.5;
+
+$blockquote-edge-width: 4px;
+$blockquote-edge-color: $line;
+$blockquote-padding: $medium-space;
+$blockquote-background-color: $faint;
+
+$details-edge-width: 4px;
+$details-edge-color: $line;
+$details-padding-vert: $cell-padding-vert;
+$details-padding-horz: $cell-padding-horz;
+$details-body-padding-vert: $medium-space;
+$summary-background-color: $ground;
+$details-background-color: $faint;
+
+$callout-border-radius: $border-radius;
+$callout-padding: $medium-space;
+
+main {
+  padding: $main-padding;
+
+  // Vertical spacing
+
+  > *,
+  blockquote > *,
+  details > *,
+  .callout > * {
+    &:not(:last-child) {
+      margin-bottom: $medium-space;
+    }
+  }
+
+  // Headers
+
+  $header-content-map: (
+    1: '',
+    2: counter(h2) '. ',
+    3: counter(h2) '.' counter(h3) '. ',
+    4: counter(h2) '.' counter(h3) '.' counter(h4) '. ',
+    5: counter(h2) '.' counter(h3) '.' counter(h4) '.' counter(h5) '. ',
+    6: counter(h2) '.' counter(h3) '.' counter(h4) '.' counter(h5) '.' counter(h6) '. ',
+  );
+  @for $header-level from 1 through 6 {
+    h#{$header-level} {
+      @include header-text($header-level);
+      counter-reset: h#{$header-level + 1};
+
+      margin-bottom: 1 * $medium-space;
+      &:not(h1) {
+        margin-top: 1.75 * $medium-space;
+      }
+
+      > a {
+        @include anchor-text($header-color);
+        text-decoration: none !important;
+
+        &::before {
+          content: map-get($header-content-map, $header-level);
+          counter-increment: h#{$header-level};
+        }
+      }
+    }
+  }
+
+  // Text
+
+  p {
+    @include body-text();
+  }
+  a {
+    @include anchor-text();
+  }
+
+  // Lists
+
+  ol,
+  ul {
+    padding-left: $list-padding-left;
+  }
+  li {
+    padding-left: $list-item-padding-left;
+  }
+
+  // Blocks
+
+  blockquote {
+    padding: $blockquote-padding;
+    border-left: $blockquote-edge-width solid $blockquote-edge-color;
+
+    background-color: $blockquote-background-color;
+  }
+
+  details {
+    border: 1px solid $line;
+    padding: 0 $details-padding-horz 0 $details-padding-horz;
+
+    background-color: $details-background-color;
+
+    > summary {
+      cursor: pointer;
+      margin-top: -1px;
+      margin-left: -1px - $details-padding-horz;
+      margin-right: -1px - $details-padding-horz;
+      margin-bottom: -1px !important;
+      padding: 0;
+
+      border: 1px solid $summary-background-color;
+
+      background-color: $summary-background-color;
+    }
+
+    &[open] {
+      padding-bottom: $details-body-padding-vert;
+      > summary {
+        padding-bottom: $details-padding-vert;
+        border-bottom: 1px solid $line;
+      }
+    }
+
+    > :nth-child(2) {
+      // 1px accounts for border
+      margin-top: 1px + $details-body-padding-vert;
+    }
+  }
+
+  .math-display {
+    text-align: center;
+    overflow-x: auto;
+  }
+
+  .callout {
+    border-radius: $callout-border-radius;
+    padding: $callout-padding;
+
+    @media only screen and (max-width: $breakpoint) {
+      border-radius: 0;
+      border-left: none !important;
+      border-right: none !important;
+
+      margin-left: -$main-padding-left;
+      margin-right: -$main-padding-right;
+    }
+
+    $saturation-scale: 0.7;
+    $brightness-scale: 0.85;
+
+    @mixin callout($background-color, $border-color, $content) {
+      background-color: $background-color;
+      border: 1px solid $border-color;
+
+      blockquote {
+        border-color: $border-color;
+      }
+
+      details > summary {
+        background-color: $background-color;
+      }
+
+      @if ($content == 'Todo: ') {
+        background-color: white;
+        border: white;
+
+        > :first-child::before {
+          content: $content;
+        }
+      } @else if ($content != '') {
+        &::before {
+          content: $content;
+          display: block;
+
+          margin-bottom: $medium-space;
+
+          font-weight: $body-font-weight-bold;
+          color: $header-color;
+        }
+      }
+    }
+
+    &.task-callout {
+      counter-increment: task;
+      @include callout($task, $task-line, 'Task ' counter(task) ':');
+    }
+    &.warning-callout {
+      @include callout($warning, $warning-line, '');
+    }
+    &.success-callout {
+      @include callout($success, $success-line, '');
+    }
+    &.error-callout {
+      @include callout($error, $error-line, '');
+    }
+    &.todo-callout {
+      @include callout(white, white, 'Todo: ');
+
+      > :only-child {
+        color: $todo-red-dark !important;
+      }
+    }
+  }
+}
+
+// ================== Other
+
+.rgb-color-picker {
+  display: grid;
+  grid-template-columns: min-content minmax(0, 1fr);
+  gap: $medium-space;
+  place-items: stretch;
+
+  width: 100%;
+
+  user-select: none;
+
+  > * {
+    border-radius: $border-radius !important;
+    color: black;
+  }
+
+  > .rgb-color-picker-display {
+    border: 1px solid white;
+  }
+
+  // selector doesn't have a class, but it overlaps exactly with this thing
+  .saturation-black {
+    touch-action: none; // disables scrolling
+    cursor: pointer;
+  }
+}
