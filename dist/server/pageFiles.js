@@ -31,10 +31,10 @@ const pageFilesLazyIsomorph1 = {
     return require("./assets/index.page.0e19335c.js");
   }),
   "/pages/labs/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/labs.page.e25e80f6.js");
+    return require("./assets/labs.page.65896b22.js");
   }),
   "/pages/labs/lab0.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab0.page.7b05200a.js");
+    return require("./assets/lab0.page.41b05435.js");
   }),
   "/pages/labs/lab1.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab1.page.56baabef.js");
@@ -49,16 +49,19 @@ const pageFilesLazyIsomorph1 = {
     return require("./assets/lab2.page.1384f070.js");
   }),
   "/pages/labs/lab4.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab4.page.76b7ed37.js");
+    return require("./assets/lab4.page.4d5bcc16.js");
+  }),
+  "/pages/labs/lab5.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/lab5.page.a336e875.js");
   }),
   "/pages/labs/lab6.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab6.page.97030201.js");
+    return require("./assets/lab6.page.0f624180.js");
   }),
   "/pages/labs/lab7.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab7.page.65fdc167.js");
+    return require("./assets/lab7.page.6a86d7d3.js");
   }),
   "/pages/labs/lab8.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab8.page.a404d5c8.js");
+    return require("./assets/lab8.page.5d7007a5.js");
   }),
   "/pages/projects/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/projects.page.53324386.js");
@@ -80,7 +83,7 @@ const pageFilesEagerRoute = { ...pageFilesEagerRoute1 };
 pageFilesEager[".page.route"] = pageFilesEagerRoute;
 const pageFilesLazyServer1 = {
   "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.7371936f.js");
+    return require("./assets/_default.page.server.705b8c3e.js");
   })
 };
 const pageFilesLazyServer = { ...pageFilesLazyServer1 };
