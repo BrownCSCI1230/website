@@ -266,9 +266,10 @@ Jot these down for your lab checkoff later.
 
 ### The Ambient Term
 
-:::todo
-A decent image of ambient light alone
-:::
+<ImageFigure
+  images={[{ src: '/labs/lab6/lab06_output/ambient-task3.png', alt: 'TODO' }]}
+  figNumber={6}
+>
 
 $$
   \newcommand{\highlight}[1]{\colorbox{black}{$\color{BurntOrange}\displaystyle#1$}}
@@ -277,6 +278,7 @@ $$
 $$
 
 The first thing to do in implementing Phong lighting will be to add in the **ambient** term. This simply adds some amount of uniform light to every object, independent of any light sources in the scene. It is used to _fake_ the effect of **indirect lighting**, so as to avoid having to perform expensive simulations of indirect light from rays which bounce multiple times.
+
 
 :::todo
 A decent illustration of ambient lighting and why it is necessary to avoid regions being completely in the dark
@@ -290,9 +292,11 @@ In your Phong lighting function, **add the ambient term to the return value**. R
 
 ### The Diffuse Term
 
-:::todo
-A decent image of diffuse light alone
-:::
+<ImageFigure
+  images={[{ src: '/labs/lab6/lab06_output/diffuse.png', alt: 'TODO' }]}
+  figNumber={7}
+>
+
 
 $$
   \newcommand{\highlight}[1]{\colorbox{black}{$\color{BurntOrange}\displaystyle#1$}}
@@ -321,6 +325,13 @@ In your Phong lighting function, **add the diffuse term to the return value**. R
 
 :::
 
+On finishing this task, you should be able to see the image below.
+
+<ImageFigure
+  images={[{ src: '/labs/lab6/lab06_output/task4.png', alt: 'TODO' }]}
+  figNumber={8}
+>
+
 <details>
   <summary>What do the sub-terms in the diffuse term mean?</summary>
 
@@ -336,9 +347,10 @@ Fortunately for us, we can easily and efficiently compute **cosines** using a **
 
 ### The Specular Term
 
-:::todo
-A decent image of specular light alone
-:::
+<ImageFigure
+  images={[{ src: '/labs/lab6/lab06_output/specular.png', alt: 'TODO' }]}
+  figNumber={9}
+>
 
 $$
   \newcommand{\highlight}[1]{\colorbox{black}{$\color{BurntOrange}\displaystyle#1$}}
@@ -367,6 +379,13 @@ In your Phong lighting function, **add the specular term to the return value**. 
 - Remember that you have to sum over _all_ the lights in the scene.
 
 :::
+
+On finishing this task, you should be able to see the image below.
+<ImageFigure
+  images={[{ src: '/labs/lab6/lab06_output/task5.png', alt: 'TODO' }]}
+  figNumber={10}
+>
+
 
 ### Attenuation
 
@@ -406,7 +425,7 @@ One interesting and simple extension is the mirror reflection. In a way, diffuse
 
 <ImageFigure
   images={[{ src: '/labs/lab6/reflection.png', alt: 'TODO' }]}
-  figNumber={6}
+  figNumber={11}
   figCaption={'Mirror reflection example'}
 />
 
@@ -423,5 +442,12 @@ You may wonder how many time we should do recursive tracing since the illuminati
 Calculate the reflected eyesight direction. Perform raytracing again to get reflected illumination. We provide you with a function `getReflection(source, dir)` to acquire reflection illumination.
 
 :::
+
+
+<ImageFigure
+  images={[{ src: '/labs/lab6/lab06_output/final.png', alt: 'TODO' }]}
+  figNumber={11}
+  figCaption={'The final output'}
+/>
 
 ## End
