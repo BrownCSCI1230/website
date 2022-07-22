@@ -49,7 +49,7 @@ body {
   height: $nav-bar-height;
 
   background-color: $nav-bar-background-color;
-  border-bottom: 1px solid $nav-bar-border-color;
+  border-bottom: $nav-bar-border-bottom;
 
   #nav-bar-inner {
     display: grid;
@@ -74,13 +74,14 @@ body {
 
     @media only screen and (max-width: ($critical-b * 1px)) {
       > :first-child {
+        // Hide home nav-item when below critical width
         display: none;
       }
     }
   }
 
   .nav-item {
-    @include anchor-text($header-color, $header-color, $nav-bar-hover-background-color);
+    @include anchor-text($header-color, $header-color, $nav-item-hover-background-color);
     text-decoration: none !important;
 
     font-family: $nav-item-font-family;
@@ -97,14 +98,14 @@ body {
     white-space: nowrap;
 
     &.active {
-      background-color: $nav-bar-hover-background-color;
-      pointer-events: none;
+      background-color: $nav-item-hover-background-color;
       cursor: default;
     }
   }
 }
 
 #logo {
+  cursor: pointer;
   z-index: 1000;
 
   position: relative;
@@ -200,8 +201,8 @@ body {
   max-width: $page-max-width;
 
   background-color: $page-background-color;
-  border-left: 1px solid $page-border-color;
-  border-right: 1px solid $page-border-color;
+  border-left: $page-border-sides;
+  border-right: $page-border-sides;
 
   @media only screen and (max-width: ($middle-b * 1px)) {
     border-left: none;
@@ -218,7 +219,7 @@ body {
     height: 100%;
     width: 0;
     display: grid;
-    border-left: 1px solid $page-divider-color;
+    border-left: $page-divider;
     grid-area: divider;
   }
 }
@@ -254,7 +255,7 @@ body {
 
     @if ($level != 1) {
       left: ($level - 2) * 8px;
-      border-left: 1px solid $toc-edge-color;
+      border-left: $toc-border-left;
     }
   }
   @mixin toc-item($level) {

@@ -199,7 +199,7 @@ main {
       @include callout(white, white, 'Todo: ');
 
       > :only-child {
-        color: $todo-red-dark !important;
+        color: $todo-red !important;
       }
     }
   }

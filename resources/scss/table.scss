@@ -16,7 +16,7 @@ td,
 th {
   padding: $table-cell-padding;
 
-  border: 1px solid $table-border-color;
+  border: $table-border;
 }
 
 th {

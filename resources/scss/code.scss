@@ -90,7 +90,7 @@ pre {
   padding-right: $code-block-padding-horz;
 
   &::before {
-    content: ' '; // space is really necessary for inline-block not to collapse
+    content: ' '; // Space is necessary for inline-block not to collapse
     display: inline-block;
     border-left: $code-highlight-edge-width solid $code-background-color;
     width: $code-block-padding-horz - $code-highlight-edge-width;
