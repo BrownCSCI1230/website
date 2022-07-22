@@ -19,7 +19,7 @@ img {
 .image-wrapper {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
 
   > .image-grid {
     display: grid;

@@ -6,14 +6,14 @@ export const documentProps = { title: 'Lab 6' }
 
 ## Introduction
 
-In Ray 1, you implemented the first two parts of the raytracing pipeline: **ray generation** and **intersection**. For convenience and ease of debugging, we colored each pixel using the obtained intersections' surface normals.
+In Ray 1, you implemented the first two parts of the raytracing pipeline&mdash;**ray generation** and **intersection**&mdash;and colored in each pixel using **world-space surface normals**.
 
-Ultimately, we'd like our raytracers to be able to produce **realistic images**, _not_ psychedelic trips. To get closer to achieving this, let's take a quick look at the subject of this lab, **lighting**!
+This is, of course, not our end goal. What we really want is for our raytracers to be able to produce **realistic images**, which would require rethinking _how we assign colors to pixels_. To that end, we're going to explore the subject of **lighting**: what it is, how it works, and how you can implement it.
 
 ### Objectives
 
-1. Learn about **lighting** and **lighting models**,
-2. Implement the **Phong illumination model**, and
+1. Learn about **lighting**, especially **lighting models**,
+2. Implement the **Phong lighting model**, and
 3. Extend it to implement **other lighting effects**, like reflection.
 
 ## Conceptual Context
@@ -195,6 +195,7 @@ Mapping can either be globally-consistent across the whole image (e.g. uniform s
 <ImageFigure
   images={[{ src: '/labs/lab6/toneMapping.jpg', alt: 'TODO' }]}
   figNumber={5}
+  figCaption={'todo'}
 >
 
 **#1** is the over-exposed original image. **#2** is linearly tone-mapped from **#1**.
@@ -264,9 +265,11 @@ Jot these down for your lab checkoff later.
 
 ### The Ambient Term
 
-:::todo
-A decent image of ambient light alone
-:::
+<ImageFigure
+  images={[{ src: '/labs/lab6/results/ambient.png', alt: 'TODO' }]}
+  figNumber={6}
+  figCaption={'todo'}
+/>
 
 $$
   \newcommand{\highlight}[1]{\colorbox{yellow}{$\color{black}\displaystyle#1$}}
@@ -288,9 +291,11 @@ In your Phong lighting function, **add the ambient term to the return value**. R
 
 ### The Diffuse Term
 
-:::todo
-A decent image of diffuse light alone
-:::
+<ImageFigure
+  images={[{ src: '/labs/lab6/results/diffuse.png', alt: 'TODO' }]}
+  figNumber={7}
+  figCaption={'todo'}
+/>
 
 $$
   \newcommand{\highlight}[1]{\colorbox{yellow}{$\color{black}\displaystyle#1$}}
@@ -319,6 +324,14 @@ In your Phong lighting function, **add the diffuse term to the return value**. R
 
 :::
 
+On finishing this task, you should be able to see the image below.
+
+<ImageFigure
+  images={[{ src: '/labs/lab6/results/ambient-diffuse.png', alt: 'TODO' }]}
+  figNumber={8}
+  figCaption={'todo'}
+/>
+
 <details>
   <summary>What do the sub-terms in the diffuse term mean?</summary>
 
@@ -334,9 +347,11 @@ Fortunately for us, we can easily and efficiently compute **cosines** using a **
 
 ### The Specular Term
 
-:::todo
-A decent image of specular light alone
-:::
+<ImageFigure
+  images={[{ src: '/labs/lab6/results/specular.png', alt: 'TODO' }]}
+  figNumber={9}
+  figCaption={'todo'}
+/>
 
 $$
   \newcommand{\highlight}[1]{\colorbox{yellow}{$\color{black}\displaystyle#1$}}
@@ -365,6 +380,14 @@ In your Phong lighting function, **add the specular term to the return value**. 
 - Remember that you have to sum over _all_ the lights in the scene.
 
 :::
+
+On finishing this task, you should be able to see the image below.
+
+<ImageFigure
+  images={[{ src: '/labs/lab6/results/ambient-diffuse-specular.png', alt: 'TODO' }]}
+  figNumber={10}
+  figCaption={'todo'}
+/>
 
 ### Attenuation
 
@@ -404,7 +427,7 @@ One interesting and simple extension is the mirror reflection. In a way, diffuse
 
 <ImageFigure
   images={[{ src: '/labs/lab6/reflection.png', alt: 'TODO' }]}
-  figNumber={6}
+  figNumber={11}
   figCaption={'Mirror reflection example'}
 />
 
@@ -421,5 +444,11 @@ You may wonder how many time we should do recursive tracing since the illuminati
 Calculate the reflected eyesight direction. Perform raytracing again to get reflected illumination. We provide you with a function `getReflection(source, dir)` to acquire reflection illumination.
 
 :::
+
+<ImageFigure
+  images={[{ src: '/labs/lab6/results/final.png', alt: 'TODO' }]}
+  figNumber={12}
+  figCaption={'The final output'}
+/>
 
 ## End
