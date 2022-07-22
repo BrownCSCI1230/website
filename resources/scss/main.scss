@@ -32,6 +32,8 @@ main {
   details > *,
   .callout > * {
     &:not(:last-child) {
+      // Known bug: script tags can be the last child,
+      // making the :last-child rule ineffective
       margin-bottom: $medium-space;
     }
   }

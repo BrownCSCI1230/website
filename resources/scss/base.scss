@@ -167,7 +167,7 @@ $nav-item-padding: 2px 8px 0;
 $scroll-margin-top: $nav-bar-height + $medium-space;
 
 $page-margin: 0 auto;
-$page-padding: 0;
+$page-padding: $nav-bar-height 0 0;
 $page-max-width: $middle-b * 1px;
 
 $toc-padding-top: $medium-space * 1.5;
