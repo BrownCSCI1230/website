@@ -13,6 +13,7 @@ import rehypeStarryNightPlus from './rehypeStarryNightPlus.js'
 import rehypeSlug from 'rehype-slug'
 import rehypeToc from 'rehype-toc'
 import rehypeWrap from 'rehype-wrap'
+import rehypeWrapAll from 'rehype-wrap-all'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
 const config = {
@@ -26,6 +27,7 @@ const config = {
         rehypeSlug,
         [rehypeAutolinkHeadings, { behavior: 'wrap' }],
         [rehypeWrap, { wrapper: 'main' }],
+        [rehypeWrapAll, { selector: 'table', wrapper: 'div.table-wrapper' }],
         [rehypeToc, { position: 'beforebegin' }],
       ],
     }),

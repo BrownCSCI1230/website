@@ -24,6 +24,7 @@
     "rehype-slug": "^5.0.1",
     "rehype-toc": "^3.0.2",
     "rehype-wrap": "^1.0.10",
+    "rehype-wrap-all": "^1.1.0",
     "remark-directive": "^2.0.1",
     "remark-emoji": "^3.0.2",
     "remark-gfm": "^3.0.1",

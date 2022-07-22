@@ -226,9 +226,9 @@ main {
     border: 1px solid white;
   }
 
-  // selector doesn't have a class, but it overlaps exactly with this thing
+  // Actual color selector doesn't have a class, but it overlaps exactly with this thing
   .saturation-black {
-    touch-action: none; // disables scrolling
+    touch-action: none; // Disables scrolling while touching this
     cursor: pointer;
   }
 }

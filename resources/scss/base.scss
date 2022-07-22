@@ -156,7 +156,7 @@ $page-background-color: $ground;
 $nav-bar-hover-background-color: $blue-highlight;
 
 $background-dot-spacing: 30px;
-$background-dot-color: transparent; //rgba(108, 108, 108, 0.5);
+$background-dot-color: transparent;
 $background-dot-size: 1.5px;
 
 $nav-bar-height-value: 60;
@@ -358,7 +358,26 @@ button {
   -webkit-tap-highlight-color: transparent;
 }
 
-a {
-  word-break: normal;
-  overflow-wrap: anywhere;
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+summary {
+  word-break: break-word;
+  // Supposedly, the above is "deprecated" and should be replaced
+  // with the pair below, but the below does not work on Safari.
+  // word-break: normal;
+  // overflow-wrap: anywhere;
+
+  // Furthermore, putting the above on table headers messes up
+  // the width... so we have to wrap it in a table-wrapper
+}
+
+.table-wrapper {
+  max-width: 100%;
+  overflow-x: auto;
 }
