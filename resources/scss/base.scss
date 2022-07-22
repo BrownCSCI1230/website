@@ -55,56 +55,66 @@ $more-faint-percent: 0.018;
   --faint: #{$faint};
   --more-faint: #{$more-faint};
 
-  --task: hsl(212, 48%, 16%);
-  --warning: hsl(39, 47%, 16%);
-  --success: hsl(120, 31%, 15%);
-  --error: hsl(359, 45%, 16%);
+  --task: hsl(216, 45%, 17%);
+  --warning: hsl(34, 49%, 18%);
+  --success: hsl(111, 35%, 15%);
+  --error: hsl(1, 45%, 19%);
 
-  --task-line: hsl(212, 48%, 36%);
-  --warning-line: hsl(39, 47%, 36%);
-  --success-line: hsl(120, 31%, 35%);
-  --error-line: hsl(359, 45%, 36%);
+  --task-line: hsla(212, 100%, 63.5%, 0.8);
+  --warning-line: hsla(41, 83%, 58%, 0.8);
+  --success-line: hsla(109, 57%, 47%, 0.8);
+  --error-line: hsla(0, 84%, 60%, 0.8);
 
   --code-background: hsl(0, 0%, 9.5%);
   --blue-highlight: hsl(212, 50%, 34%);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    $ground: hsl(25, 100%, 97%);
-    $text: hsl(0, 0%, 0%);
-    $link: hsl(224, 100%, 48%);
-    $line: color.mix($text, $ground, $line-percent);
-    $less-faint: color.change($text, $alpha: $less-faint-percent);
-    $faint: color.change($text, $alpha: $faint-percent);
-    $more-faint: color.change($text, $alpha: $more-faint-percent);
+// @media (prefers-color-scheme: light) {
+:root {
+  $ground: hsl(25, 100%, 97%);
+  $text: hsl(0, 0%, 0%);
+  $link: hsl(224, 100%, 48%);
+  $line: color.mix($text, $ground, $line-percent);
+  $less-faint: color.change($text, $alpha: $less-faint-percent);
+  $faint: color.change($text, $alpha: $faint-percent);
+  $more-faint: color.change($text, $alpha: $more-faint-percent);
 
-    --ground: #{$ground};
-    --text: #{$text};
-    --link: #{$link};
-    --font: 'Darkmode Off';
-    --extreme: white;
-    --opposite: black;
+  --ground: #{$ground};
+  --text: #{$text};
+  --link: #{$link};
+  --font: 'Darkmode Off';
+  --extreme: white;
+  --opposite: black;
 
-    --line: #{$line};
-    --less-faint: #{$less-faint};
-    --faint: #{$faint};
-    --more-faint: #{$more-faint};
+  --line: #{$line};
+  --less-faint: #{$less-faint};
+  --faint: #{$faint};
+  --more-faint: #{$more-faint};
 
-    --task: hsl(212, 91%, 93%);
-    --warning: hsl(39, 96%, 90%);
-    --success: hsl(120, 40%, 88%);
-    --error: hsl(359, 90%, 90%);
+  // --task: hsl(212, 91%, 93%);
+  // --warning: hsl(39, 96%, 90%);
+  // --success: hsl(120, 40%, 88%);
+  // --error: hsl(359, 90%, 90%);
 
-    --task-line: hsl(212, 91%, 60%);
-    --warning-line: hsl(39, 96%, 58%);
-    --success-line: hsl(120, 40%, 55%);
-    --error-line: hsl(359, 90%, 58%);
+  // --task-line: hsl(212, 91%, 60%);
+  // --warning-line: hsl(39, 96%, 58%);
+  // --success-line: hsl(120, 40%, 55%);
+  // --error-line: hsl(359, 90%, 58%);
 
-    --code-background: hsl(0, 0%, 13%);
-    --blue-highlight: hsl(201, 82%, 80%);
-  }
+  --task: hsl(210, 83%, 91%);
+  --warning: hsl(35, 92%, 90%);
+  --success: hsl(102, 52%, 89%);
+  --error: hsl(1, 88%, 89%);
+
+  --task-line: hsla(213, 100%, 46%, 0.8);
+  --warning-line: hsla(32, 100%, 46%, 0.8);
+  --success-line: hsla(108, 95%, 34%, 0.8);
+  --error-line: hsla(2, 100%, 39%, 0.8);
+
+  --code-background: hsl(0, 0%, 13%);
+  --blue-highlight: hsl(201, 82%, 80%);
 }
+// }
 
 $ground: var(--ground);
 $text: var(--text);
@@ -134,17 +144,15 @@ $error-line: var(--error-line);
 $code-background: var(--code-background);
 $blue-highlight: var(--blue-highlight);
 
+// ================== Variables
+
 $medium-space-value: 20;
 $medium-space: $medium-space-value * 1px;
+
 $cell-padding-vert: $medium-space * 0.5;
 $cell-padding-horz: $medium-space;
 
-// ================== Variables
-
 $border-radius: 10px;
-$nav-bar-padding-horz: 20px;
-$page-padding-horz: 20px;
-$page-padding-vert: 20px;
 
 $toc-fr: 5;
 $page-fr: 14;
@@ -155,16 +163,16 @@ $nav-bar-background-color: $ground;
 $html-background-color: $ground;
 $page-background-color: $ground;
 
-$background-dot-spacing: 30px;
-$background-dot-color: transparent;
-$background-dot-size: 1.5px;
+$background-dot-spacing: $medium-space * 2;
+$background-dot-color: $faint;
+$background-dot-size: 2px;
 
 $nav-bar-height-value: 60;
 $nav-bar-height: $nav-bar-height-value * 1px;
+$nav-bar-padding-horz-value: 20;
+$nav-bar-padding-horz: $nav-bar-padding-horz-value * 1px;
 $nav-bar-padding: 0 $nav-bar-padding-horz;
 $nav-item-padding: 2px 8px 0;
-
-$scroll-margin-top: $nav-bar-height + $medium-space;
 
 $page-margin: 0 auto;
 $page-padding: $nav-bar-height 0 0;
@@ -182,6 +190,8 @@ $main-padding-bottom: $main-padding-top;
 $main-padding-left: $main-padding-right;
 $main-padding: $main-padding-top $main-padding-right $main-padding-bottom $main-padding-left;
 
+$scroll-margin-top: $nav-bar-height + $main-padding-top;
+
 // ================== Logo
 
 $middle-logo-column-width: 20;
@@ -190,11 +200,16 @@ $middle-logo-font-size: $middle-logo-column-width * 1.5;
 $high-logo-column-width: 24;
 $high-logo-font-size: $high-logo-column-width * 1.5;
 
-$logo-width: 4em; // depends implicitly on $logo-font-size
+$logo-width: 4em; // Depends implicitly on $logo-font-size
 
 // Makes it slide over on larger screen sizes
 $logo-top: 0;
-$logo-left: linear($middle-b, 0, $high-b, -($medium-space-value + math.div($middle-logo-column-width, 2)));
+$logo-left: linear(
+  $middle-b,
+  0,
+  $high-b,
+  -($nav-bar-padding-horz-value + math.div($middle-logo-column-width, 2))
+);
 $logo-height: linear($middle-b, $nav-bar-height-value, $high-b, $nav-bar-height-value + 6);
 
 $logo-font-family: $logo-font;
@@ -281,6 +296,8 @@ $todo-red: hsl(0, 100%, 45%);
   i,
   em {
     font-style: italic;
+    margin-left: -0.0625em;
+    margin-right: 0.0625em;
   }
 
   b,

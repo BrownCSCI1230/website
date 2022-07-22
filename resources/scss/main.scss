@@ -60,7 +60,6 @@ main {
 
       > a {
         @include anchor-text($header-color);
-        text-decoration: none !important;
 
         &::before {
           content: map-get($header-content-map, $header-level);
@@ -147,6 +146,8 @@ main {
 
       margin-left: -$main-padding-left;
       margin-right: -$main-padding-right;
+      padding-left: $main-padding-left;
+      padding-right: $main-padding-right;
     }
 
     $saturation-scale: 0.7;
