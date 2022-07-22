@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperties(exports, { __esModule: { value: true }, [Symbol.toStringTag]: { value: "Module" } });
-const exportNames = ["clientRouting", "render", "onHydrationEnd", "onPageTransitionStart", "onPageTransitionEnd"];
+const exportNames = ["clientRouting", "render", "onHydrationEnd", "onPageTransitionStart", "onPageTransitionEnd", "prefetchStaticAssets"];
 var __vite_glob_next_3_0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   exportNames
@@ -28,16 +28,16 @@ const pageFilesLazyIsomorph1 = {
     return require("./assets/hours.page.8ccedf27.js");
   }),
   "/pages/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/index.page.0e19335c.js");
+    return require("./assets/index.page.57836102.js");
   }),
   "/pages/labs/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/labs.page.65896b22.js");
   }),
   "/pages/labs/lab0.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab0.page.41b05435.js");
+    return require("./assets/lab0.page.a548fdf4.js");
   }),
   "/pages/labs/lab1.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab1.page.56baabef.js");
+    return require("./assets/lab1.page.0dba4ffb.js");
   }),
   "/pages/labs/lab11.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab11.page.35e87e51.js");
@@ -49,19 +49,19 @@ const pageFilesLazyIsomorph1 = {
     return require("./assets/lab2.page.1384f070.js");
   }),
   "/pages/labs/lab4.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab4.page.4d5bcc16.js");
+    return require("./assets/lab4.page.31bef568.js");
   }),
   "/pages/labs/lab5.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab5.page.a336e875.js");
   }),
   "/pages/labs/lab6.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab6.page.0f624180.js");
+    return require("./assets/lab6.page.55784325.js");
   }),
   "/pages/labs/lab7.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab7.page.6a86d7d3.js");
   }),
   "/pages/labs/lab8.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/lab8.page.5d7007a5.js");
+    return require("./assets/lab8.page.fc68fdfd.js");
   }),
   "/pages/projects/index.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/projects.page.53324386.js");
@@ -83,7 +83,7 @@ const pageFilesEagerRoute = { ...pageFilesEagerRoute1 };
 pageFilesEager[".page.route"] = pageFilesEagerRoute;
 const pageFilesLazyServer1 = {
   "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.705b8c3e.js");
+    return require("./assets/_default.page.server.649e337a.js");
   })
 };
 const pageFilesLazyServer = { ...pageFilesLazyServer1 };
