@@ -9,6 +9,9 @@ export { onHydrationEnd }
 export { onPageTransitionStart }
 export { onPageTransitionEnd }
 
+// Prefetch links as soon as they enter the viewport
+export const prefetchStaticAssets = { when: 'VIEWPORT' }
+
 async function render(pageContext) {
   const { Page, exports, url } = pageContext
   const { documentProps } = exports

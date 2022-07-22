@@ -2,19 +2,15 @@ import React, { useRef } from 'react'
 
 export { Logo }
 
-const timeOut = (ref) => {
-  setTimeout(() => (ref.current.className = ''), 350)
-}
-
 const mouseEnter = (ref) => {
   return () => {
     if (ref.current.className === 'roll') return
     ref.current.className = 'roll'
-    timeOut(ref)
+    setTimeout(() => (ref.current.className = ''), 450)
   }
 }
 
-const duration = { '--duration': '0.350s' }
+const duration = { '--duration': '450ms' }
 
 function Logo() {
   const aRef = useRef(null)
