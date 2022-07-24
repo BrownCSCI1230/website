@@ -15,7 +15,7 @@ function NavBar({ url }) {
     <nav id="nav-bar">
       <div id="nav-bar-inner">
         <Logo />
-        <div id="nav-items" className="no-select">
+        <div id="nav-items">
           {navItems.map((navItem) => (
             <a
               key={navItem.text}

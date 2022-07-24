@@ -3,7 +3,7 @@
 
 // Fixme: combine font imports into one url for performance
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,350;0,700;1,350;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 @import '../fonts/darkmode-off.css';
 @import '../fonts/darkmode-on.css';
@@ -35,8 +35,8 @@ $faint-percent: 0.04;
 $more-faint-percent: 0.018;
 
 :root {
-  $ground: hsl(0, 0%, 13%);
-  $text: hsl(25, 9%, 86%);
+  $ground: rgb(32, 32, 32);
+  $text: rgb(220, 220, 220);
   $link: hsl(216, 100%, 72%);
   $line: color.mix($text, $ground, $line-percent);
   $less-faint: color.change($text, $alpha: $less-faint-percent);
@@ -65,14 +65,19 @@ $more-faint-percent: 0.018;
   --success-line: hsla(109, 57%, 47%, 0.8);
   --error-line: hsla(0, 84%, 60%, 0.8);
 
-  --code-background: hsl(0, 0%, 9.5%);
-  --blue-highlight: hsl(212, 50%, 34%);
+  --code-block-text: $text;
+  --code-background: rgb(25, 25, 25);
+  --code-highlight-edge-color: hsl(208, 100%, 55%);
+  --code-highlight-background-color: hsla(208, 80%, 70%, 0.1);
+  --mix-blend-mode: lighten;
+
+  --highlight: hsl(208, 70%, 35%);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    $ground: hsl(0, 0%, 100%);
-    $text: rgb(8, 8, 8);
+    $ground: rgb(255, 255, 255);
+    $text: rgb(0, 0, 0);
     $link: hsl(224, 100%, 48%);
     $line: color.mix($text, $ground, $line-percent);
     $less-faint: color.change($text, $alpha: $less-faint-percent);
@@ -101,8 +106,13 @@ $more-faint-percent: 0.018;
     --success-line: hsla(108, 95%, 34%, 0.8);
     --error-line: hsla(2, 100%, 39%, 0.8);
 
-    --code-background: hsl(0, 0%, 13%);
-    --blue-highlight: hsl(201, 82%, 80%);
+    --code-block-text: rgb(0, 0, 0);
+    --code-background: rgb(248, 248, 248);
+    --code-highlight-edge-color: hsl(26, 100%, 50%);
+    --code-highlight-background-color: hsla(26, 100%, 50%, 0.1);
+    --mix-blend-mode: darken;
+
+    --highlight: hsl(26, 100%, 70%);
   }
 }
 
@@ -131,8 +141,13 @@ $warning-line: var(--warning-line);
 $success-line: var(--success-line);
 $error-line: var(--error-line);
 
+$code-block-text: var(--code-block-text);
 $code-background: var(--code-background);
-$blue-highlight: var(--blue-highlight);
+$code-highlight-edge-color: var(--code-highlight-edge-color);
+$code-highlight-background-color: var(--code-highlight-background-color);
+$mix-blend-mode: var(--mix-blend-mode);
+
+$highlight: var(--highlight);
 
 // ================== Variables
 
@@ -216,7 +231,7 @@ $nav-item-font-weight: 600;
 $nav-item-line-height: 1.5;
 $nav-item-color: $text;
 
-$nav-item-hover-background-color: $blue-highlight;
+$nav-item-hover-background-color: $highlight;
 
 $header-font-family: $font;
 $header-font-sizes: 30px 26px 22px 20px 18px 16px;
@@ -238,13 +253,13 @@ $toc-font-weight: $body-font-weight;
 $toc-line-height: 26px;
 $toc-color: $text;
 
-$toc-hover-background-color: $blue-highlight;
+$toc-hover-background-color: $highlight;
 $toc-hover-color: $text;
 
 $code-font-family: $code-font;
 $code-block-font-size: 13px;
-$code-block-font-weight: 350;
-$code-block-line-height: math.div($body-line-height, $body-font-size);
+$code-block-font-weight: 400;
+$code-block-line-height: 22px;
 // For colors, see code.scss
 
 // ================== Lines
@@ -339,6 +354,15 @@ $todo-red: hsl(0, 100%, 45%);
   }
 }
 
+@mixin user-select($value) {
+  -webkit-touch-callout: $value; /* iOS Safari */
+  -webkit-user-select: $value; /* Safari */
+  -khtml-user-select: $value; /* Konqueror HTML */
+  -moz-user-select: $value; /* Old versions of Firefox */
+  -ms-user-select: $value; /* Internet Explorer/Edge */
+  user-select: $value;
+}
+
 // ================== General styles
 
 * {
@@ -359,15 +383,16 @@ $todo-red: hsl(0, 100%, 45%);
   color: inherit;
 
   scroll-margin-top: $scroll-margin-top;
+
+  &::selection,
+  &::before::selection,
+  &::after::selection {
+    background-color: $highlight;
+  }
 }
 
 .no-select {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Old versions of Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none;
+  @include user-select(none);
 }
 
 a,

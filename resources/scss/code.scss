@@ -12,10 +12,8 @@ $code-block-padding-vert: $medium-space;
 $code-block-padding-horz: $medium-space;
 
 $code-highlight-edge-width: 4px;
-$code-highlight-edge-color: hsl(212, 70%, 55%);
-$code-highlight-background-color: hsla(212, 70%, 70%, 0.1);
 
-$code-line-number-width: 5ch;
+$code-line-number-width: 4ch;
 
 $code-inline-padding: 1px 4px;
 $code-inline-border-radius: 2px;
@@ -24,14 +22,11 @@ $code-inline-background-color: $less-faint;
 $code-inline-color-callout: $text;
 
 $code-background-color: $code-background;
-$code-block-white: hsl(0, 0%, 90%);
-$code-block-gray: hsl(0, 0%, 45%);
-$code-line-number-color: color.mix($code-block-white, $code-block-gray, 25%);
+$code-line-number-color: hsl(0, 0%, 50%);
 
 // ================== Code Blocks
 
 pre {
-  padding: $code-block-padding-vert 0;
   overflow-x: auto;
   overscroll-behavior-x: contain;
 
@@ -43,10 +38,10 @@ pre {
     margin-right: -$main-padding-right;
   }
 
-  background: $code-background-color;
+  background-color: $code-background-color;
 
   @include code-block-text;
-  color: $code-block-white;
+  color: $code-block-text;
 
   text-shadow: none;
   direction: ltr;
@@ -61,6 +56,10 @@ pre {
 
   code {
     @include code-block-text;
+
+    // Putting this on the code element allows you to select text more intuitively when clicking on the vertical padding
+    padding: $code-block-padding-vert 0;
+
     float: left; // Magic: make the element just wide enough to fit its content
     min-width: 100%; // Magic: always fill the visible space in .code-highlight
   }
@@ -86,6 +85,7 @@ pre {
   display: block;
   position: relative;
   z-index: 1;
+  background-color: var(--code-background);
 
   padding-right: $code-block-padding-horz;
 
@@ -94,6 +94,10 @@ pre {
     display: inline-block;
     border-left: $code-highlight-edge-width solid $code-background-color;
     width: $code-block-padding-horz - $code-highlight-edge-width;
+
+    // This pair below hides user text selection under it
+    position: relative;
+    background-color: var(--code-background);
   }
 
   &.highlight-line {
@@ -109,6 +113,7 @@ pre {
       pointer-events: none;
 
       background-color: $code-highlight-background-color;
+      mix-blend-mode: $mix-blend-mode;
     }
   }
 
@@ -121,7 +126,7 @@ pre {
     text-align: right;
 
     color: $code-line-number-color;
-    background: $code-background-color;
+    background-color: $code-background-color;
 
     position: sticky;
     z-index: 50;
@@ -164,8 +169,7 @@ pre {
   --color-prettylights-syntax-constant-other-reference-link: #a5d6ff;
 }
 
-// Light scheme unsupported
-/* @media (prefers-color-scheme: light) {
+@media (prefers-color-scheme: light) {
   :root {
     --color-prettylights-syntax-comment: #6e7781;
     --color-prettylights-syntax-constant: #0550ae;
@@ -198,7 +202,7 @@ pre {
     --color-prettylights-syntax-sublimelinter-gutter-mark: #8c959f;
     --color-prettylights-syntax-constant-other-reference-link: #0a3069;
   }
-} */
+}
 
 .pl-c {
   color: var(--color-prettylights-syntax-comment);

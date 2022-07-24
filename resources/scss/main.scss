@@ -101,6 +101,16 @@ main {
     border: 1px solid $line;
     padding: 0 $details-padding-horz 0 $details-padding-horz;
 
+    @media only screen and (max-width: $breakpoint) {
+      border-left: none !important;
+      border-right: none !important;
+
+      margin-left: -$main-padding-left;
+      margin-right: -$main-padding-right;
+      padding-left: $main-padding-left;
+      padding-right: $main-padding-right;
+    }
+
     background-color: $details-background-color;
 
     > summary {
@@ -110,6 +120,16 @@ main {
       margin-right: -1px - $details-padding-horz;
       margin-bottom: -1px !important;
       padding: 0;
+
+      @media only screen and (max-width: $breakpoint) {
+        border-left: none !important;
+        border-right: none !important;
+
+        margin-left: -$main-padding-left;
+        margin-right: -$main-padding-right;
+        padding-left: $main-padding-left;
+        padding-right: $main-padding-right;
+      }
 
       border: 1px solid $summary-background-color;
 
@@ -161,8 +181,17 @@ main {
         border-color: $border-color;
       }
 
-      details > summary {
-        background-color: $background-color;
+      details {
+        border-color: $border-color;
+
+        summary {
+          border-color: $background-color;
+          background-color: $background-color;
+        }
+
+        &[open] > summary {
+          border-bottom-color: $border-color;
+        }
       }
 
       @if ($content == 'Todo: ') {

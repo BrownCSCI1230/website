@@ -36,6 +36,8 @@ body::after {
 }
 
 #nav-bar {
+  @include user-select(none);
+
   position: fixed;
   z-index: 999;
   top: 0;
@@ -166,11 +168,11 @@ body::after {
     }
   }
 
-  $saturation-scale: 1.02;
-  $lightness-scale: 1.06;
+  $saturation-scale: 1.1;
+  $lightness-scale: 1.05;
 
   > #a {
-    @include logo-char(hsl(0, (67 * $saturation-scale) * 1%, (55 * $lightness-scale) * 1%), 'C');
+    @include logo-char(hsl(0, (69 * $saturation-scale) * 1%, (55 * $lightness-scale) * 1%), 'C');
   }
   > #b {
     @include logo-char(hsl(29, (87 * $saturation-scale) * 1%, (50 * $lightness-scale) * 1%), 'S');
@@ -225,6 +227,8 @@ body::after {
 }
 
 .toc {
+  @include user-select(none);
+
   position: sticky;
   top: $nav-bar-height;
 
@@ -262,7 +266,6 @@ body::after {
     @if ($level != 1) {
       position: relative;
       left: -($level - 2) * 8px;
-      margin-left: -1px;
     }
   }
   @mixin toc-link($level) {
