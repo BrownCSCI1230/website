@@ -15,11 +15,14 @@ const pageFilesLazyIsomorph1 = {
   "/pages/docs/code-blocks.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/code-blocks.page.b270e54b.js");
   }),
+  "/pages/docs/code-readability.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/code-readability.page.270731e0.js");
+  }),
   "/pages/docs/cpp-guidelines.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/cpp-guidelines.page.a87f7ba0.js");
   }),
   "/pages/docs/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/docs.page.fef718be.js");
+    return require("./assets/docs.page.13ceb87f.js");
   }),
   "/pages/docs/inline-code.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/inline-code.page.7e852f68.js");
@@ -31,13 +34,16 @@ const pageFilesLazyIsomorph1 = {
     return require("./assets/index.page.57836102.js");
   }),
   "/pages/labs/index.page.mdx": () => Promise.resolve().then(function() {
-    return require("./assets/labs.page.65896b22.js");
+    return require("./assets/labs.page.51948dbc.js");
   }),
   "/pages/labs/lab0.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab0.page.a548fdf4.js");
   }),
   "/pages/labs/lab1.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab1.page.0dba4ffb.js");
+  }),
+  "/pages/labs/lab10.page.mdx": () => Promise.resolve().then(function() {
+    return require("./assets/lab10.page.a49d6c32.js");
   }),
   "/pages/labs/lab11.page.mdx": () => Promise.resolve().then(function() {
     return require("./assets/lab11.page.35e87e51.js");
@@ -83,7 +89,7 @@ const pageFilesEagerRoute = { ...pageFilesEagerRoute1 };
 pageFilesEager[".page.route"] = pageFilesEagerRoute;
 const pageFilesLazyServer1 = {
   "/renderer/_default.page.server.jsx": () => Promise.resolve().then(function() {
-    return require("./assets/_default.page.server.649e337a.js");
+    return require("./assets/_default.page.server.1c7ff138.js");
   })
 };
 const pageFilesLazyServer = { ...pageFilesLazyServer1 };
