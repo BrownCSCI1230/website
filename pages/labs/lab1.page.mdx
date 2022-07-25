@@ -4,43 +4,48 @@ export const documentProps = { title: 'Lab 1' }
 
 # Lab 1: Setup and C++
 
-- [Github Classroom assignment](todo)
-- [Anonymous feedback form](https://forms.gle/ZYY519pzSvu8YaZK6)
+[Github Classroom](todo)
 
 ## Introduction
 
 Welcome to CS 1230!
 
-The purpose of this lab is twofold: to set you up with what you need to work on assignments locally, and to help you learn the basics of C++, the programming language that we will be using in this course.
+The purpose of this lab is twofold: to set you up with what you'll need to work on assignments locally, and to ease you into C++, the programming language we'll be using in this course.
+
+If you have any questions, or run into any issues, please let us know over Ed or during TA hours. We'll do our best to help!
 
 ### Objectives
 
-1. Install Qt 6 & Qt Creator locally on your computer,
-2. Build and run a starter Qt program, and
-3. Learn about the basics (and the subtleties) of C++.
+1. Complete our **Getting Started** form,
+2. Install **Qt** & **Qt Creator** locally on your computer,
+3. Build and run a **starter Qt program** using the Qt Creator IDE, and
+4. Learn about the **basics** (and **subtleties**) of **C++**.
 
-## Before You Begin
+## Getting Started
 
-We assume you're already familiar with using **Github Classroom** to accept assignments, **Ed** to ask questions, and **Gradescope** to submit work. Before proceeding to the next section, make sure you have done the following:
+We assume that you're already familiar with using **Github Classroom** to accept assignments, **Ed** to ask questions, and **Gradescope** to submit work.
 
-- Joined our course's [Ed](todo) page,
-- Enrolled in CS 1230 on [Gradescope](todo),
-- Accepted this lab's assignment from [Github Classroom](todo), and
-- Cloned the resulting repository to your local machine.
+**Please fill out [our Getting Started form](todo) as you complete the steps below:**
 
-All set? Let's get started!
+1. Read our course's [collaboration policy](/docs/collaboration-policy),
+2. Join the CS 1230 [Ed discussion page](todo),
+3. Enroll in this course over on [Gradescope](todo),
+4. Accept this lab's assignment from [Github Classroom](todo), and
+5. Clone the resulting repository to your local machine.
+
+At this point, you should have a copy of this lab's repository. All set? Let's get started!
 
 ## Qt and Qt Creator
 
-In CS 1230, we will be using **Qt** and **Qt Creator** to develop, build, and run all our projects and labs. Here's a brief description of each:
+In CS 1230, we will be using **Qt** and **Qt Creator** to develop, build, and run all our projects and labs. Before we walk you through how to install them to your local machine, here's a brief description of each:
 
-- [Qt](https://www.qt.io) is a software used for building graphical user interfaces (GUIs) and cross-platform applications, e.g. for smart TVs or in-vehicle displays.
-- [Qt Creator](https://www.qt.io/product/development-tools) is the integrated development environment (IDE) included with each Qt install. It provides useful tools for developing in C++, which you'll learn about later in the course.
+- **[Qt](https://www.qt.io)** is a software used for building graphical user interfaces (GUIs) and cross-platform applications, e.g. for smart TVs or in-vehicle displays.
+- **[Qt Creator](https://www.qt.io/product/development-tools)** is an integrated development environment (IDE) included with each Qt install. It provides useful tools for developing in C++, which you'll learn about later in the course.
 
-In this section, we'll walk you through both installing Qt and Qt Creator to your local machine and opening your first project. We'll also give you a quick tour of the Qt Creator interface.
+> **We will be using Qt 6.2 (LTS)**, where LTS stands for "long-term support". Any version of Qt Creator is fine&mdash;it'd be easiest to just use the one that comes with your Qt install.
 
 <details>
-  <summary>But I prefer developing in VS Code / Emacs / Notepad++ / etc!</summary>
+  <summary>But I'd rather work in **VS Code / Emacs / Notepad++ / etc**, instead of in **Qt Creator**!</summary>
 
 If you know what you're doing, you may certainly write code in your IDE of choice. In the past, students have successfully used other IDEs for writing code, before using Qt Creator to build and run their projects.
 
@@ -48,22 +53,22 @@ That being said, the CS 1230 course staff _will_ be using Qt Creator to grade yo
 
 </details>
 
-### Local Installation, and Opening Your First Project
+### Installation
 
 :::warning
 Qt and Qt Creator will take up ~3GB of space in total.
 :::
 
-| Step | Instruction                                                                                                                                                                                                                                                                                                                                                                                                         | Screenshot                                    |
-| :--: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------- |
-|  1   | **Download** and open the appropriate Qt installer for your operating system from the link below:<br/><br/>[www.qt.io/download-qt-installer](https://www.qt.io/download-qt-installer)                                                                                                                                                                                                                               | ![todo](/labs/lab1/download-qt-installer.png) |
-|  2   | Follow the instructions on the installer to **create a free Qt account** (or use an existing one).                                                                                                                                                                                                                                                                                                                  | ![todo](/labs/lab1/create-qt-account.png)     |
-|  3   | When prompted, **opt for a `Custom Installation`**.                                                                                                                                                                                                                                                                                                                                                                 | ![todo](/labs/lab1/custom-installation.png)   |
-|  4   | Next, you'll need to **select at least these three components**:<br/><br/>1. `Qt 6.2.4 > [your OS]`,<br/>2. `Developer and Designer Tools > CMake [some version]`, and<br/>3. `Developer and Designer Tools > Ninja [some version]`.<br/><br/>Note that Qt Creator, the Qt IDE, will be installed as well&mdash;you do not have to select it.                                                                       | ![todo](/labs/lab1/selected-components.png)   |
-|  5   | Continue to **finish the installation process**, and **launch Qt Creator**.                                                                                                                                                                                                                                                                                                                                         | ![todo](/labs/lab1/finished-install.png)      |
-|  6   | Finally, in the Qt Creator window, click `Open Project...`: in the file browser that appears, **choose the `lab01.pro` file** located in this lab's repository.<br/><br/><details><summary>What is a `.pro` file?</summary><br/>A `.pro` file is a _multi-platform_ project file, which Qt can turn into a _platform-specific_ makefile. It stores configuration information, e.g. what files to include.</details> | ![todo](/labs/lab1/open-project.png)          |
+| <div style={{ minWidth: 350 }}>Instruction</div>                                                                                                                                                                                                                                                                                                                                                                                                            | Screenshot                                    |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------- |
+| **Download** and open the appropriate Qt installer for your operating system from [the Qt installer page](https://www.qt.io/download-qt-installer).                                                                                                                                                                                                                                                                                                         | ![todo](/labs/lab1/download-qt-installer.png) |
+| Follow the instructions on the installer to **create a free Qt account** (or use an existing one).                                                                                                                                                                                                                                                                                                                                                          | ![todo](/labs/lab1/create-qt-account.png)     |
+| When prompted, **opt for a `Custom Installation`**.                                                                                                                                                                                                                                                                                                                                                                                                         | ![todo](/labs/lab1/custom-installation.png)   |
+| On the next page, **select (at least) these three**:<br/><br/>1. `Qt 6.2.4 > MinGW [...]` (Windows) or `Qt 6.2.4 > MacOS` (MacOS),<br/>2. `Dev. and Designer Tools > CMake [...]`, and<br/>3. `Dev. and Designer Tools > Ninja [...]`.<br/><br/>Note 1: Qt Creator will be installed as well. You do not have to select it.<br/><br/>Note 2: you may opt to install more components, but be warned that this will take up a lot more space on your machine! | ![todo](/labs/lab1/selected-components.png)   |
+| Proceed with the installation. Once finished, **launch Qt Creator**.                                                                                                                                                                                                                                                                                                                                                                                        | ![todo](/labs/lab1/finished-install.png)      |
+| Finally, in the Qt Creator window, click `Open Project`. In the file browser that appears, **choose the `CMakeLists.txt` file** located in this your copy of this lab's repository.<br/><br/>                                                                                                                                                                                                                                                               | ![todo](/labs/lab1/open-project.png)          |
 
-### The Qt Creator Interface
+### Interface
 
 If you completed all the steps successfully, you should see the following screen. Good work!
 
@@ -73,15 +78,715 @@ Insert labelled image here
 
 - [Include something about "Project View"]
 - [Include something about "Projects" aka settings]
+- [Include something about "Release Mode"].
 - [Include something about "Run"].
 
-When you're ready, hit "run" and proceed to the next section.
+### Building and Running
+
+::::task
+
+When you're ready, hit "run". A terminal window should appear, and you should see...
+
+:::todo
+Insert something about the expected output here
+:::
+
+::::
+
+You just ran a simple C++ program! Of course, it did nothing, but we can easily change that in the next section 🙂.
 
 ## C++
 
-:::todo
-Insert C++ stuff here
+### Hello World
+
+A simple C++ program which does nothing (like the one you just ran) looks something like this:
+
+```cpp
+// A C++ program always starts from the main() function.
+// main() returns an integer indicating how the program exited
+int main() {
+  // Though this function body is empty, it still returns an int!
+  // In C++, if control reaches the end of main() without encountering
+  // a return statement, the effect is that of executing `return 0;`
+}
+```
+
+In order to modify this function to print `"Hello world"`, we must first include the **input/output library** (`iostream`), which is a part of the **C++ standard library**.
+
+#### `#Include`-ing Files
+
+In C++ files, you can `#include` other files to gain access to functions, types, macros, and variables declared in those other files. For example, in our Hello World program, we can `#include` the `iostream` header file at the top of our `main.cpp` file like so:
+
+```cpp
+#include <iostream> // Lines that begin with `#` do not require semi-colons
+```
+
+> Note the use of angle brackets around `iostream`. In C++, you should use angle brackets for standard library files, but you should use **_double quotes_** for files within your own project.
+
+#### Accessing Things in a Namespace
+
+Imported functionality is usually grouped under a `namespace`, and we can access things within a namespace using the double-colon (`::`) operator. For example, since we included `iostream` in our Hello World program, we now have access to the following things in the `std` namespace:
+
+- `std::cout`: prints things to `stdout`, i.e. the terminal or the "output" window in Qt Creator
+- `std::endl`: inserts a newline character and flushes the output stream.
+
+`std::cout` is usually used in tandem with the [_insertion_ operator](https://cplusplus.com/reference/ostream/ostream/operator%3C%3C#example) (`<<`). This inserts characters into the current output stream, and it works like string concatenation with `+` in some languages.
+
+The insertion operator can also be used with `std::endl` to insert a newline, in place of `\n`.
+
+:::task
+
+We are now ready to write something to the terminal.
+
+1. Include `iostream` in `main.cpp`.
+2. In `main()`, use `std::cout` and `std::endl` to print `"Hello, world!"` to the terminal.
+3. Run your program, and verify that it behaves as expected. Hello, world!
+
 :::
+
+<details>
+  <summary>Extra: two other potentially useful `iostream` objects</summary>
+
+- `std::cin` reads from stdin (terminal input), in a blocking manner, and
+- `std::cerr` prints to stderr (terminal error messages)
+
+`std::cin` is usually used in tandem with the [_extraction_ operator](https://cplusplus.com/reference/istream/istream/operator%3E%3E/) (`>>`). It's highly unlikely that you'll use this in CS 1230, though.
+
+</details>
+
+Now, we can get into the fun stuff!
+
+### Primitive Types
+
+C++ is a _typed_ language. It comes with several primitive types, including...
+
+- integer-like types (integers, booleans, characters)
+- floating point types
+- arrays (specifically, C style arrays)
+- functions and lambdas
+- pointers and references
+
+Some of these you might already know from languages you've learned before. Others, such as pointers and references, are C++ concepts which we'll expand in later sections.
+
+> Note that strings are not a primitive type in C++, as string literals are simply `char` arrays. However, the standard library does provide the `std::string` type, which allows us to perform common string operations.
+
+#### Variables
+
+When defining a variable, we have to **declare** its type.
+
+```cpp
+int x = 42;
+double y = 3.14;
+```
+
+Alternatively, we may use `auto` to tell the compiler to **deduce** the variable's type, based on how we've initialized it. This could be useful if its type has a very long name, or if we're not sure about its exact type.
+
+```cpp
+auto z = 2.71; // type of z deduced as double
+
+// I'm not exactly sure about the type of this string literal
+auto w = "random string abcd";
+```
+
+#### Functions
+
+The same rules also apply to functions: we must declare their return types, and the types of each parameter.
+
+```cpp
+int plusOne(int x) {
+  return x + 1;
+}
+```
+
+Just as with variables, we may use `auto` in place of the return type&mdash;the compiler will deduce the return type from the `return` statement in the function body.
+
+##### Overloading
+
+Defining multiple functions with the same names, but different type annotations, allows you to do something called **_overloading_**, which you might be familiar with from languages like Java.
+
+<details>
+  <summary>Example</summary>
+
+```cpp {1, 5}
+float plusOne(float x) {
+  return x + 1;
+}
+
+auto plusOne(double x) {
+  return x + 1; // Return type deduced as double
+}
+
+auto x = plusOne(3.14f); // calls plusOne (float); note the float literal
+auto y = plusOne(2.71);  // calls plusOne (double)
+```
+
+</details>
+
+##### Generic Functions
+
+We can improve the code in the example above by making our function generic. This is easy to do in C++: we simply change the type of its input parameter to `auto`.
+
+<details>
+  <summary>Example</summary>
+
+````cpp {1}
+auto plusOne(auto x) {
+  return x + 1;
+}
+
+auto a = plusOne(1230); // a == 1231 (int)
+auto b = plusOne(6.5f); // b == 7.5f (float)
+auto c = plusOne(3.14); // c == 4.14 (double)
+`
+
+A function with at least one `auto` parameter, such as this generic `plusOne`, is known as a **[function template](https://en.cppreference.com/w/cpp/language/function_template#Abbreviated_function_template)**.
+
+</details>
+
+##### Extra: Lambdas
+
+<details>
+  <summary>Extra: what are lambdas?</summary>
+
+There are also function-like entities in C++ called _lambdas_. We'll not explain them in detail since functional programming is outside the scope of this lab. However, you are welcome to play with them and ask questions about them on Ed.
+
+You may need to use lambdas for certain extra credit features, such as multithreading, in your future assignments. To get you started, a toy example is shown below.
+
+```cpp
+auto plus(auto increment) {
+  return [=](auto x) {
+    return x + increment;
+  };
+}
+
+// Observe that functions are "first-class" in C++
+auto apply(auto operation, auto x) {
+  return operation(x);
+}
+
+auto x = apply(plus(20), 22); // x == 42
+auto y = apply(plus(-1.1), 4.24); // y == 3.14
+````
+
+You can find more information about lambdas [here](https://en.cppreference.com/w/cpp/language/lambda).
+
+</details>
+
+#### A Warning About Type Deduction
+
+:::warning
+
+Type deduction is very powerful in C++. However, overusing it has a negative impact on the readability and maintainability of your code, and it can cause unexpected compilation errors/crashes.
+
+:::
+
+You should be very careful to strike a balance between type declaration and type deduction to maximize your code clarity. We recommend only using `auto` for _local variables in function bodies_ and for ["generic" functions](<(#generic-functions)>). Whenever possible, explicitly declare types in function signatures.
+
+:::task
+
+We can now write functions and use them to process different things!
+
+1. Write a function `TimesTwo` which takes an `int`, returns an `int`, and does what the function name suggests.
+2. Add `std::cout << TimesTwo(21) << std::endl;` to your `main` function.
+
+You should see `42` when you run the program.
+
+:::
+
+:::task
+
+Let's use what we learned and make `TimesTwo` more interesting!
+
+1. Change the signature of `TimesTwo` and make it generic.
+2. You might also need to change the definition in the function body of `TimesTwo` if you used multiplication for the previous task. Note that multiplication is not defined for `std::string`, but addition is, so how do you express "times 2" in the form of addition?
+3. Add the following print statements to your `main` function
+
+```cpp
+std::cout << TimesTwo(123) << std::endl;
+std::cout << TimesTwo(3.14) << std::endl;
+std::cout << TimesTwo(std::string{ "abc" }) << std::endl;
+```
+
+You should see `246`, `6.28` and `abcabc` when you run the program.
+
+:::
+
+### Structs and Classes
+
+Going beyond primitives, we can create custom types in C++ by combining existing types and bundling them with functions.
+
+These custom types are known as **_structs/classes_**, and they can be defined using the `struct`/`class` keywords respectively.
+
+Structs and classes are almost the same thing in C++, with the only difference being that `struct`s have public member access by default and `class`es have private member access by default. The basic form of a `struct` is shown as follows:
+
+```cpp
+struct Rectangle {
+  double length;    // A data member, also known as a field
+  double width = 1; // Fields can have default values
+  // Note: fields must be explicitly typed; you cannot use type deduction here
+
+  // A member function, also known as a method
+  double calculateArea() {
+    return length * width;
+  }
+
+  // This member function modifies the struct instance's state
+  void makeItASquare(double sideLength) {
+    length = sideLength;
+    width = sideLength;
+  }
+};
+```
+
+Here's how we can create instances of `Rectangle`:
+
+```cpp
+// Create an instance of Rectangle
+auto x = Rectangle{ .length = 2, .width = 4 };
+
+// Field names can be omitted. Values in the brackets will
+// be assigned to each field sequentially
+
+// Equivalent to Rectangle{ .length = 4, .width = 3 }
+auto y = Rectangle{ 4, 3 };
+
+// Equivalent to Rectangle{ .length = 5, .width = 1 },
+// because of the default value
+auto z = Rectangle{ 5 };
+```
+
+And here's how we can use those instances:
+
+```cpp
+// Remember that structs have public member access by default.
+// If this Rectangle was a class, you'd have to declare the
+// relevant fields/methods public to do this
+
+// Getting and setting fields
+auto oldLength = x.length;        // oldLength == 2
+x.length = 4;
+
+// Calling member functions
+auto newArea = x.calculateArea(); // newArea == 16
+x.makeItASquare(oldLength);       // x.length == x.width == 2
+```
+
+<details>
+  <summary>A warning about constructors and other special member functions</summary>
+
+If you have any experience in class-based OOP, you probably know that you can use **constructors** to initialize an object, instead of initializing it field-by-field (aggregate initialization).
+
+However, we generally recommend that you _do not_ manually define your own constructors.
+
+Instead, we suggest using **[aggregate types](https://en.cppreference.com/w/cpp/language/aggregate_initialization)** where possible.
+
+Improper handling of constructors and other special member functions\* can break _[value semantics](https://isocpp.org/wiki/faq/value-vs-ref-semantics)_ for your type, and cause unexpected bugs or resource leaks.
+
+And, while it is entirely possible that you may never encounter or notice such a bug even if you do use special member functions, we still recommend using aggregate types as the less error-prone option.
+
+\* special member functions = constructors, copy constructors, move constructors, copy assignment operators, move assignment operators, and destructors
+
+</details>
+
+:::task
+
+Let's add more behaviors to our `Rectangle` type and enhance its capabilities!
+
+1. Add a method `calculatePerimeter` to `Rectangle`.
+2. Add `std::cout << Rectangle{ 7, 8 }.calculatePerimeter() << std::endl;` to your `main` function.
+
+You should see `30` when you run the program.
+
+:::
+
+:::task
+
+Now that we've seen what we can do with `Rectangle`, are you ready to create a new type from ground zero?
+
+1. Create a `Circle` type using the `struct` keyword.
+2. `Circle` should contain a field `radius` of type `float`, and two methods `calculateArea` and `calculatePerimeter`.
+3. After completing your `Circle` type, create a few instances of `Circle` in your `main` function, and call some of their methods.
+
+See if your `Circle` instances exhibit the expected behaviors when you run the program.
+
+:::
+
+Now, we have 2 types `Rectangle` and `Circle`, with the same member functions `calculateArea` and `calculatePerimeter`. Can we define one `printShape` function that works for both types?
+
+#### Generic Functions (Reprise)
+
+If you have previous experience in OOP, you might think to define a `Shape` interface, have `Rectangle` and `Circle` both implement `Shape`, then define `printShape` on `Shape`. This is unnecessary in C++.
+
+Remember the generic functions we learned in the previous section? If a function has a parameter of `auto` type, we can pass `Rectangle` and `Circle` instances to it just like that!
+
+<details>
+  <summary>Extra: for those who have taken CS 1730</summary>
+
+The reason behind this magic is that C++ templates are [structurally typed](https://en.wikipedia.org/wiki/Structural_type_system), and they do not enforce [parametricity](https://en.wikipedia.org/wiki/Parametricity).
+
+</details>
+
+:::task
+
+Navigate to the empty function `printShape`.
+
+```cpp
+void printShape(auto shape) {
+  // Your code here
+}
+```
+
+Complete its definition, so that when you pass in either a `Rectangle` object or a `Circle` object, it prints:
+
+```cpp
+Area: /* area of the shape */
+Perimeter: /* perimeter of the shape */
+```
+
+Call `printShape` in `main()` with different `Rectangle` and `Circle` instances, to see if `printShape` exhibits the expected polymorphic behavior.
+
+:::
+
+### Other Standard Library Utilities
+
+Besides iostream, the C++ standard library provides us many useful utilities, and we'll focus on four most commonly used ones: its containers and strings.
+
+#### Arrays
+
+[`std::array`](https://en.cppreference.com/w/cpp/container/array) is a fixed-length array.
+
+<details>
+  <summary>Example</summary>
+
+```cpp showLineNumbers {1}
+#include <array>
+
+auto x = std::array<int, 3>{}; // Must declare element type and length
+
+// Element type and length can be deduced if you immediately initialize
+// the array with values
+auto y = std::array{ 3.14f, 2.71f };
+
+// Getting and setting array elements
+auto z = y[0]; // z == 3.14f
+x[0] = 42; // now, the zero-th element of x is 42
+
+auto [a, b, c] = x; // Arrays can be unpacked: a == 42, b == 0, c == 0
+
+// Commonly used array methods
+auto lengthX = x.size();
+auto underlyingPointer = x.data(); // we'll explain pointers later
+
+// Arrays can be looped over element-wise
+for (auto element : y) {
+  std::cout << element << std::endl; // prints 3.14, then 2.71
+}
+```
+
+</details>
+
+#### Vectors
+
+[`std::vector`](https://en.cppreference.com/w/cpp/container/vector) is a dynamic-length array. Unlike `std::array`, it allows us to insert or remove elements any time, and it has mostly the same capabilities as `std::array`. However, `std::array` is slightly more performant as it doesn't require dynamic memory allocation.
+
+<details>
+  <summary>Example</summary>
+
+```cpp showLineNumbers {1}
+#include <vector>
+
+auto x = std::vector<int>{}; // Must declare element type
+
+// Element type and length can be deduced if you immediately initialize
+// the vector with values
+auto y = std::vector{ 3.14f, 2.71f };
+
+// Manipulating vector elements
+auto z = y[0]; // z == 3.14f
+x.push_back(42); // add an element to the end of the vector
+x.push_back(123); // add another element after the 42 we just inserted
+x.pop_back(); // remove the element we just added
+
+auto [a, b, c] = x; // Arrays can be unpacked: a == 42, b == 0, c == 0
+
+// Commonly used vector methods
+auto lengthX = x.size();
+y.reserve(20); // Pre-allocate memory for more elements. Its length stays the same
+x.resize(10); // Resize the vector, actually changing its number of elements (length)
+auto underlyingPointer = x.data(); // we'll explain pointers Lvalue_to_rvalue_conversion
+
+// Vectors can be looped over element-wise
+for (auto element : y) {
+  std::cout << element << " "; // prints 3.14, then 2.71
+}
+```
+
+</details>
+
+#### Tuples
+
+[`std::tuple`](https://en.cppreference.com/w/cpp/utility/tuple) is a heterogeneous container&mdash;it is capable of storing elements of _different_ types. It is most commonly used to achieve **multiple return values** in C++.
+
+<details>
+  <summary>Example</summary>
+
+```cpp showLineNumbers {1}
+#include <tuple>
+
+auto makeTuple(auto x, auto y) {
+  return std::tuple{ x, y };
+}
+
+auto [x, y] = makeTuple(42, 3.14); // tuples can be unpacked, x == 42, y == 3.14
+
+// This is a variadic function template: it takes any number of arguments, each of any type
+// It is unlikely that you'll need to use variadic functions for this course
+auto doubleEach(auto ...x) {
+  return std::tuple{ x + x... };
+}
+
+auto [a, b, c] = doubleEach(12, 2.71, std::string{ "abc" });
+// a == 24, b == 5.42, c == "abcabc"
+```
+
+</details>
+
+#### Strings
+
+`std::string` provides basic string operations in C++, it has many methods which you can find [here](https://en.cppreference.com/w/cpp/string/basic_string). Below shows you how to create string objects, or convert string literals to `std::string`
+
+<details>
+  <summary>Example</summary>
+
+```cpp showLineNumbers {1}
+#include <string>
+
+auto x = std::string{}; // Create an empty string
+auto y = std::string{ "hello!" };  // Convert a string literal to a std::string
+
+std::string z = "abcd"; // Initialize a std::string
+z += "efgh"; // Use + to concatenate strings
+```
+
+</details>
+
+:::task
+
+Now that we've learned the basics of containers and strings, let's try using them!
+
+1. Create an array of `std::strings`. You're free to pick either `std::array` or `std::vector`.
+2. Fill the container with some strings.
+3. Repeat each string element in the container.
+4. Print each string element in the container, and see if the result is what you expect.
+
+:::
+
+### Pointers and References
+
+Every entity in our program, variables, functions, constants, values that a register cannot hold, they all exist somewhere in memory, and they all have a unique memory location called _memory_ _address_.
+
+A pointer is an integer storing a memory address, and it allows us to manipulate the object at that address. We can obtain a pointer to almost anything in C++ by taking its address using the _address_ _of_ operator `&`. The obtained address will be of a pointer type, denoted by the target object type followed by a star `*`.
+
+```cpp
+int x = 42;
+int* px = &x; // px is a pointer to an integer, pointing to x
+auto px2 = &x; // type deduction works for pointers too, type of px2 deducted to int*
+auto* px3 = &x; // partial type deduction works too, px3 is a pointer to some deduced type, auto deduced to int
+// pointer variables themselves also reside somewhere in memory, you can get a pointer to pointer
+auto ppx = &px; // ppx is of type int**, a pointer to a pointer to an integer
+// let's see where x is located in (virtual) memory!
+auto MemoryAddressOfX = reinterpret_cast<unsigned long long>(px); // cast pointer to largest integer type
+std::cout << MemoryAddressOfX;
+```
+
+The first thing we can do with a pointer is to _dereference_ it, meaning obtaining the entity at the address that the pointer points to. This can be achieved by using the dereference operator which also has the form of a star `*`. Dereferencing a pointer gives us something called a _reference_, meaning the entity at a particular memory address. The reference type is denoted by the entity type followed by `&`. For pointers to non-primitive types, we can also use `->` to obtain a reference to its members.
+
+```cpp
+int x = 42;
+int* px = &x;
+int& refx = *px; // obtain a reference to x by dereferencing its pointer
+int& refx2 = x; // another way to obtain a reference is to directly 'reference' it.
+refx = 123; // this sets x to 123 too, because refx and x share the same memory address, they are the exact same thing!
+std::cout << x; // you should see 123 here
+auto y = Rectangle{ .Length = 4, .Width = 2 };
+auto py = &y;
+auto a = py->CalculateArea(); // same as y.CalculateArea()
+double& yLength = py->Length; // same as y.Length
+yLength = 6; // this sets y.Length to 6
+py->Width = 3; // this sets y.Width to 3
+```
+
+:::task
+
+What is the type of `*ppx`? What about `**ppx`? Compare your answers with the TA while getting checked off!
+
+:::
+
+One thing we have to be careful with references is that we **always** have to spell out `&` in the type declaration when creating a reference, whether we're using type deduction or not. Otherwise we'd be creating a copy rather than a reference.
+
+```cpp
+int x = 42;
+int* px = &x;
+int& refx = *px; // a reference to x, same memory address as x
+auto& refx2 = x; // also a reference to x, with type deduction, same memory address
+auto& refx3 = refx; // same, since refx is the same thing as x
+int y = *px; // this is a copy of x! it's a new variable with its own unique address!
+auto y2 = *px; // again, it's a copy with its own unique address!
+auto y3 = x; // same as above
+```
+
+This is because C++ has _value semantics_ by default.
+
+<details>
+  <summary>Just to be pedantic...</summary>
+  This is known as lvalue-to-rvalue <a href="https://en.cppreference.com/w/cpp/language/implicit_conversion#Lvalue_to_rvalue_conversion">
+    type decay
+  </a> in C++ terminology.
+</details>
+Now that we know C++ makes a copy when creating something from another, unless specified otherwise (i.e. creating
+a reference). We should really change most of the parameter types in our function signature to references, unless
+it's something trivial like an `int` or `double`. Otherwise, a full copy will be made for every object we passed
+to the function, and it could lead to serious performance problems!
+
+```cpp
+void F(std::vector<int> Things) {
+    // empty
+}
+void BetterF(std::vector<int>& Things) {
+    // empty
+}
+auto Things = std::vector{ 1, 2, 3, 4 };
+F(Things); // 'Things' will be copied when you call F() because it gets passed by value!
+BetterF(Things); // no copy will be made here! because 'Things' gets passed by reference!
+// This also means if BetterF modifies 'Things' in any way in its function body, it will be reflected here
+```
+
+The same also applies to looping over containers.
+
+```cpp
+auto Things = std::vector{ 1, 2, 3, 4 };
+// this copies every element in 'Things'
+// not ideal if element type is not trivial to copy
+for (auto x : Things)
+    std::cout << x << std::endl;
+for (auto& x : Things) // this loops over each element by reference
+    x += x; // which also enables you to modify the elements
+// now Things = [2, 4, 6, 8]
+```
+
+:::task
+
+Let's try our hand at references!
+
+- Navigate to the empty function `DoubleEachElement`, this function takes any container and doubles each element in the container.
+
+```cpp
+void DoubleEachElement(/* ??? Container */) {
+    // your code here
+}
+```
+
+- Uncomment the `Container` parameter, replace `???` with a proper type declaration. (hint: references work with generic parameters too!).
+- Complete the function body using what we learned.
+- Pass different `std::array` and `std::vector` objects to `DoubleEachElement` in your `main` function.
+
+Print the results after `DoubleEachElement` calls, see if it matches your expectation!
+
+:::
+
+One problem with the basic form of references we've learned so far, is that they cannot bind to _values_ ([rvalue](https://en.cppreference.com/w/cpp/language/value_category#rvalue) in C++ terminology). The reason is obvious, values such as `123` or `3.14` do not have a memory address because they are not stored in memory by some variable. The same applies to function parameters, we cannot pass values to reference parameters.
+
+```cpp
+void BetterF(std::vector<int>& Things) {
+    // empty
+}
+auto x = 42;
+auto Things = std::vector{ 1, 2, 3, 4 };
+auto& refx = x; // OK, bind to a variable
+// auto& IncorrectRef = 42; // error, (lvalue) reference cannot bind to (r)value
+BetterF(Things); // OK, reference parameter binds to 'Things'
+// BetterF(std::vector{ 1, 2, 3, 4 }); // error, (lvalue) reference parameter cannot bind to (r)value
+```
+
+This can be inconvenient in some cases. Ideally, we'd want something that behaves like a reference when we bind it to a variable, and like a new variable when we provide it a value. Luckily, we do have something exactly like this in C++ called _forwarding_ _references_ in the form of `auto&&`.
+
+<details>
+  <summary>Be careful though</summary>
+
+`&&` after a concrete type, like `int&&` or `std::vector<int>&&`, does not form a forwarding reference! These are _rvalue references_ which are outside the scope of this lab. You can learn more about rvalue references [here](https://en.cppreference.com/w/cpp/language/reference#Rvalue_references), if you're interested.
+
+</details>
+
+```cpp
+void EvenBetterF(auto&& Things) {
+  // empty
+}
+
+auto x = 42;
+auto Things = std::vector{ 1, 2, 3, 4 };
+auto&& refx = x; // OK, bind to a variable, same as 'auto& refx = x;'
+auto&& ForwardRef = 42; // OK, creates a new variable as if 'auto ForwardRef = 42;'
+EvenBetterF(Things); // OK, reference parameter binds to 'Things'
+EvenBetterF(std::vector{ 1, 2, 3, 4 }); // OK, as if the parameter type is non-reference
+```
+
+### Pointer Arithmetic
+
+We've discussed in the previous section that a pointer is an integer storing a memory address. What will happen though, if we perform integer arithmetic on pointers? Consider the following example
+
+```cpp
+auto p = reinterpret_cast<int*>(42); // cast some random integer to a pointer
+p += 1;
+auto x = reinterpret_cast<unsigned long long>(p); // cast pointer back to integer
+std::cout << x; // what will you see here?
+```
+
+You would probably think `x` is `43`, however depending on your hardware platform, you're likely to see `46`! Why is that?
+
+This is because pointer arithmetic has array semantics, meaning if you have a pointer `p` pointing to the address of some object of type `T`, `p + n` assumes that there is an array of `T`s stored in contiguous memory, and `p + n` evaluates to the address of the `n`-th object after the object that `p` points to. In the above example, `x` contains the address of a (hypothetical) integer next to the (hypotetical) integer whose address is `42`. And therefore the value of `x` would be `42 + sizeof(int)`, since `sizeof(int)` is likely `4` on most common hardware platforms, you see `46` when you print out `x`.
+
+`n` can also be a negative integer in `p + n`, let `m = -n`, `p + n` would be the same as `p - m`, meaning the address of the `m`-th object before `*p`.
+
+:::task
+
+- Head to the empty function `PrintEachObject`, this function takes a pointer to the first object of an array of objects in memory, and the number of objects we have.
+
+```cpp
+void PrintEachObject(auto* PointerToTheFirstObject, std::size_t NumberOfObjects) {
+  // your code here
+}
+```
+
+- Complete the function body, print each object using pointer arithmetic. Hint: `*(p + n)` is how you dereference `p + n`.
+- Uncomment the supporting code in `main()` for task 10, execute the program and see if you get the expected result.
+
+:::
+
+Pointer arithmetic is common in C/C++, and `*(p + n)` is unwieldy, the language therefore defines a syntactic sugar for us to do the exact same thing, we may use the indexing operator `p[n]` to represent `*(p + n)`, the indexing operator syntax is the exact same as explicit pointer arithmetic.
+
+:::task
+
+Replace explicit pointer arithmetic in `PrintEachObject` with the indexing operator. Keep your old implementation as commented-out code, so the TAs can check that you completed the previous task correctly.
+
+:::
+
+<details>
+  <summary>Secrets behind C arrays</summary>
+    
+If you have prior experience in C/C++, you may have noticed that we always use `std::array<T, N>` instead of the C array `T[N]`. C arrays behave just like a pointer in many cases, and we concluded that this is unnecessary complexity for beginners.
+
+```cpp
+int x1[3];
+auto x2 = std::array<int, 3>{};
+auto y1 = x1; // this is a pointer! not a copy of the 'x1' array!
+auto y2 = x2; // this is a copy of the 'x2' array!
+y1[0] = 42; // this is the same as 'x1[0] = 42'
+y2[0] = 42; // this does nothing to x2, since it's a copy
+```
+
+The reason behind this oddity is that C arrays automatically decay to the pointer to its first element. Interestingly, the C++ standard only defines the builtin indexing operator on pointers, it is never said that (C) arrays can be indexed. What happens when the compiler sees `x1[0]` is that, `x1` first decays to a pointer automatically, then the indexing operator defined on **pointers** gets invoked, and then desugar-ed into `*(x1 + 0)`. Pointer arithmetic happens behind the scene every time you manipulate an array!
+
+</details>
 
 ## End
 
