@@ -15,7 +15,7 @@ $code-highlight-edge-width: 4px;
 
 $code-line-number-width: 4ch;
 
-$code-inline-padding: 1px 4px;
+$code-inline-padding: 0.05em 0.2em;
 $code-inline-border-radius: 2px;
 $code-inline-color: $text;
 $code-inline-background-color: $less-faint;
@@ -76,7 +76,7 @@ pre {
   box-decoration-break: clone;
   --webkit-box-decoration-break: clone;
 
-  @include code-inline-text;
+  @include code-inline-text();
 }
 
 // ================== Line Highlighting and Line Numbers

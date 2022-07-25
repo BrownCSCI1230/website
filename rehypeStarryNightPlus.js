@@ -82,7 +82,7 @@ function rehypeStarryNightPlus(options = {}) {
               break
             }
             case '-': {
-              codeLine.properties.className.push('inserted')
+              codeLine.properties.className.push('deleted')
               break
             }
             default: {

@@ -171,22 +171,22 @@ body::after {
   $saturation-scale: 1.1;
   $lightness-scale: 1.05;
 
-  > #a {
+  > #logo-box-1 {
     @include logo-char(hsl(0, (69 * $saturation-scale) * 1%, (55 * $lightness-scale) * 1%), 'C');
   }
-  > #b {
+  > #logo-box-2 {
     @include logo-char(hsl(29, (87 * $saturation-scale) * 1%, (50 * $lightness-scale) * 1%), 'S');
   }
-  > #c {
+  > #logo-box-3 {
     @include logo-char(hsl(48, (80 * $saturation-scale) * 1%, (50 * $lightness-scale) * 1%), '1');
   }
-  > #d {
+  > #logo-box-4 {
     @include logo-char(hsl(108, (50 * $saturation-scale) * 1%, (43 * $lightness-scale) * 1%), '2');
   }
-  > #e {
+  > #logo-box-5 {
     @include logo-char(hsl(201, (58 * $saturation-scale) * 1%, (46 * $lightness-scale) * 1%), '3');
   }
-  > #f {
+  > #logo-box-6 {
     @include logo-char(hsl(248, (54 * $saturation-scale) * 1%, (53 * $lightness-scale) * 1%), '0');
   }
 }
@@ -233,6 +233,9 @@ body::after {
   top: $nav-bar-height;
 
   padding: $toc-padding;
+
+  max-height: calc(100vh - $nav-bar-height);
+  overflow-y: auto;
 
   align-self: flex-start;
 

@@ -22,12 +22,12 @@ function Logo() {
 
   return (
     <a id="logo" className="no-select" href="/" aria-label="home" style={duration}>
-      <div id="a" ref={aRef} onMouseEnter={mouseEnter(aRef)} />
-      <div id="b" ref={bRef} onMouseEnter={mouseEnter(bRef)} />
-      <div id="c" ref={cRef} onMouseEnter={mouseEnter(cRef)} />
-      <div id="d" ref={dRef} onMouseEnter={mouseEnter(dRef)} />
-      <div id="e" ref={eRef} onMouseEnter={mouseEnter(eRef)} />
-      <div id="f" ref={fRef} onMouseEnter={mouseEnter(fRef)} />
+      <div id="logo-box-1" ref={aRef} onMouseEnter={mouseEnter(aRef)} />
+      <div id="logo-box-2" ref={bRef} onMouseEnter={mouseEnter(bRef)} />
+      <div id="logo-box-3" ref={cRef} onMouseEnter={mouseEnter(cRef)} />
+      <div id="logo-box-4" ref={dRef} onMouseEnter={mouseEnter(dRef)} />
+      <div id="logo-box-5" ref={eRef} onMouseEnter={mouseEnter(eRef)} />
+      <div id="logo-box-6" ref={fRef} onMouseEnter={mouseEnter(fRef)} />
     </a>
   )
 }

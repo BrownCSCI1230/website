@@ -36,7 +36,7 @@ $more-faint-percent: 0.018;
 
 :root {
   $ground: rgb(32, 32, 32);
-  $text: rgb(220, 220, 220);
+  $text: rgb(210, 210, 210);
   $link: hsl(216, 100%, 72%);
   $line: color.mix($text, $ground, $line-percent);
   $less-faint: color.change($text, $alpha: $less-faint-percent);
@@ -151,7 +151,7 @@ $highlight: var(--highlight);
 
 // ================== Variables
 
-$medium-space-value: 20;
+$medium-space-value: 16;
 $medium-space: $medium-space-value * 1px;
 
 $cell-padding-vert: $medium-space * 0.5;
@@ -195,6 +195,8 @@ $main-padding-bottom: $main-padding-top;
 $main-padding-left: $main-padding-right;
 $main-padding: $main-padding-top $main-padding-right $main-padding-bottom $main-padding-left;
 
+$header-margin-top: 1.5em;
+
 $scroll-margin-top: $nav-bar-height + $main-padding-top;
 
 // ================== Logo
@@ -234,7 +236,7 @@ $nav-item-color: $text;
 $nav-item-hover-background-color: $highlight;
 
 $header-font-family: $font;
-$header-font-sizes: 30px 26px 22px 20px 18px 16px;
+$header-font-sizes: 30px 26px 22px 18px 16px 14px;
 $header-font-weights: 700 700 700 700 700 700;
 $header-line-height: 1.5;
 $header-color: $text;
@@ -318,15 +320,15 @@ $todo-red: hsl(0, 100%, 45%);
   line-height: $code-block-line-height;
 }
 
-@mixin code-inline-text {
+@mixin code-inline-text($color: $code-inline-color, $background-color: $code-inline-background-color) {
   font-family: $code-font-family;
-  font-size: 97%;
+  font-size: 95%;
   font-weight: inherit;
   line-height: inherit;
 
-  color: $code-inline-color;
-  background-color: $code-inline-background-color;
-  letter-spacing: -0.2px;
+  color: $color;
+  background-color: $background-color;
+  letter-spacing: -0.01em;
 }
 
 @mixin anchor-text($color: $link, $hover-color: $color, $hover-background-color: transparent) {
