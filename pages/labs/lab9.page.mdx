@@ -25,10 +25,10 @@ can be used for drawing on the GPU.
 These objects are: Vertex Buffer Objects (VBO) and Vertex Array Objects (VAO).
 
 <ImageFigure
-  images={[{ src: '/labs/lab10/pipelineWhiteBackground.png', alt: 'TODO' }]}
+  images={[{ src: '/labs/lab9/VBO_VAO_Overview.png', alt: 'TODO' }]}
   figNumber={1}
-  targetWidth={'70%'}
-  figCaption={'Realtime Pipeline'}
+  targetWidth={'95%'}
+  figCaption={'Visualization of VBOs and VAOs'}
 />
 
 At the moment, you can imagine a VBO to be a dumb container, the same as a C++ 
@@ -46,10 +46,11 @@ OpenGL is no exception, as a matter of fact, OpenGL is made by the Khronos
 group (who now is also developing the Vulkan API) and has extensive documentation
 on any functions across any version of OpenGL you may use. 
 
-The home page is located [here](https://registry.khronos.org/OpenGL-Refpages/). 
+The home page for OpenGL 3.1 is located 
+[here](https://registry.khronos.org/OpenGL-Refpages/es3.1/). 
 
 While our projects are set up to use OpenGL 4.1, the functions we will be using
-are within OpenGL ES 3.1 and GLSL (OpenGL Shading Language) 3.10.
+are within OpenGL 3.1.
 
 Let’s take a look at a function to see what the docs tell us about it!
 
@@ -80,23 +81,25 @@ Through this lab and your work in OpenGL, we strongly recommend having the docs 
 another tab to reference, and each function signature will serve as a link to their
 relevant page in the docs.
 
-### OpenGL as a State Machine
+### The OpenGL State Machine
 
-Instead of defining a bunch of instances of objects and editing them directly,
-OpenGL functions as a state machine. This means that you keep track of an OpenGL
-context with different settings and conditions which affects every operation you do.
+Instead of defining a bunch of instances of objects and calling functions on them directly,
+OpenGL functions as a **state machine**. This means that you keep track of some overarching 
+meta-object with different settings and conditions which affects every operation you do.
+In OpenGL, this meta-object is called the **context**.
 In this way, you will have to change your programming mindset when looking at OpenGL
-functions. In a moment, you will encounter the glBindBuffer operation which will be
-used to set a specific VBO to be active in the current OpenGL context or state. 
-Then in order to edit it, we make calls on the state rather than the object as you
-will see.
+functions. 
 
 Because of this unique behavior, it is important to be careful about managing OpenGL’s
 state during the execution of your programs. There are two strategies for this:
-Assume nothing When writing a function that uses OpenGL, consider that the state could
+1. **Assume nothing**. When writing a function that uses OpenGL, consider that the state could
 be anything. Explicitly set the values of the state parameters you depend on.
-Default configuration. Decide on a set of reasonable default state values, and set the
-state to these values at the start of your application. Anywhere you change one of these state parameters, restore the parameter to its previous value after you’re done rendering a component of the scene.
+2. **Default configuration**. Decide on a set of reasonable default state values, and set the
+state to these values at the start of your application. Anywhere you change one of these 
+state parameters, restore the parameter to its previous value after you’re done rendering a component of the scene.
+
+For the purposes of these labs, we will primarily be using the second option, which you will
+get more experience with in section 4.
  
 :::task
 Search the docs for the `glSetClearColor` function and call at the start of initializeGL
@@ -121,7 +124,21 @@ to later draw shapes of our own!
 
 Let’s take a look at how you would actually create a VBO. The OpenGL function is as follows:
 
-`void glGenBuffers(GLsizei n, GLuint *buffers)`
+:::success
+<p style={{ textAlign: 'center' }}>
+
+> [__void glGenBuffers(GLsizei n, GLuint *buffers);__](https://registry.khronos.org/OpenGL-Refpages/es3.1/html/glGenBuffers.xhtml)
+
+  </p>
+**`n` :** This indicates the number of vertex buffer objects to create. 
+The type GLsizei is an OpenGL alias indicating it is an integer representing some size
+
+**`buffers` :** This is the pointer this function will fill in with an id for the 
+generated buffer. This way you can refer to it later by the same stored id. 
+Multiple buffers can be filled in using a pointer to the first element of an array of
+sufficient size or some pointer followed by sufficient allocated space. 
+GLuint is an OpenGL alias for an unsigned int.
+:::
 
 :::task
 Generate a single VBO and store its id in `m_vbo`
@@ -131,9 +148,22 @@ Generate a single VBO and store its id in `m_vbo`
 
 #### Binding a VBO
 
-Congratulations, you have made a VBO! But…it currently holds no data! Let’s fix that. As said before, OpenGL is a state machine, so in order to interact with our created buffer, we need to bind it to the current state. The OpenGL function to do this is:
+Congratulations, you have made a VBO! But…it currently holds no data! Let’s fix that. 
+As said before, OpenGL is a state machine, so in order to interact with our created 
+buffer, we need to bind it to the current state. The OpenGL function to do this is:
 
-`void glBindBuffer(GLenum target, GLuint buffer)`
+:::success
+<p style={{ textAlign: 'center' }}>
+
+> [__void glBindBuffer(GLenum target, GLuint buffer);__](https://registry.khronos.org/OpenGL-Refpages/es3.1/html/glBindBuffer.xhtml)
+
+  </p>
+**`target` :** This is an enumerable indicating which type of buffer you are binding
+
+
+**`buffer` :** This indicates the specific buffer id that should be bound 
+(hint: remember the GLuint we created in the last step?)
+:::
 
 :::task
 Bind your previously created VBO
@@ -151,7 +181,12 @@ and in part 2 you will learn about more attributes vertices can hold!
 
 As a reminder in OpenGL, the screen is defined as in the image below:
 
-[image]
+<ImageFigure
+  images={[{ src: '/labs/lab9/openglcoordinates.png', alt: 'TODO' }]}
+  figNumber={1}
+  targetWidth={'95%'}
+  figCaption={'Visualization of VBOs and VAOs'}
+/>
 
 Take note of the x and y ranges of -1 to 1. As a reminder: in OpenGL,
 triangles are defined in a counter clockwise direction. 
@@ -165,7 +200,22 @@ Pick 3 points that would make a nice triangle
 Now how will we actually put this information into our VBO? Let's take a
 look at the function to do so first:
 
-`void glBufferData(GLenum target, GLsizeiptr size, const void * data, GLenum usage)`
+:::success
+<p style={{ textAlign: 'center' }}>
+
+> [__void glBufferData(GLenum target, GLsizeiptr size, const void *data, GLenum usage);__](https://registry.khronos.org/OpenGL-Refpages/es3.1/html/glBufferData.xhtml)
+
+  </p>
+**`target` :** This is the same argument seen in glBindBuffer.
+
+**`size` :** This indicates the size in bytes of the input data.
+
+**`data` :** This is a pointer to the first element of the input data array.
+
+**`usage` :** This is an OpenGL enum representing how the data will be used. For 
+our purposes, the usage parameter should be GL_STATIC_DRAW which indicates we don't
+expect to change the data, so OpenGL can make optimizations based on that.
+:::
 
 Next let’s look at data. The function expects a pointer to an input data array,
 but we don’t have that array yet! Let’s use an std::vector to construct our
@@ -184,7 +234,9 @@ object. This will return a pointer to the first element as needed.
 For the size, while we can manually input the size of our data, it is much easier
 to let the program calculate that for us. The size of our data is going to be equal to:
 
-<div align="center">(length of data) * (size of type of data stored)</div>
+$$
+  \text{(length of data)} * \text{(size of stored data type)} 
+$$
 
 To get the first part is simple using `std::vector` methods. For the second part,
 we can take advantage of the `sizeof()` function and pass in the data type stored
@@ -222,7 +274,19 @@ into your previous triangle data vector
 Now let’s tell OpenGL that we have this extra attribute by making a VAO! 
 The function to do this is:
 
-`void glGenVertexArrays(GLsizei n, GLuint *arrays)`
+:::success
+<p style={{ textAlign: 'center' }}>
+
+> [__void glGenVertexArrays(GLsizei n, GLuint *arrays);__](https://registry.khronos.org/OpenGL-Refpages/es3.1/html/glGenVertexArrays.xhtml)
+
+  </p>
+**`n` :** This indicates the number of vertex array objects to create.
+
+
+**`arrays` :** This is the pointer this function will fill in with an id 
+for the generated array. Similarly to glGenBuffers, you can also fill in an array
+or segment of continuous memory with pointers to vertex array objects.
+:::
 
 :::task
 Generate a single VAO and store its id in `m_vao`
@@ -233,7 +297,14 @@ Generate a single VAO and store its id in `m_vao`
 Next to actually use this VAO, we need to bind it to the state. 
 The function to do this is:
 
-`void glBindVertexArray(GLuint array)`
+:::success
+<p style={{ textAlign: 'center' }}>
+
+> [__void glBindVertexArray(GLuint array);__](https://registry.khronos.org/OpenGL-Refpages/es3.1/html/glBindVertexArray.xhtml)
+
+  </p>
+**`n` :** This is the id of the __VAO__ we wish to bind
+:::
 
 :::task
 Bind your VAO
@@ -242,20 +313,68 @@ Bind your VAO
 ### Utilizing a VAO
 
 Now that the VAO is bound, we can actually use it to let OpenGL know the structure 
-of our VBO. For each attribute, we need to do two things: 
-1. Let OpenGL know we are identifying an attribute
-2. Specify the location of the attribute in the VBO data.
+of our VBO. 
+
+For *__each__* attribute, we need to do two things: 
+1. Let OpenGL know we are identifying an attribute and which one
+2. Specify the location and layout of the attribute in the VBO data.
 
 For the first part, we call on the following function:
 
-`void glEnableVertexAttribArray(GLuint index)`
+:::success
+<p style={{ textAlign: 'center' }}>
+
+> [__void glEnableVertexAttribArray(GLuint index);__](https://registry.khronos.org/OpenGL-Refpages/es3.1/html/glEnableVertexAttribArray.xhtml)
+
+  </p>
+**`index` :** This indicates the index of the attribute we are identifying. 
+Indexing should start from 0 for the first attribute, so would be 1 for the 
+second, 2 for the third and so forth.
+:::
 
 For the second part, we use a more complex function:
 
-`void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer)`
+:::success
+<p style={{ textAlign: 'center' }}>
+
+> [__void glVertexAttribPointer(GLuint index, GLint size, GLenum type, GLboolean 
+normalized, GLsizei stride, const void* pointer);__](https://registry.khronos.org/OpenGL-Refpages/es3.1/html/glVertexAttribPointer.xhtml)
+
+  </p>
+**`index` :** This is the same index as used in glEnableVertexAttribArray above.
+
+**`size` :** This indicates the length of one vertex’s instance of this attribute, 
+not the size in bytes. For a position of 3 floats, this would simply be 3. For 
+an attribute that has 5 ints, this would be 5.
+
+**`type` :** This indicates the type of variable used for each component in the 
+attribute. For floats, this would be GL_FLOAT.
+
+**`normalized` :** This is a bit complicated to do with types, but for now use GL_FALSE.
+
+**`stride` :** This indicates the size in bytes between two vertices. 
+That is, the distance between the x coordinate of the position of the first vertex 
+and the x coordinate of the second vertex in bytes would be this value
+
+**`pointer` :** This is a pointer to the first vertex’s instance of the attribute 
+in the array of data. However, this more so refers to the offset into the array in 
+which you will find this attribute. That is in the figure 1 
+(figure showing position,color,uv), the offset of the color attribute is 
+3\*sizeof(GLfloat). But to cast this into a void\*, we need to use: 
+`reinterperet_cast<GLvoid*>(offset value)`
+
+<ImageFigure
+  images={[{ src: '/labs/lab9/Stride_Offset_White_Background.png', alt: 'TODO' }]}
+  figNumber={2}
+  targetWidth={'95%'}
+  figCaption={'Visualization of Vertex Attribute layouts'}
+/>
+
+:::
 
 >Note: These two functions will assume they apply to whichever VBO is currently bound, 
-so be careful of your state when using them.
+so be careful of your state when using them. As a matter of fact, you can store separate
+attributes of the same object in different VBOs and link them together in a single VAO!
 
 :::task
 Add the two attributes of position and color to your VAO
@@ -287,12 +406,12 @@ Unbind your VBO and VAO
 Great! Now you are ready to draw the triangle you have worked so hard to create. 
 To do this, these are the general steps you will want to follow each frame.
 
-1. Clear the screen using `glClear(COLOR_BUFFER_BIT | DEPTH_BUFFER_BIT)`
+1. Clear the screen using `glClear(COLOR_BUFFER_BIT | DEPTH_BUFFER_BIT);`
 2. For each shader you want to use:
     1. Bind the shader using glUseProgram(GLuint program)
     2. For each VAO you want to draw with the current shader:
         1. Bind the VAO
-        2. Draw using glDrawArrays(GLenum mode, GLint first, GLsizei count
+        2. Draw using `glDrawArrays(GLenum mode, GLint first, GLsizei count);`
         3. Unbind the VAO
     3. Unbind the shader using glUseProgram(0)
 
@@ -313,11 +432,21 @@ In `PaintGL`, after `glUseProgram`, bind our VAO
 
 ### The glDrawArrays Call
 
-For the last function, we can first break it down:
-void: indicates the function does not return
-GLenum mode: indicates the type of primitive to render, for our case, use GL_TRIANGLES
-GLint first: indicates the starting index for OpenGL to look in our VBO, and will most usually be 0
-GLsizei count: indicates how many vertices to draw
+Let's take a look at how we actually _draw_ our __VBOs__.
+
+:::success
+<p style={{ textAlign: 'center' }}>
+
+> [__void glDrawArrays(GLenum mode, GLint first, GLsizei count);__](https://registry.khronos.org/OpenGL-Refpages/es3.1/html/glDrawArrays.xhtml)
+
+  </p>
+**`mode` :** This indicates the type of primitive to render, for our case, use GL_TRIANGLES.
+
+**`first` :** This indicates the starting index for OpenGL to look in our VBO, and will most usually be 0.
+
+**`count` :** This indicates how many vertices to draw.
+
+:::
 
 :::task 
 At the end of PaintGL, draw our triangle
@@ -334,8 +463,24 @@ to store our data and objects. Unlike smart pointers however, this memory is **n
 automatically freed when it goes out of scope. To do this ourselves, we must call on the
 various `glDelete` functions at our disposal.
 
-For now we will use two, `glDeleteBuffers` which applies to VBOs, and `glDeleteVertexArrays'
+For now we will use two, [glDeleteBuffers](https://registry.khronos.org/OpenGL-Refpages/es3.1/html/glDeleteBuffers.xhtml)
+which applies to VBOs, and [glDeleteVertexArrays](https://registry.khronos.org/OpenGL-Refpages/es3.1/html/glDeleteVertexArrays.xhtml)
 which applies to VAOs.
+
+In general, the glDelete calls are described as follows.
+
+:::success
+<p style={{ textAlign: 'center' }}>
+
+> __void glDelete\_\_\_\_\_(GLsizei n, const GLuint *object);__
+
+  </p>
+**`n` :** This indicates how many of the object to delete.
+
+**`object` :** This is a pointer to the object being deleted. Or as we could create multiple within an array or
+continuous segment of memory, the pointer to the beginning of this memory can also be passed in.
+
+:::
 
 :::task
 In `finish()`, free your VBO and VAO memory
