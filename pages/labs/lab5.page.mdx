@@ -8,7 +8,7 @@ export const documentProps = { title: 'Lab 5' }
 
 ## Introduction
 
-In this lab, you will learn how to work with ```SceneData``` to represent a 3d scene. You will then write code that turns ```SceneData``` into ```RenderData```, a format that makes it easier to render an image from your scene. You will learn how lights, cameras and primitives are represented, as well as how to read **transformation graphs** so that every object has the correct final size and position in the scene. 
+In this lab, you will learn about the data structures used to represent 3d scenes. You will write code that turns an easy-to-build representation of scenes, ```SceneData```, into ```RenderData```, which is much easier to render an image from. You will learn how lights, cameras and primitives are represented, as well as how to read **transformation graphs** so that every object has the correct final size and position in the scene. 
 
 :::warning
 You will need the code you’ve written in this lab for the upcoming assignments, including the [Ray](/projects/ray) and [Realtime](/projects/realtime) projects!
@@ -157,16 +157,18 @@ All primitives will have a ```PrimitiveType``` and ```CS123SceneMaterial```.
 For meshes, the meshfile is a path to an .obj or equivalent file that has mesh geometry.
 The material field describes all the important information about what the primitive looks like (its color, how shiny it is, texture, etc). You can look at the struct ```CS123SceneMaterial``` for details, but don't worry if you don't understand any of the terms if they haven't yet been covered in Lecture.
 
-Notice that unlike the lights or camera structs, there aren't any fields in ```CS123ScenePrimitive``` that describe position or orientation. This is because it is more practical to use **transformation graphs** to manage this, especially when we have a lot of primitives!
+Notice that unlike the lights or camera structs, there aren't any fields in ```CS123ScenePrimitive``` that describe position or orientation. This is because it is more practical to use **scene graphs**  to manage this, especially when we have a lot of primitives!
 
-## Transformation Graphs
+## Scene Graphs
+
+A **scene graph** is a directed acyclical graph that holds all the primitives as well as the transformations applied to them. For this reason they can also be called **transformation graphs**.
 
 ### Transformations
 
 On ```lines 141 - 143``` you will find the ```TransformationType```.
 
 Remember how in the transforms lab you learned to compose a series of rotation, scaling and translation matricies into a single transformation matrix? 
-While every (linear) transfromation can be written as a matrix, it is easier when placing objects in a scene to work with translation, scaling and rotation. This is why we will work with four types of transformations:
+While every transformation can be written as a matrix, it is easier when placing objects in a scene to just work with translation, scaling and rotation. This is why we separate these out from matricies, and work with four types of transformations:
 
 ```cpp
 enum TransformationType {
@@ -238,13 +240,12 @@ Consider the graph below that represents four primitives in a scene (two spheres
   figureCaption={'Transformation Graph with 5 Primitives'}
 />
 
-Primitives are always leaf nodes. Transformation matrices (denoted ```M1```, ```M2```, etc.) are represented on the branches of the graph, and are applied to every child node. All nodes that are not leaf nodes are ```CS123SceneNode```s (also called **transblocks**) and can be thought of as groupings of objects as mentioned in **2.6**.
-
+As mentioned in **3.2.**, all nodes are ```CS123SceneNode```s and can be thought of as groupings of objects. All leaf nodes contain only ```primitives```. All non-leaf nodes contain ```transformations``` (denoted ```T1```, ```T2```,```R1``` etc.). The transformation(s) of non-leaf node are applied to the ```children``` nodes.
 
 :::task
 Write the final transformation matrix for the Cube, Cone and Cylinder.
     - A final transformation matrix is a matrix that transforms a primitive to its final position and orientation in the scene.
-    - Your answer should be a product of matrices ```M1```, ```M2```, etc.
+    - Your answer should be a product of matrices ```T1```, ```R2```, etc.
     - Keep in mind that order matters when multiplying matricies!
 :::
 
@@ -283,9 +284,10 @@ Consider how you might build the final transformation matricies from a scene gra
 
 ## Render Data
 
-By now, you should know all about how we represent global, light, camera, primitive and transformation data.
+Now that you know all about global data, lights, cameras, primitives and transformations, you can code them into .
 
-You will also implement a depth first search to generate the final transformation matrices for each primitive. To do this, you will be filling in out a struct called CS123SceneMetaData in `CS123SceneLoader::load`, based off of data found in the scene provided by a SceneData struct (SceneData.h).
+You will implement a depth first search to generate the final transformation matrices for each primitive. To do this, you will be filling in out a struct called CS123SceneMetaData in `CS123SceneLoader::load`, based off of data found in the scene provided by a SceneData struct (SceneData.h).
+
 
 ### Implementing CS123SceneLoader::load()
   **Explain the sencil structure, what files do the parsing, what functions to fill in.**
