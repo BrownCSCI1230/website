@@ -1,4 +1,5 @@
 export const documentProps = { title: 'Lab 8' }
+import { ImageFigure } from '/resources/components/ImageFigure'
 import MarkdownFooter from '/resources/markdownFooter.md'
 
 # Lab 8: Trimeshes
@@ -27,3 +28,98 @@ By the end of this lab, you will:
 1. Understand that primitives are created from a series of triangles described as a long list of vertices and normals.
 2. Learn how to calculate normals given 3 points.
 3. Implement a Cube and a Sphere!
+
+## Background
+
+This section covers a few concepts that you should know before you implement your Cube and Sphere.
+
+
+
+### OpenGL Coordinate System
+
+Understanding the coordinate system in OpenGL will save you a lot of debugging time later on. As shown in [Figure 1](#figure-1) below, the positive X axis points towards the right of the screen, the positive Y axis points towards the top of the screen, and the positive Z axis points out of the screen towards the viewer. 
+
+
+<ImageFigure
+  images={[{ src: '/labs/lab8/coor_sys.png', alt: 'TODO' }]}
+  figNumber={1}
+  figCaption={'OpenGL Coordinate System'}
+/>
+
+### Drawing triangles
+
+#### Vertex Data
+
+<ImageFigure
+  images={[{ src: '/labs/lab8/triangle_example.png', alt: 'TODO' }]}
+  figNumber={2}
+  figCaption={'Drawing a Triangle'}
+/>
+
+As shown in [Figure 2](#figure-2) above, to draw a single triangle in OpenGL, you will need to provide the 3 vertex positions (*x*, *y*, *z*) and 3 unit vector normals (*i*, *j*, *k*) of the triangle. The positions are simply the (*x*,*y*,*z*) coordinates of the vertices in world space, and the normals are unit vectors that are perpendicular to the face of the triangle. In this lab and in the Real-Time projects, the data for these points will be contained in a vector of floats, called `std::vector<float> m_vertexData`. The data is listed point by point, alternating between vertex positions and normals for each point.
+
+#### Calculating Normals
+
+<ImageFigure
+  images={[{ src: '/labs/lab8/normals.png', alt: 'TODO' }]}
+  figNumber={3}
+  figCaption={'Drawing a Triangle'}
+/>
+
+As you learned in the Ray projects, we need to provide the normals of each vertex in a 3D shape to correctly light it. Recall from Lab07 Terrain that normals should be perpendicular to the surface. As shown in [Figure 3](#figure-3) above, normals for a point $$V_3$$ on a triangle can be calculated by taking the cross product of the two edges $$p$$ and $$q$$ connected to that point. You can calculate the edges of the triangle using the vertices $$V_1$$, $$V_2$$ and $$V_3$$ as shown above.
+
+
+:::warning
+Order of cross product matters! If the lighting of the triangle is off, it’s likely that your normals are wrong.
+:::
+
+:::warning
+`glm::cross` and `glm::normalize` are super helpful for calculating the normals.
+:::
+
+
+#### Back-face Culling
+You may have noticed in [Figure 2](#figure-2) that the vertices and normals are in counter-clockwise order. Why does this matter? Because of back-face culling!
+
+<ImageFigure
+  images={[{ src: '/labs/lab8/back-face-culling.png', alt: 'TODO' }]}
+  figNumber={4}
+  figCaption={'The order of points matters when rendering triangles'}
+/>
+
+As shown in [Figure 4](#figure-4) above, the order in which you write the points of a triangle determines which side is visible to the viewer. This is helpful since we don't waste compute rendering triangles we shouldn't see inside of solids, but means you need to need to be careful about the order of your points. You can read more about back-face culling [here](https://en.wikipedia.org/wiki/Back-face_culling)!
+
+
+If your triangle is not visible, it’s likely that your points are in the wrong order. Remember, positions and normals have to go in *counter-clockwise* order!
+
+#### Making a Shape
+
+We are now ready to compose multiple triangles to make a 3d shape!
+
+<ImageFigure
+  images={[{ src: '/labs/lab8/m_vertex_data.png', alt: 'TODO' }]}
+  figNumber={4}
+  figCaption={'The order of points matters when rendering triangles'}
+/>
+
+
+Recall in [1.2.1 Drawing a Triangle](#-12-drawing-a-triangle) how to draw a triangle. As shown in [Figure 6](#-125-composing-multiple-triangles-to-create-a-3d-shape-mesh) above, if you combine multiple triangles together, you’ll end up with a 3D mesh! Neat, right?
+
+To do this, we provide every vertex and normal in the 3D shape to `m_vertexData`. Every triangle is then consecutively drawn to create the full 3D mesh.
+
+
+:::warning
+Notice that `m_vertexData` can contain repeats since the vertex/normal will appear in the same place!
+:::
+
+:::warning
+Don't forget about alternating vertices and normals and counter-clockwise ordering!
+:::
+
+Below are other examples of how we can use triangles to make different 3D meshes. The more triangles there are, the more complex the object can be!
+
+<ImageFigure
+  images={[{ src: '/labs/lab8/triangle-meshes.png', alt: 'TODO' }]}
+  figNumber={4}
+  figCaption={'Meshes representing a rabbit with an increasing number of triangles'}
+/>
