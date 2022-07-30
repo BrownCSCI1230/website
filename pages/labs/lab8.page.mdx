@@ -12,12 +12,6 @@ import MarkdownFooter from '/resources/markdownFooter.md'
 
 One of the fundamental applications of computer graphics is to display three-dimensional scenes. The catch, however, is that screens can only display two-dimensional images. Therefore, we need to convert a three-dimensional scene to something that can be viewed in two dimensions. A common method, which we will use in this lab, is to compose a scene using only triangles, then project those triangles to the screen, drawing each one sequentially.
 
-<details>
-  <summary>Why do we use triangles?</summary>
-
-Triangles are the only shape with area that is guaranteed to always be in one plane, which helps us avoid a lot of issues, notably with normals, etc. They are also optimized to be rendered really quickly, with most graphics cards have dedicated circuits optimized for this function.
-
-</details>
 
 In this lab, you will be writing the portion of this process that pertains to tesselating objects. You will be breaking up these 3D objects into a lot of triangles that, when put together, look as much like the desired 3D shape as possible. Note that curved surfaces can be better approximated using more triangles, but keep in mind that the more triangles we draw the more triangles we compute, and a major motivation behind tessellating objects is to simplify the process of displaying them.
 
@@ -43,17 +37,24 @@ Understanding the coordinate system in OpenGL will save you a lot of debugging t
 <ImageFigure
   images={[{ src: '/labs/lab8/coor_sys.png', alt: 'TODO' }]}
   figNumber={1}
-  figCaption={'OpenGL Coordinate System'}
+  figCaption={'The OpenGL Coordinate System'}
 />
 
-### Drawing triangles
+### Triangles
+
+<details>
+  <summary>Why do we use triangles?</summary>
+
+Triangles are the only shape with area that is guaranteed to always be in one plane, which helps us avoid a lot of issues, notably with normals, etc. They are also optimized to be rendered really quickly, with most graphics cards have dedicated circuits optimized for this function.
+
+</details>
 
 #### Vertex Data
 
 <ImageFigure
   images={[{ src: '/labs/lab8/triangle_example.png', alt: 'TODO' }]}
   figNumber={2}
-  figCaption={'Drawing a Triangle'}
+  figCaption={'Vertex Data'}
 />
 
 As shown in [Figure 2](#figure-2) above, to draw a single triangle in OpenGL, you will need to provide the 3 vertex positions (*x*, *y*, *z*) and 3 unit vector normals (*i*, *j*, *k*) of the triangle. The positions are simply the (*x*,*y*,*z*) coordinates of the vertices in world space, and the normals are unit vectors that are perpendicular to the face of the triangle. In this lab and in the Real-Time projects, the data for these points will be contained in a vector of floats, called `std::vector<float> m_vertexData`. The data is listed point by point, alternating between vertex positions and normals for each point.
@@ -63,7 +64,7 @@ As shown in [Figure 2](#figure-2) above, to draw a single triangle in OpenGL, yo
 <ImageFigure
   images={[{ src: '/labs/lab8/normals.png', alt: 'TODO' }]}
   figNumber={3}
-  figCaption={'Drawing a Triangle'}
+  figCaption={'Calculating the Normals at Each Point'}
 />
 
 As you learned in the Ray projects, we need to provide the normals of each vertex in a 3D shape to correctly light it. Recall from Lab07 Terrain that normals should be perpendicular to the surface. As shown in [Figure 3](#figure-3) above, normals for a point $$V_3$$ on a triangle can be calculated by taking the cross product of the two edges $$p$$ and $$q$$ connected to that point. You can calculate the edges of the triangle using the vertices $$V_1$$, $$V_2$$ and $$V_3$$ as shown above.
@@ -84,7 +85,7 @@ You may have noticed in [Figure 2](#figure-2) that the vertices and normals are 
 <ImageFigure
   images={[{ src: '/labs/lab8/back-face-culling.png', alt: 'TODO' }]}
   figNumber={4}
-  figCaption={'The order of points matters when rendering triangles'}
+  figCaption={'The Order of Points Matters When Rendering'}
 />
 
 As shown in [Figure 4](#figure-4) above, the order in which you write the points of a triangle determines which side is visible to the viewer. This is helpful since we don't waste compute rendering triangles we shouldn't see inside of solids, but means you need to need to be careful about the order of your points. You can read more about back-face culling [here](https://en.wikipedia.org/wiki/Back-face_culling)!
@@ -92,18 +93,18 @@ As shown in [Figure 4](#figure-4) above, the order in which you write the points
 
 If your triangle is not visible, it’s likely that your points are in the wrong order. Remember, positions and normals have to go in *counter-clockwise* order!
 
-#### Making a Shape
+#### Composing Triangles
 
 We are now ready to compose multiple triangles to make a 3d shape!
 
 <ImageFigure
   images={[{ src: '/labs/lab8/m_vertex_data.png', alt: 'TODO' }]}
-  figNumber={4}
-  figCaption={'The order of points matters when rendering triangles'}
+  figNumber={5}
+  figCaption={'Combining Triangles To Make A Cube'}
 />
 
 
-Recall in [1.2.1 Drawing a Triangle](#-12-drawing-a-triangle) how to draw a triangle. As shown in [Figure 6](#-125-composing-multiple-triangles-to-create-a-3d-shape-mesh) above, if you combine multiple triangles together, you’ll end up with a 3D mesh! Neat, right?
+Recall in [1.2.1 Drawing a Triangle](#-12-drawing-a-triangle) how to draw a triangle. As shown in [Figure 5](#figure-5) above, if you combine multiple triangles together, you’ll end up with a 3D mesh! Neat, right?
 
 To do this, we provide every vertex and normal in the 3D shape to `m_vertexData`. Every triangle is then consecutively drawn to create the full 3D mesh.
 
@@ -120,6 +121,145 @@ Below are other examples of how we can use triangles to make different 3D meshes
 
 <ImageFigure
   images={[{ src: '/labs/lab8/triangle-meshes.png', alt: 'TODO' }]}
-  figNumber={4}
-  figCaption={'Meshes representing a rabbit with an increasing number of triangles'}
+  figNumber={6}
+  figCaption={'Representing A Rabbit With An Increasing Number Of Triangles'}
+/>
+
+
+### Stencil Code and Interacting with the UI
+
+Now that you know everything you need to know about vertex data and triangles, you're ready to begin creating your own trimeshes!
+
+**TODO**: explanation of UI and stencil code. Will do this after we write the code lol
+
+#### Draw a Triangle
+
+You will first draw a triangle. 
+
+:::task
+In the Triangle class, fill out the `tessellate_triangle()` function stub. Use the following coordinate points:
+- `(-0.5, -0.5, 0)`
+- `(0.5, -0.5, 0)`
+- `(0, 0.5, 0)`
+:::
+
+Don’t forget the normals!
+
+Your triangle should look like this:
+
+<ImageFigure
+  images={[{ src: '/labs/lab8/m_vertex_data.png', alt: 'TODO' }]}
+  figNumber={7}
+  figCaption={'What Your Triangle Should Look Like'}
+/>
+
+
+## Cube
+
+Now that you know how to create a triangle, you'll soon be able to start creating your own 3D shapes!
+
+For our purposes, each shape is centered at the origin, and has a radius of 1. In other words, they lie in the range [-0.5, 0.5] on all axes. 
+
+As shown below, you’ll notice that there are sliders on the left side of the screen that control the shape parameters. These parameters control the number of triangles used to tessellate each face of the Cube. 
+
+<ImageFigure
+  images={[{ src: '/labs/lab8/cube_parameters.jpeg', alt: 'TODO' }]}
+  figNumber={8}
+  figCaption={'Changing The Tesselation Parameter On A Cube'}
+/>
+
+### Make a Tile
+
+To create our Cube, you'll first create a plane comprised of two triangles as shown below. 
+
+:::task
+In the Cube class, implement the `makeTile()` function stub. Don’t forget the normals!
+:::
+
+<details>
+  <summary>What are the `makeTile()` inputs and outputs?</summary>
+
+<ImageFigure
+  images={[{ src: '/labs/lab8/make_tile.png', alt: 'TODO' }]}
+  figNumber={9}
+  figCaption={'Diagram Of makeTile() Inputs And Outputs'}
+/>
+
+As shown above, `makeTile()` takes in 4 inputs:
+- `glm::vec3 topLeft`: the position of the top left vertex
+- `glm::vec3 bottomLeft`: the position of the bottom left vertex
+- `glm::vec3 bottomRight`: the position of the bottom right vertex
+- `glm::vec3 topRight`: the position of the top right vertex
+	
+`makeTile()` outputs:
+- `std::vector<float>`: This vector contains the positions and normals of the tile, which then can be concatenated to `m_vertexData`
+	
+</details>
+
+Your tile should look like this: 
+
+TODO: Insert image when Testing
+
+<ImageFigure
+  images={[{ src: '/labs/lab8/amog-us-among-us.gif', alt: 'TODO' }]}
+  figNumber={10}
+  figCaption={'A Tile'}
+/>
+
+### Make a Cube Face
+
+Now that you have your tile, you can create one face of the Cube! In the Cube class, implement the positive x side of the Cube in the `makeFace()` function stub. The face should tesselate differently depending on parameter 1. Refer to [Figure 8](#figure-8) to see how param 1 affects a face of a cube. Use the `makeTile()` function you wrote in Task 2.1.
+
+<details>
+  <summary>What are the `makeFace()` inputs and outputs?</summary>
+	  
+`makeFace()` takes in 4 inputs:
+- `glm::vec3 topLeft`: the position of the top left vertex of the face
+- `glm::vec3 bottomLeft`: the position of the bottom left vertex of the face
+- `glm::vec3 bottomRight`: the position of the bottom right vertex of the face
+- `glm::vec3 topRight`: the position of the top right vertex of the face
+	
+`makeFace()` as no outputs. You will directly add your points to `m_vertexData` in this function.
+	
+</details>
+
+:::warning
+Don’t forget that parameter 1 controls the number of triangles in each row and column!
+:::
+
+You should end up with something that looks like this:
+
+TODO: Insert Image when Testing
+
+<ImageFigure
+  images={[{ src: '/labs/lab8/amog-us-among-us.gif', alt: 'TODO' }]}
+  figNumber={11}
+  figCaption={'A Face Of A Cube With Different Tesselations'}
+/>
+
+<details>
+  <summary>How do I use the `makeTile()` function?</summary>
+	
+The key here is to know what the four points you need to pass into `makeTile()`. Look at how parameter 1 affects the tessellation of the face, and how it changes the intervals of where the vertex positions are located.
+	
+</details>
+
+
+### Make a Full Cube
+
+We now have one side of our Cube! 
+
+:::task
+Implement all 6 sides of your Cube using the `makeFace()` function you filled out. 
+It may be helpful to draw a diagram of the Cube to figure out the positions of all its corners!
+:::
+
+Your Cube should now look like this:
+
+TODO: Insert Image when Testing
+
+<ImageFigure
+  images={[{ src: '/labs/lab8/amog-us-among-us.gif', alt: 'TODO' }]}
+  figNumber={12}
+  figCaption={'A Full Cube'}
 />
